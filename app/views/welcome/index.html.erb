@@ -1,0 +1,34 @@
+<h1>Welcome#index</h1>
+
+<div><%= render "search" if @enquire %></div>
+
+<div><%= image_tag "aircraft.jpg", :alt => "aircraft", :size => "750x500" %></div>
+
+<div>
+<%= form_for(:enquiry, :url => {:action => "index"}, :method => "get") do |f| %>
+
+  <div class="field">
+    <%= f.label :origin, "Travelling From:" %><br>
+    <%= f.text_field :origin %>
+  </div>
+  <div class="field">
+    <%= f.label :destination, "Travelling To" %><br>
+    <%= f.text_field :destination %>
+  </div>
+  <div class="field">
+    <%= f.label :departure, "Earliest Departure Date" %><br>
+    <%= f.date_field :departure %>
+  </div>
+  <div class="field">
+    <%= f.label :passenger, "Number of Passengers" %><br>
+    <%= f.number_field :passenger %>
+  </div>
+  <div class="field">
+    <%= f.label :travel_class %><br>
+    <%= f.text_field :travel_class %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Find Flights" %>
+  </div>
+<% end %>
+</div>
