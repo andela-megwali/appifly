@@ -32,6 +32,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Puma as the app server
 gem 'puma', '~> 3.6'
 
+gem 'pry-rails'
+gem 'bootstrap-sass', '~> 3.3.6'
+
+# Automatic Ruby code style checking tool
+gem 'rubocop', '~> 0.42.0'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

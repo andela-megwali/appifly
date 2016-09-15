@@ -9,7 +9,7 @@ class CreatePassengers < ActiveRecord::Migration
       t.string :telephone
       t.string :nationality
       t.string :travel_class
-      t.boolean :luggage
+      t.string :luggage
 
       t.timestamps null: false
     end

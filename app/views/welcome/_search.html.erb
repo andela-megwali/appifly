@@ -4,30 +4,29 @@
 <% travel_value = multiplier[passenger_class] || 1 %>
 <% passenger_class = "Economy" unless travel_value > 1 %>
 
-<table>
+<%= form_for(:select_flight, :url => {:controller => "bookings", :action => "new"}, :method => "get" ) do |x|%>
+<table style="max-width: 100%">
   <thead>
     <tr>
       <th>Origin</th>
       <th>Destination</th>
-      <th>Time of Departure</th>
+      <th>Departure Time</th>
       <th>Time of Arrival</th>
       <th>Flight Cost</th>
-      <th>Passengers</th>
       <th>Total Cost</th>
       <th>Select a Flight</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
-  <tbody>
+  <tbody>  
     <% @enquire.each do |flight| %>
       <tr>
         <td><%= flight.origin %></td>
         <td><%= flight.destination %></td>
-        <td><%= flight.departure %></td>
-        <td><%= flight.arrival %></td>
+        <td><%= flight.departure.strftime("%d/%m/%Y %H:%M") %></td>
+        <td><%= flight.arrival.strftime("%d/%m/%Y %H:%M") %></td>
         <td> $ <%= flight.flight_cost * travel_value %></td>
-        <td><%= @passenger_enquiry["Number Travelling"] %></td>
         <td> $ <%= flight.flight_cost * @passenger_enquiry["Number Travelling"] * travel_value %></td>
         <td>
             <%= label_tag(:select_flight, "#{flight.flight_code}") %> 
@@ -37,61 +36,9 @@
     <% end %>
   </tbody>
 </table>
-  <%= submit_tag("Select Flight")%>
-
-<strong><%= "Travel Class: #{passenger_class} Class" %></strong><br>
-<p><%= "Results found: #{@enquire.count}" %></p>
-
-<% @enquire.each do |flight| %>
-  <div>
-	  <table>
-		  <thead>
-		    <tr>
-		      <th colspan="2"><%=flight.flight_code%></th>
-		    </tr>
-		  </thead>
-		  
-		  <tbody>
-		    <tr>
-		      <td>Origin</td>
-		      <td><%= flight.origin %></td>
-		    </tr>
-		    <tr>
-		      <td>Destination</td>
-		      <td><%= flight.destination %></td>
-		    </tr>
-		    <tr>
-		      <td>Time of Departure</td>
-		        <td><%= flight.departure %></td>
-		    </tr>
-		    <tr>
-		      <td>Time of Arrival</td>
-		      <td><%= flight.arrival %></td>
-		    </tr>
-		    <tr>
-		      <td>Flight Cost</td>
-		      <td> $ <%= flight.flight_cost * travel_value %></td>
-		    </tr>
-		    <tr>
-		      <td>Passengers</td>
-		      <td><%= @passenger_enquiry["Number Travelling"] %></td>
-		    </tr>
-		    <tr>
-		      <td>Total Cost</td>
-		      <td> $ <%= flight.flight_cost * @passenger_enquiry["Number Travelling"] * travel_value %></td>
-		    </tr>
-		    <tr>
-		      <td>Select a Flight</td>
-		      <td>
-		          <%= label_tag(:select_flight, "#{flight.flight_code}") %> 
-		          <%= radio_button_tag(:select_flight, "#{flight.id}") %> 
-		      </td>
-		    </tr>
-		  </tbody>
-	  </table>
-  </div>
+<p><%= submit_tag("Select Flight") %></p>
 <% end %>
-<%= submit_tag("Select Flight")%>
 
-<strong><%= "Travel Class: #{passenger_class} Class" %></strong><br>
-<%= "Results found: #{@enquire.count}" %>
+<p>Passengers Travelling: <%= @passenger_enquiry["Number Travelling"] %></p>
+<p><%= "Travel Class: #{passenger_class} Class" %></p>
+<p><%= "Results found: #{@enquire.count}" %></p>

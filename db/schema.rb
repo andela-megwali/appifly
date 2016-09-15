@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 20160909160022) do
     t.string   "telephone"
     t.string   "nationality"
     t.string   "travel_class"
-    t.boolean  "luggage"
+    t.string   "luggage"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end

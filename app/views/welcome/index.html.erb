@@ -1,10 +1,16 @@
 <h1>Welcome#index</h1>
 
-<div><%= render "search" if @enquire %></div>
-
-<div><%= image_tag "aircraft.jpg", :alt => "aircraft", :size => "750x500" %></div>
-
 <div>
+<% if @enquire && params[:enquiry][:view_format] == "List" %>
+<%= render "search" %>
+<% elsif @enquire %>
+<%= render "search2" %>
+<% end %>
+</div>
+
+<div style="display: inline-block"><%= image_tag "aircraft.jpg", :alt => "aircraft", :size => "750x500" %></div>
+
+<div style="display: inline-block">
 <%= form_for(:enquiry, :url => {:action => "index"}, :method => "get") do |f| %>
 
   <div class="field">
@@ -25,7 +31,11 @@
   </div>
   <div class="field">
     <%= f.label :travel_class %><br>
-    <%= f.text_field :travel_class %>
+    <%= f.select :travel_class, ["Economy", "Business", "First"] %>
+  </div>
+  <div class="field">
+    <%= f.label :view_format, "Search Result Format" %><br>
+    <%= f.select :view_format, ["List", "Grid"] %>
   </div>
   <div class="actions">
     <%= f.submit "Find Flights" %>

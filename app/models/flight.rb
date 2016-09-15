@@ -8,4 +8,5 @@ class Flight < ActiveRecord::Base
         time_now,
         departure_time,
   ) }
+  scope :sorted, lambda { order("flights.departure ASC") }
 end
