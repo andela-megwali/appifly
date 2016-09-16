@@ -5,13 +5,13 @@
 <table>
   <thead>
     <tr>
-      <th>Airline</th>
+      <th>Originating Airport ID</th>
       <th>Origin</th>
       <th>Destination</th>
       <th>Seat</th>
       <th>Departure</th>
       <th>Arrival</th>
-      <th>Airplane</th>
+      <th>Airline</th>
       <th>Flight code</th>
       <th>Flight type</th>
       <th>Flight cost</th>
@@ -22,13 +22,13 @@
   <tbody>
     <% @flights.each do |flight| %>
       <tr>
-        <td><%= flight.airline.name %></td>
+        <td><%= flight.airport_id %></td>
         <td><%= flight.origin %></td>
         <td><%= flight.destination %></td>
         <td><%= flight.seat %></td>
         <td><%= flight.departure %></td>
         <td><%= flight.arrival %></td>
-        <td><%= flight.airplane %></td>
+        <td><%= flight.airline %></td>
         <td><%= flight.flight_code %></td>
         <td><%= flight.flight_type %></td>
         <td>$ <%= flight.flight_cost %></td>

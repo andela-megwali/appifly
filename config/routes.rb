@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
 
-  resources :bookings
   root 'welcome#index'
   get 'bookings/index'
 
   resources :flights
+  resources :bookings
+  resources :airports
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

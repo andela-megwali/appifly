@@ -1,3 +1,3 @@
 class Airport < ActiveRecord::Base
-  has_many :airlines
+  has_many :flights
 end

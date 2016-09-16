@@ -1,6 +1,6 @@
 class Flight < ActiveRecord::Base
   has_many :bookings
-  belongs_to :airline
+  belongs_to :airport
   scope :search_flight, lambda { |from, to, time_now, departure_time| where(
     "origin LIKE ? AND destination LIKE ? AND departure >= ? AND departure >= ?",
         "%#{from}%",

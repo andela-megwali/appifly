@@ -5,8 +5,9 @@
 <% passenger_class = "Economy" unless travel_value > 1 %>
 
 <%= form_for(:select_flight, :url => {:controller => "bookings", :action => "new"}, :method => "get" ) do |x|%>
+<div class="col-md-10">
 <% @enquire.each do |flight| %>
-  <div style="display: inline-block">
+  <div class="col-md-3">
 	  <table>
 		  <thead>
 		    <tr>
@@ -53,8 +54,10 @@
 	  </table>
   </div>
 <% end %>
+</div>
+<strong><%= "Travel Class: #{passenger_class} Class" %></strong><br>
+<%= "Results found: #{@enquire.count}" %>
 <p><%= submit_tag("Select Flight")%></p>
 <% end %>
 
-<strong><%= "Travel Class: #{passenger_class} Class" %></strong><br>
-<%= "Results found: #{@enquire.count}" %>
+

@@ -2,8 +2,9 @@ class CreateAirports < ActiveRecord::Migration
   def change
     create_table :airports do |t|
       t.string :name
+      t.string :continent
       t.string :country
-      t.string :state
+      t.string :state_and_code
       t.string :airport_type
       t.integer :rating
 
