@@ -156,8 +156,9 @@ header {
 }
 header .header-content {
   text-align: center;
-  padding: 150px 0 50px;
+  padding: 0;
   position: relative;
+  margin: 40px auto;
 }
 header .header-content .header-content-inner {
   position: relative;
@@ -189,15 +190,15 @@ header .device-container .screen img {
   }
   header .header-content {
     text-align: left;
-    padding: 0;
     height: 100vh;
+    padding: 0;
+    margin: 40px auto;
+
   }
   header .header-content .header-content-inner {
     max-width: none;
     margin: 0;
-    position: absolute;
-    top: 30%;
-    transform: translateY(-50%);
+    position: relative;
   }
   header .header-content .header-content-inner h1 {
     font-size: 35px;
@@ -210,7 +211,7 @@ header .device-container .screen img {
 }
 @media (min-width: 992px) {
   header .header-content .header-content-inner h1 {
-    font-size: 50px;
+    font-size: 35px;
   }
 }
 section {
@@ -502,7 +503,7 @@ button, input, optgroup, select, textarea {
 }
 
 legend {
-color: inherit;
+  color: inherit;
 }
 
 .welcome-form {
@@ -533,9 +534,18 @@ color: inherit;
   }
 }
  .header-nav {
-    margin-top: 52px;
+  margin-top: 52px;
  }
 
  .carousel {
-    top: 52px;
+  top: 52px;
  }
+
+ .search_grid {
+  margin: 0 auto 3em;
+  display: inline-block
+ }
+
+ td, th {
+  padding: 3px;
+  }

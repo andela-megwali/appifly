@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
 
   root 'welcome#index'
-  get 'bookings/index'
 
   resources :flights
   resources :bookings

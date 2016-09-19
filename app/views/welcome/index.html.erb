@@ -1,16 +1,3 @@
-
-
-<!-- <section id="download" class="download bg-primary text-center">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        
-      </div>
-    </div>
-  </div>
-</section> -->
-
-
 <header>
 <% if @enquire && params[:enquiry][:view_format] == "Grid" %>
 <%= render "search2" %>
@@ -63,6 +50,10 @@
       </div>
       <div class="col-sm-7">
         <div class="header-content">
+          <div class="header-content-inner">
+              <h1>The Appifly app helps you find quality flights to exciting destinations worldwide. Appifly users are always happy fliers with experiences to relish for a lifetime.   </h1>
+              <a href="#download" class="btn btn-outline btn-xl page-scroll">Start Now for Free!</a>
+          </div>
           <div id="myCarousel" class="carousel slide" data-ride="carousel">
             <!-- Indicators -->
             <ol class="carousel-indicators">
@@ -100,105 +91,13 @@
               <span class="sr-only">Next</span>
             </a>
           </div><!-- /.carousel -->
-          <div class="header-content-inner">
-              <h1>Appifly is an app that helps you find quality flights to great destinations worldwide. Appifly users are always happy fliers with experiences to relish for a lifetime.   </h1>
-              <a href="#download" class="btn btn-outline btn-xl page-scroll">Start Now for Free!</a>
-          </div>
         </div>
+        
       </div>
     </div>
   </div>
 </header>
 
-<section id="download" class="download bg-primary text-center">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <h2 class="section-heading">Discover what all the buzz is about!</h2>
-        <p>Our app is available on any mobile device! Download now to get started!</p>
-        <div class="badges">
-          <a class="badge-link" href="#"><img src="img/google-play-badge.svg" alt=""></a>
-          <a class="badge-link" href="#"><img src="img/app-store-badge.svg" alt=""></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="features" class="features">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-12 text-center">
-        <div class="section-heading">
-          <h2>Unlimited Features, Unlimited Fun</h2>
-          <p class="text-muted">Check out what you can do with this app theme!</p>
-          <hr>
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="device-container">
-          <div class="device-mockup iphone6_plus portrait white">
-            <div class="device">
-              <div class="screen">
-                          <!-- Demo image for screen mockup, you can put an image here, some HTML, an animation, video, or anything else! -->
-                          <img src="assets/aircraft.jpg" class="img-responsive" alt=""> </div>
-                      <div class="button">
-                          <!-- You can hook the "home button" to some JavaScript events or just remove it -->
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="col-md-8">
-          <div class="container-fluid">
-              <div class="row">
-                  <div class="col-md-6">
-                      <div class="feature-item">
-                          <i class="icon-screen-smartphone text-primary"></i>
-                          <h3>Device Mockups</h3>
-                          <p class="text-muted">Ready to use HTML/CSS</p>
-                      </div>
-                  </div>
-                  <div class="col-md-6">
-                      <div class="feature-item">
-                          <i class="icon-camera text-primary"></i>
-                          <h3>Flexible Use</h3>
-                          <p class="text-muted">image, video</p>
-                      </div>
-                  </div>
-              </div>
-              <div class="row">
-                  <div class="col-md-6">
-                      <div class="feature-item">
-                          <i class="icon-present text-primary"></i>
-                          <h3>Free to Use</h3>
-                          <p class="text-muted">As always, this is free !</p>
-                      </div>
-                  </div>
-                  <div class="col-md-6">
-                      <div class="feature-item">
-                          <i class="icon-lock-open text-primary"></i>
-                          <h3>Open Source</h3>
-                          <p class="text-muted">Since this commercially!</p>
-                      </div>
-                  </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <section class="cta">
-        <div class="cta-content">
-            <div class="container">
-                <h2>Stop waiting.</h2>
-                <a href="#contact" class="btn btn-outline btn-xl page-scroll">Let's Get Started!</a>
-            </div>
-        </div>
-        <div class="overlay"></div>
-    </section>
 
     <section id="contact" class="contact bg-primary">
         <div class="container">
@@ -214,6 +113,16 @@
                     <a href="#"><i class="fa fa-google-plus"></i></a>
                 </li>
             </ul>
+            <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h2 class="section-heading">Discover what all the buzz is about!</h2>
+        <p>Our app is available on any mobile device! Download now to get started!</p>
+        <div class="badges">
+          <a class="badge-link" href="#"><img src="img/google-play-badge.svg" alt=""></a>
+          <a class="badge-link" href="#"><img src="img/app-store-badge.svg" alt=""></a>
+        </div>
+      </div>
+    </div>
         </div>
     </section>
 
@@ -233,106 +142,3 @@
             </ul>
         </div>
     </footer>
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-<div class="row">
-
-<div class="col-md-1"> </div>
-
-
-<div class="col-md-3">
-
-  <div class="form-group">
-
-<%= form_for(:enquiry, :url => {:action => "index"}, :method => "get") do |f| %>
-  <legend class="form-group">Search Flights</legend>
-  <div class="form-group">
-    <%= f.label :origin, "Travelling From:", class: "control-label" %><br>
-    <%= f.text_field :origin, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :destination, "Travelling To", class: "control-label" %><br>
-    <%= f.text_field :destination, class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :departure, "Earliest Departure Date", class: "control-label" %><br>
-    <%= f.date_field :departure %>
-  </div>
-  <div class="form-group">
-    <%= f.label :passenger, "Number of Passengers", class: "control-label" %><br>
-    <%= f.number_field :passenger %>
-  </div>
-  <div class="form-group">
-    <%= f.label :travel_class, class: "control-label" %><br>
-    <%= f.select :travel_class, ["Economy", "Business", "First"], class: "form-control" %>
-  </div>
-  <div class="form-group">
-    <%= f.label :view_format, "Search Result Format", class: "control-label" %><br>
-    <%= f.select :view_format, ["List", "Grid"] %>
-  </div>
-  <div class="form-group">
-    <%= f.submit "Find Flights", class: "btn btn-primary" %>
-  </div>
-<% end %>
-</div>
-</div>
-
-
-
-
-
-
-
-
-    <!-- Carousel
-    ================================================== -->
-<div class="col-md-8">
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-      </ol>
-      <div class="carousel-inner" role="listbox">
-        <div class="item active first-slide"><%= image_tag "aircraft.jpg", :alt => "First-Slide", :size => "1050x700"%> 
-
-          <!-- <img class="first-slide" src="aircraft.jpg " alt="First slide"> -->
-          <div class="container">
-            <div class="carousel-caption">
-              <h1>Example headline.</h1>
-              <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="item second-slide"><%= image_tag "aircraft.jpg", :alt => "Second Slide", :size => "1050x700"%><div class="container">
-            <div class="carousel-caption">
-              <h1>Another example headline.</h1>
-              <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div><!-- /.carousel -->
-</div>

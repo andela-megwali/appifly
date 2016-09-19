@@ -1,0 +1,123 @@
+<div>
+  <table>
+	  <thead>
+	    <tr>
+	      <th colspan="2">Booking Flight <%=@flight_selected.flight_code%></th>
+	    </tr>
+	  </thead>
+	  
+	  <tbody>
+	    <tr>
+	      <td>Origin:</td>
+	      <td><%= @flight_selected.origin %></td>
+	    </tr>
+	    <tr>
+	      <td>Destination:</td>
+	      <td><%= @flight_selected.destination %></td>
+	    </tr>
+	    <tr>
+	      <td>Departure Time:</td>
+	        <td><%= @flight_selected.departure.strftime("%d/%m/%Y %H:%M") %></td>
+	    </tr>
+	    <tr>
+	      <td>Time of Arrival:</td>
+	      <td><%= @flight_selected.arrival.strftime("%d/%m/%Y %H:%M") %></td>
+	    </tr>
+	    <tr>
+	      <td>Flight Jurisdiction:</td>
+	      <td><%= @flight_selected.flight_type %></td>
+	    </tr>
+	    <tr>
+	      <td>Flight Costs:</td>
+	      <td>$ <%= @flight_selected.flight_cost %> per person (Economy)</td>
+	    </tr>
+      <tr>
+        <td></td>
+        <td>$ <%= @flight_selected.flight_cost * 1.5 %> per person (Business)</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>$ <%= @flight_selected.flight_cost * 2 %> per person (First)</td>
+      </tr>
+	    <tr>
+	      <td>Airline:</td>
+	      <td><%= @flight_selected.airline %></td>
+	    </tr>
+	    <tr>
+	      <td>Travel Class:</td>
+	      <% if @passenger_enquiry %>
+        <td><%= @passenger_enquiry["Travel Class"] %></td>
+        <% else %>
+        <td><%= @booking.travel_class %></td>
+        <% end %>
+	    </tr>
+	    <tr>
+	      <td>Number of Passengers Travelling:</td>
+        <% if @passenger_enquiry %>
+	      <td><%= @passenger_enquiry["Number Travelling"] %></td>
+        <% else %>
+        <td><%= @booking.passengers.count %></td>
+        <% end %>
+	    </tr>
+	  </tbody>
+  </table>
+</div>
+
+
+<%= @passenger_enquiry %>
+
+
+<div>
+
+  <%= form_for(@booking) do |f| %>
+  <% if @booking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+
+      <ul>
+      <% @booking.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :travel_class, "Set / Change Travel Class" %><br>
+    <%= f.select :travel_class, ["Economy", "Business", "First"] %>
+  </div>
+  <%= f.fields_for :passengers do |passenger_details| %>
+  <h2> Passenger Details </h2>
+  <div class="field">
+    <%= passenger_details.label :title %><br>
+    <%= passenger_details.text_field :title %>
+  </div>
+  <div class="field">
+    <%= passenger_details.label :firstname %><br>
+    <%= passenger_details.text_field :firstname %>
+  </div>
+  <div class="field">
+    <%= passenger_details.label :lastname %><br>
+    <%= passenger_details.text_field :lastname %>
+  </div>
+  <div class="field">
+    <%= passenger_details.label :email %><br>
+    <%= passenger_details.text_field :email %>
+  </div>
+  <div class="field">
+    <%= passenger_details.label :telephone %><br>
+    <%= passenger_details.text_field :telephone %>
+  </div>
+  <div class="field">
+    <%= passenger_details.label :nationality %><br>
+    <%= passenger_details.text_field :nationality %>
+  </div>
+  <div class="field">
+    <%= passenger_details.label :luggage %><br>
+    <%= passenger_details.select :luggage, ["No", "Yes"] %>
+  </div>
+  <% end %>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>

@@ -7,7 +7,7 @@
 <%= form_for(:select_flight, :url => {:controller => "bookings", :action => "new"}, :method => "get" ) do |x|%>
 <div class="col-md-10">
 <% @enquire.each do |flight| %>
-  <div class="col-md-3">
+  <div class="col-md-3 search_grid">
 	  <table>
 		  <thead>
 		    <tr>
