@@ -5,10 +5,10 @@ class Notifications < ApplicationMailer
   #
   #   en.notifications.signup.subject
   #
-  def signup
-    @greeting = "Hi"
+  def welcome_email(passenger)
+    @passenger = passenger
 
-    mail to: "to@example.org"
+    mail to: passenger.email, subject: "Welcome"
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -38,9 +38,9 @@ class Notifications < ApplicationMailer
   #
   #   en.notifications.booking_confirmation.subject
   #
-  def booking_confirmation
-    @greeting = "Hi"
+  def booking_confirmation(passenger)
+    @passenger = passenger
 
-    mail to: "to@example.org"
+    mail to: passenger.email, subject: "Welcome"
   end
 end

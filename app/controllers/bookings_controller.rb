@@ -14,8 +14,15 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-    @booking.flight_id = @passenger_enquiry["Flight Selected"]
+    @booking.flight_id = @flight_selected.id
     if @booking.save
+      additional_booking_details
+      @booking.passengers.each do |passenger| 
+        Notifications.booking_confirmation(passenger).deliver_now
+      end
+      
+      session[:passenger_enquiry] = nil if @booking.save
+      #Notifications.welcome_email(@passenger).deliver_later
       redirect_to @booking, notice: "Booking was successfully created."
     else
       render :new
@@ -23,19 +30,24 @@ class BookingsController < ApplicationController
   end
 
   def show
-    additional_booking_details
-    session[:passenger_enquiry] = nil
   end
 
   def edit
+    @booking.passengers.build
   end
 
   def update
     if @booking.update(booking_params)
+      additional_booking_details
       redirect_to @booking, notice: "Booking was successfully updated."
     else
       render :edit
     end
+  end
+
+  def destroy
+    @booking.destroy
+    redirect_to bookings_url, notice: "Booking was successfully destroyed"
   end
 
   private
@@ -46,9 +58,8 @@ class BookingsController < ApplicationController
 
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def booking_params
-	  params.require(:booking).permit(:reference_id, :paid, :total_cost,
-      :travel_class, :user_id, :flight_id, passengers_attributes: [:id, :title,
-        :firstname, :lastname, :email, :telephone, :nationality, :luggage])
+	  params.require(:booking).permit(:paid, :travel_class, :user_id, passengers_attributes: [:id, :title,
+        :firstname, :lastname, :email, :telephone, :nationality, :luggage, :_destroy])
 	end
 
   def set_flight_select
@@ -59,7 +70,7 @@ class BookingsController < ApplicationController
     elsif @booking
       @flight_selected = Flight.find(@booking.flight_id)
     end
-    redirect_to root_path unless @flight_selected
+    redirect_to :back, notice: 'Please select a flight first!' unless @flight_selected
   end
 
   def booking_ref_generator

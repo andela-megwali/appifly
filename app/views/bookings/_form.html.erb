@@ -115,6 +115,9 @@
     <%= passenger_details.label :luggage %><br>
     <%= passenger_details.select :luggage, ["No", "Yes"] %>
   </div>
+  <div class="field">
+    <%= passenger_details.label :_destroy, "Remove this passenger" %>
+    <%= passenger_details.check_box :_destroy%>
   <% end %>
   <div class="actions">
     <%= f.submit %>

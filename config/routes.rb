@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'user/new'
+
+  get 'user/create'
+
   root 'welcome#index'
 
   resources :flights
