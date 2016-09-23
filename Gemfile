@@ -24,16 +24,23 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
+# gem 'bcrypt', '~> 3.1.7'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.6'
+# Use devise for authentication
+gem 'devise'
+
 gem "cocoon"
 # gem 'toastr-rails', '~> 1.0', '>= 1.0.3'
+
+# Pry for debugging
 gem 'pry-rails'
+
+# Integrate bootstrap for styling
 gem 'bootstrap-sass', '~> 3.3.6'
 
 # Automatic Ruby code style checking tool

@@ -17,12 +17,8 @@ class BookingsController < ApplicationController
     @booking.flight_id = @flight_selected.id
     if @booking.save
       additional_booking_details
-      @booking.passengers.each do |passenger| 
-        Notifications.booking_confirmation(passenger).deliver_now
-      end
-      
+      send_booking_notification
       session[:passenger_enquiry] = nil if @booking.save
-      #Notifications.welcome_email(@passenger).deliver_later
       redirect_to @booking, notice: "Booking was successfully created."
     else
       render :new
@@ -88,5 +84,11 @@ class BookingsController < ApplicationController
     @booking.reference_id = booking_ref_generator + @booking.passengers.
       count.to_s + @booking.id.to_s unless @booking.reference_id
     @booking.save
+  end
+
+  def send_booking_notification
+    @booking.passengers.each do |passenger| 
+      Notifications.booking_confirmation(passenger).deliver_now
+    end
   end
 end
