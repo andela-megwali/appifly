@@ -25,7 +25,7 @@ class FlightsController < ApplicationController
   # POST /flights.json
   def create
     @flight = Flight.new(flight_params)
-
+    get_airport_id
     respond_to do |format|
       if @flight.save
         format.html { redirect_to @flight, notice: 'Flight was successfully created.' }
@@ -69,6 +69,10 @@ class FlightsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def flight_params
-      params.require(:flight).permit(:airport_id, :origin, :destination, :seat, :departure, :arrival, :airline, :flight_code, :flight_type, :flight_cost)
+      params.require(:flight).permit(:origin, :destination, :seat, :departure, :arrival, :airline, :flight_code, :flight_type, :flight_cost)
+    end
+
+    def get_airport_id
+      @flight.airport_id = Airport.find_by_state_and_code(params[:origin]) 
     end
 end
