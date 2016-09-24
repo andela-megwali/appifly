@@ -1,5 +1,3 @@
-<p id="notice"><%= notice %></p>
-
 <h2>Booking Details</h2>
 <h4>Booking Reference Number <%=@booking.reference_id %> </h4>
 <h4>Number of Passengers Booked: <%=@booking.passengers.count%> </h4>
@@ -40,7 +38,13 @@
         </tr>
         <tr>
           <td>Flight Cost:</td>
-          <td>$ <%= @booking.total_cost / @booking.passengers.count %> per person</td>
+          <td>
+          <% if @booking.passengers.count > 0 %>
+            $ <%= @booking.total_cost / @booking.passengers.count %> per person
+          <% else %>
+            <em>Invalid Booking Pending Addition of Passenger Details</em>
+          <% end %>
+          </td>
         </tr>
         <tr>
           <td>Airline:</td>

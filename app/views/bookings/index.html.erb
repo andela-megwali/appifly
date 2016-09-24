@@ -1,8 +1,6 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Bookings</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Booking Reference</th>
@@ -11,7 +9,7 @@
       <th>Booking Cost</th>
       <th>Flight Code</th>
       <th>Payment</th>
-      <th colspan="3"></th>
+      <th colspan="3">Admin Actions</th>
     </tr>
   </thead>
 
@@ -26,7 +24,7 @@
         <td><%= booking.paid %></td>
         <td><%= link_to 'Show', booking %></td>
         <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
-        <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Cancel', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

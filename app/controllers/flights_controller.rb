@@ -1,5 +1,6 @@
 class FlightsController < ApplicationController
   before_action :set_flight, only: [:show, :edit, :update, :destroy]
+  before_action :list_airport, only: [:new, :edit]
 
   def index
     @flights = Flight.all
@@ -10,11 +11,9 @@ class FlightsController < ApplicationController
 
   def new
     @flight = Flight.new
-    list_airport
   end
 
   def edit
-    list_airport
   end
 
   def create
@@ -60,8 +59,6 @@ class FlightsController < ApplicationController
     {
       "fly_from" => Airport.find_by(state_and_code: params[:flight][:origin]),
       "fly_to" => Airport.find_by(state_and_code: params[:flight][:destination])
-      # "fly_from" => Airport.state_code(params[:flight][:origin]).first,
-      # "fly_to" => Airport.state_code(params[:flight][:destination]).first,
     }
   end
 
@@ -90,14 +87,6 @@ class FlightsController < ApplicationController
     else
       "Past"
     end
-  end
-
-  def list_airport
-    list_of_airport = []
-    Airport.all.each do |airport|
-      list_of_airport << airport.state_and_code
-    end
-    @list_airport = list_of_airport
   end
 
   def additional_flight_details

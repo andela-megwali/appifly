@@ -16,11 +16,11 @@
                     <legend class="form-group">Search Flights Here</legend>
                     <div class="form-group">
                       <%= f.label :origin, "Travelling From:", class: "control-label" %><br>
-                      <%= f.text_field :origin, class: "form-control", required: true %>
+                      <%= f.select :origin, @list_airport, class: "form-control", required: true %>
                     </div>
                     <div class="form-group">
                       <%= f.label :destination, "Travelling To", class: "control-label" %><br>
-                      <%= f.text_field :destination, class: "form-control", required: true %>
+                      <%= f.select :destination, @list_airport, class: "form-control", required: true %>
                     </div>
                     <div class="form-group">
                       <%= f.label :departure, "Earliest Departure Date", class: "control-label" %><br>

@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
   def index
+    list_airport
     if params[:enquiry]
       @enquire = Flight.sorted.search_flight params[:enquiry][:origin],
                                              params[:enquiry][:destination],

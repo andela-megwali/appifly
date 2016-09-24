@@ -42,7 +42,7 @@ class BookingsController < ApplicationController
 
   def destroy
     @booking.destroy
-    redirect_to bookings_url, notice: "Booking was successfully destroyed"
+    redirect_to bookings_url, notice: "Booking was successfully Cancelled"
   end
 
   private
@@ -63,7 +63,8 @@ class BookingsController < ApplicationController
   end
 
   def set_flight_select
-    session[:passenger_enquiry]["Flight Selected"] = params[:select_flight] if params[:select_flight]
+    session[:passenger_enquiry]["Flight Selected"] = params[:select_flight] if
+      params[:select_flight]
     @passenger_enquiry = session[:passenger_enquiry]
     if @passenger_enquiry && @passenger_enquiry["Flight Selected"]
       @flight_selected = Flight.find(@passenger_enquiry["Flight Selected"])
@@ -74,7 +75,11 @@ class BookingsController < ApplicationController
   end
 
   def booking_ref_generator
-    @booking.reference_id = @flight_selected.flight_code + rand(1000..9999).to_s + "-" + rand(1000..9999).to_s + "-" + rand(1000..9999).to_s + "-" + @booking.flight_id.to_s + @booking.passengers.size.to_s + @booking.id.to_s
+    @booking.reference_id = @flight_selected.flight_code + "-" +
+                            rand(1000..9999).to_s + "-" + rand(1000..9999).
+                            to_s + "-" + rand(1000..9999).to_s + "-" +
+                            @booking.flight_id.to_s + @booking.passengers.size.
+                            to_s + @booking.id.to_s
   end
 
   def cost_calculator
