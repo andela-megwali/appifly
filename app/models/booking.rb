@@ -5,6 +5,6 @@ class Booking < ActiveRecord::Base
   belongs_to :user
 
   accepts_nested_attributes_for :passengers, allow_destroy: true
-  #reject_if: lambda {|attributes| attributes['firstname'].blank?}, 
+  # reject_if: lambda {|attributes| attributes["firstname"].blank?},
   validates_associated :passengers
 end

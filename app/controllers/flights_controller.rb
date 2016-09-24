@@ -1,78 +1,109 @@
 class FlightsController < ApplicationController
   before_action :set_flight, only: [:show, :edit, :update, :destroy]
 
-  # GET /flights
-  # GET /flights.json
   def index
     @flights = Flight.all
   end
 
-  # GET /flights/1
-  # GET /flights/1.json
   def show
   end
 
-  # GET /flights/new
   def new
     @flight = Flight.new
+    list_airport
   end
 
-  # GET /flights/1/edit
   def edit
+    list_airport
   end
 
-  # POST /flights
-  # POST /flights.json
   def create
     @flight = Flight.new(flight_params)
-    get_airport_id
-    respond_to do |format|
-      if @flight.save
-        format.html { redirect_to @flight, notice: 'Flight was successfully created.' }
-        format.json { render :show, status: :created, location: @flight }
-      else
-        format.html { render :new }
-        format.json { render json: @flight.errors, status: :unprocessable_entity }
-      end
+    additional_flight_details
+    if @flight.save
+      redirect_to @flight, notice: "Flight was successfully created."
+    else
+      render :new
     end
   end
 
-  # PATCH/PUT /flights/1
-  # PATCH/PUT /flights/1.json
   def update
-    respond_to do |format|
-      if @flight.update(flight_params)
-        format.html { redirect_to @flight, notice: 'Flight was successfully updated.' }
-        format.json { render :show, status: :ok, location: @flight }
-      else
-        format.html { render :edit }
-        format.json { render json: @flight.errors, status: :unprocessable_entity }
-      end
+    if @flight.update(flight_params)
+      additional_flight_details
+      redirect_to @flight, notice: "Flight was successfully updated."
+    else
+      render :edit
     end
   end
 
-  # DELETE /flights/1
-  # DELETE /flights/1.json
   def destroy
     @flight.destroy
-    respond_to do |format|
-      format.html { redirect_to flights_url, notice: 'Flight was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to flights_url, notice: "Flight #{@flight.flight_code} has been
+                                      removed."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_flight
-      @flight = Flight.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def flight_params
-      params.require(:flight).permit(:origin, :destination, :seat, :departure, :arrival, :airline, :flight_code, :flight_type, :flight_cost)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_flight
+    @flight = Flight.find(params[:id])
+  end
 
-    def get_airport_id
-      @flight.airport_id = Airport.find_by_state_and_code(params[:origin]) 
+  # Never trust parameters from the internet, only allow the whitelist through
+  def flight_params
+    params.require(:flight).permit :origin, :destination, :seat, :flight_cost,
+                                   :arrival, :airline, :flight_code, :departure,
+                                   :status
+  end
+
+  def airport_info
+    {
+      "fly_from" => Airport.find_by(state_and_code: params[:flight][:origin]),
+      "fly_to" => Airport.find_by(state_and_code: params[:flight][:destination])
+      # "fly_from" => Airport.state_code(params[:flight][:origin]).first,
+      # "fly_to" => Airport.state_code(params[:flight][:destination]).first,
+    }
+  end
+
+  def get_flight_origin
+    @flight.airport_id = airport_info["fly_from"].id
+    @flight.origin = airport_info["fly_from"].state_and_code
+  end
+
+  def get_flight_type
+    if airport_info["fly_from"].country == airport_info["fly_to"].country
+      "Local"
+    elsif airport_info["fly_from"].continent == airport_info["fly_to"].continent
+      "Continental"
+    else
+      "International"
     end
+  end
+
+  def get_flight_status
+    if params[:flight][:status] == "Yes"
+      "Cancelled"
+    elsif @flight.departure > Time.now
+      "Booking"
+    elsif @flight.departure < Time.now && Time.now < @flight.arrival
+      "In Transit"
+    else
+      "Past"
+    end
+  end
+
+  def list_airport
+    list_of_airport = []
+    Airport.all.each do |airport|
+      list_of_airport << airport.state_and_code
+    end
+    @list_airport = list_of_airport
+  end
+
+  def additional_flight_details
+    get_flight_origin
+    @flight.flight_type = get_flight_type
+    @flight.status = get_flight_status
+    @flight.save
+  end
 end

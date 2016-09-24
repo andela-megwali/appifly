@@ -1,2 +1,0 @@
-json.extract! flight, :id, :airline_id, :origin, :destination, :seat, :departure, :arrival, :airplane, :flight_code, :flight_type, :flight_cost, :created_at, :updated_at
-json.url flight_url(flight, format: :json)

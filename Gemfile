@@ -35,6 +35,7 @@ gem 'puma', '~> 3.6'
 gem 'devise'
 
 gem "cocoon"
+gem 'jquery-ui-rails'
 # gem 'toastr-rails', '~> 1.0', '>= 1.0.3'
 
 # Pry for debugging

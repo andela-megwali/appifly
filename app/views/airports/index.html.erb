@@ -1,32 +1,32 @@
-<p id="notice"><%= notice %></p>
-
 <h1>Listing Airports</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
+      <th>Index</th>
       <th>Airport Name</th>
-      <th>Airport Continent</th>
-      <th>Airport Country</th>
+      <th>Jurisdiction</th>
       <th>State (Code)</th>
-      <th>Airport Jurisdiction</th>
-      <th>Airport Rating</th>
-      <th colspan="3"></th>
+      <th>Country</th>
+      <th>Continent</th>
+      <th>Rating</th>
+      <th colspan="3">Admin Actions</th>
     </tr>
   </thead>
 
   <tbody>
-    <% @airports.each do |airport| %>
+    <% @airports.each_with_index do |airport, index| %>
       <tr>
+        <td><%= index + 1 %></td>
         <td><%= airport.name %></td>
-        <td><%= airport.continent %></td>
-        <td><%= airport.country %></td>
-        <td><%= airport.state_and_code %></td>
         <td><%= airport.airport_type %></td>
+        <td><%= airport.state_and_code %></td>
+        <td><%= airport.country %></td>
+        <td><%= airport.continent %></td>
         <td><%= airport.rating %></td>
-        <td><%= link_to 'Show', airport %></td>
-        <td><%= link_to 'Edit', edit_airport_path(airport) %></td>
-        <td><%= link_to 'Destroy', airport, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to "Show", airport %></td>
+        <td><%= link_to "Edit", edit_airport_path(airport) %></td>
+        <td><%= link_to "Remove", airport, method: :delete, data: { confirm: "Are you sure?" } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +34,4 @@
 
 <br>
 
-<%= link_to 'New Airport', new_airport_path %>
+<%= link_to "New Airport", new_airport_path %>

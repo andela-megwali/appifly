@@ -11,6 +11,7 @@ class CreateFlights < ActiveRecord::Migration
       t.string :flight_code
       t.string :flight_type
       t.integer :flight_cost
+      t.string :status
 
       t.timestamps null: false
     end

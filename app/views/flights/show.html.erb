@@ -1,12 +1,9 @@
-<p id="notice"><%= notice %></p>
+<h3>
+  <strong>Flight <%= @flight.flight_code %></strong>
+</h3>
 
 <p>
-  <strong>Originating Airport ID:</strong>
-  <%= @flight.airport_id %>
-</p>
-
-<p>
-  <strong>Origin:</strong>
+  <strong>Origin Airport:</strong>
   <%= @flight.origin %>
 </p>
 
@@ -22,12 +19,12 @@
 
 <p>
   <strong>Departure:</strong>
-  <%= @flight.departure %>
+  <%= @flight.departure.strftime("%d/%m/%Y %H:%M")  %>
 </p>
 
 <p>
   <strong>Arrival:</strong>
-  <%= @flight.arrival %>
+  <%= @flight.arrival.strftime("%d/%m/%Y %H:%M")  %>
 </p>
 
 <p>
@@ -50,5 +47,5 @@
   $<%= @flight.flight_cost %>
 </p>
 
-<%= link_to 'Edit', edit_flight_path(@flight) %> |
-<%= link_to 'Back', flights_path %>
+<%= link_to "Edit", edit_flight_path(@flight) %> |
+<%= link_to "Back", flights_path %>
