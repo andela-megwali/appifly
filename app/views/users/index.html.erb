@@ -1,0 +1,42 @@
+<h1>Listing Users</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Index</th>
+      <th>Title</th>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Username</th>
+      <th>Email</th>
+      <th>Telephone</th>
+      <th>Subscribed?</th>
+      <th>Admin?</th>
+      <th colspan="3">Admin Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each_with_index do |user, index| %>
+      <tr>
+        <td><%= index + 1 %></td>
+        <td><%= user.title %></td>
+        <td><%= user.firstname %></td>
+        <td><%= user.lastname %></td>
+        <td><%= user.username %></td>
+        <td><%= user.email %></td>
+        <td><%= user.telephone %></td>
+        <td><%= user.subscription %></td>
+        <td><%= user.admin_user %></td>
+
+        <td><%= link_to "Show", user %></td>
+        <td><%= link_to "Edit", edit_user_path(user) %></td>
+        <td><%= link_to "Remove", user, method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "New User", new_user_path %>

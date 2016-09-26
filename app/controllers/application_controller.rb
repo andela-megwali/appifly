@@ -12,4 +12,11 @@ class ApplicationController < ActionController::Base
     end
     @list_airport = list_of_airport
   end
+
+  def verify_user_login
+    unless session[:user_id]
+      redirect_to login_path, notice: "There's more but please sign in first :)"
+      return false
+    end
+  end
 end
