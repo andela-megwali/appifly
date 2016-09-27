@@ -33,7 +33,7 @@ class BookingsController < ApplicationController
   def update
     if @booking.update(booking_params)
       cost_calculator
-      send_booking_notification
+      send_booking_update_notification
       redirect_to @booking, notice: "Booking was successfully updated."
     else
       render :edit
@@ -50,12 +50,12 @@ class BookingsController < ApplicationController
     render "index"
   end
 
-  def manage
+  def search_booking
     @booking = Booking.find_by(:reference_id => params[:reference_id])
     if @booking
       redirect_to @booking, notice: "Booking Found."
     else
-      render :manage, notice: "Booking Not Found."
+      render :search_booking, notice: "Booking Not Found."
     end
   end
 
@@ -68,7 +68,7 @@ class BookingsController < ApplicationController
 
   # Never trust parameters from the internet, only allow the white list through
   def booking_params
-    params.require(:booking).permit :paid, :travel_class, :user_id,
+    params.require(:booking).permit :travel_class,
                                     passengers_attributes: [:id, :nationality,
                                                             :firstname, :email,
                                                             :title, :telephone,
@@ -106,6 +106,12 @@ class BookingsController < ApplicationController
   def send_booking_notification
     @booking.passengers.each do |passenger|
       Notifications.booking_confirmation(passenger).deliver_now
+    end
+  end
+
+  def send_booking_update_notification
+    @booking.passengers.each do |passenger|
+      Notifications.booking_update_confirmation(passenger).deliver_now
     end
   end
 

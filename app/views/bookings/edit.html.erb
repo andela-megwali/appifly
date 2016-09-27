@@ -1,6 +1,8 @@
 <h1>Editing Booking</h1>
 
 <%= render "form" %>
-
-<%= link_to "Show", @booking %> |
-<%= link_to "Back", bookings_path %>
+<% if session[:user_id] %>
+  <%= link_to "Back", @booking %> |
+  <%= link_to "My Bookings", past_bookings_path %>
+  <%= link_to "All Bookings", bookings_path if User.find(session[:user_id]).admin_user %>
+<% end %>

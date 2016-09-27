@@ -14,4 +14,7 @@ class WelcomeController < ApplicationController
       @passenger_enquiry = session[:passenger_enquiry]
     end
   end
+
+  def about
+  end
 end

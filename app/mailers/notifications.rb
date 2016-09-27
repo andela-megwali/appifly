@@ -40,6 +40,6 @@ class Notifications < ApplicationMailer
   def booking_confirmation(passenger)
     @passenger = passenger
 
-    mail to: passenger.email, subject: "Welcome"
+    mail to: passenger.email, subject: "Booking Confirmation"
   end
 end

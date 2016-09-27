@@ -32,7 +32,7 @@ gem "bcrypt", "~> 3.1.7"
 gem "puma", "~> 3.6"
 # Use devise for authentication
 # gem "devise"
-
+gem 'font-awesome-sass'
 gem "cocoon"
 #gem "jquery-ui-rails"
 gem 'will_paginate', '~> 3.1', '>= 3.1.3'

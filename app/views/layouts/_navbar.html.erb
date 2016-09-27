@@ -1,42 +1,38 @@
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand page-scroll" href="/">Appifly</a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li>
-                      <%= link_to "Find Your Booking", root_path %>
-                    </li>
-                    <li>
-                      <%= link_to "Manage Bookings", manage_bookings_path %>
-                    </li>
-                    
-                    <% if session[:user_id] %>
-                    <li>
-                      <%= link_to "Past Booking", past_bookings_path %> 
-                    </li>
-                    <li>
-                      <%= link_to "Sign out", "/logout" %> 
-                    </li>
-                     <li>
-                      Signed in as <%=session[:user_username] %> 
-                    </li>
-                    <% else %>
-                    <li>
-                      <%= link_to "Sign in", "/login" %>
-                    </li>
-                    <li>
-                      <%= link_to "Sign up", new_user_path %>
-                    </li>
-                    <% end %>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span> Menu <i class="fa fa-bars"></i>
+      </button>
+      <%= link_to "Appifly", root_path, class: "navbar-brand page-scroll" %>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <%= link_to "Find Your Booking", search_booking_path %>
+        </li>
+        <% if session[:user_id] %>
+          <li>
+            <%= link_to "Manage Bookings", past_bookings_path %> 
+          </li>
+          <li>
+            <%= link_to "Sign out", "/logout" %> 
+          </li>
+          <li>
+            Signed in as <%=session[:user_username] %> 
+          </li>
+        <% else %>
+          <li>
+            <%= link_to "Sign in", "/login" %>
+          </li>
+          <li>
+            <%= link_to "Sign up", new_user_path %>
+          </li>
+        <% end %>
+        <% if session[:user_id] && User.find(session[:user_id]).admin_user %>
+          <li>Admin</li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

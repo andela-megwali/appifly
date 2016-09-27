@@ -103,7 +103,7 @@ p {
 }
 @media (min-width: 768px) {
   .navbar-default {
-    background-color: transparent;
+    background-color: rgba(0, 0, 0, 0.7);
     border-color: transparent;
   }
   .navbar-default .navbar-header .navbar-brand {
@@ -421,7 +421,8 @@ footer ul li a.active {
 }
 .btn-xl {
   padding: 15px 45px;
-  font-size: 11px;
+  font-size: 14px;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 ::-moz-selection {
   color: white;
@@ -499,7 +500,7 @@ body {
 
 
 button, input, optgroup, select, textarea {
-  color: #555555
+  color: #787878
 }
 
 legend {
@@ -534,12 +535,17 @@ legend {
   }
 }
  .header-nav {
-  margin-top: 52px;
+  margin-top: 75px;
  }
 
  .carousel {
   top: 52px;
  }
+
+.carousel-caption {
+  bottom: 1em;
+  padding-bottom: 1em;
+}
 
  .search_grid {
   margin: 0 auto 3em;
@@ -586,5 +592,39 @@ legend {
   ul li {
     font-size: 12px;
     list-style: square;
+  }
+}
+
+.overlay {
+background-color: rgba(0, 0, 0, 0.35);
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 10;
+pointer-events: none;
+  }
+     @media (min-width: 768px) and (max-width: 979px) {
+      .overlay{
+
+         width:90%;
+        height:90%;
+  }    
+ }
+
+  @media (max-width: 767px) {
+     .overlay{
+
+  width:100%;
+  height:100%;
+  }
+
+  }
+@media (max-width: 480px) {
+   .overlay{
+   width:100%;
+  height:100%;
+
   }
 }

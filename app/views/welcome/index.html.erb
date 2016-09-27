@@ -1,144 +1,42 @@
-<!-- <header> -->
 <% if @enquire && params[:enquiry][:view_format] == "Grid" %>
-<%= render "search2" %>
+  <%= render "search2" %>
 <% elsif @enquire %>
-<%= render "search" %>
+  <%= render "search" %>
 <% end %>
-  <div class="container header-nav">
-    <div class="row">        
-      <div class="col-sm-5">
-        <div class="device-container">
-          <div class="device-mockup iphone6_plus portrait white">
-            <div class="device">
-              <div class="screen">
-                <div class="welcome-form"> 
-                  <%= form_for(:enquiry, :url => {:action => "index"}, :method => "get") do |f| %>
-                    <legend class="form-group">Search Flights Here</legend>
-                    <div class="form-group">
-                      <%= f.label :origin, "Travelling From:", class: "control-label" %><br>
-                      <%= f.select :origin, @list_airport, class: "form-control", required: true %>
-                    </div>
-                    <div class="form-group">
-                      <%= f.label :destination, "Travelling To", class: "control-label" %><br>
-                      <%= f.select :destination, @list_airport, class: "form-control", required: true %>
-                    </div>
-                    <div class="form-group">
-                      <%= f.label :departure, "Earliest Departure Date", class: "control-label" %><br>
-                      <%= f.date_field :departure, required: true %>
-                    </div>
-                    <div class="form-group">
-                      <%= f.label :passenger, "Number of Passengers", class: "control-label" %><br>
-                      <%= f.number_field :passenger, required: true %>
-                    </div>
-                    <div class="form-group mobile-travel-disappear">
-                      <%= f.label :travel_class, class: "control-label" %><br>
-                      <%= f.select :travel_class, ["Economy", "Business", "First"], class: "form-control" %>
-                    </div>
-                    <div class="form-group mobile-disappear">
-                      <%= f.label :view_format, "Search Result Format", class: "control-label" %><br>
-                      <%= f.select :view_format, ["Grid", "List"] %>
-                    </div>
-                    <div class="form-group">
-                      <%= f.submit "Find Flights", class: "btn btn-primary" %>
-                    </div>
-                  <% end %>
-                </div>
+<div class="container header-nav">
+  <div class="row">        
+    <div class="col-sm-5">
+      <div class="device-container">
+        <div class="device-mockup iphone6_plus portrait white">
+          <div class="device">
+            <div class="screen">
+              <div class="welcome-form"> 
+                <%= render "form" %>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-sm-7">
-        <div class="header-content">
-          <div class="header-content-inner">
-              <h1>The Appifly app helps you find quality flights to exciting destinations worldwide. Appifly users are always happy fliers with experiences to relish for a lifetime.   </h1>
-              <a href="#download" class="btn btn-outline btn-xl page-scroll">Start Now for Free!</a>
-          </div>
-          <div id="myCarousel" class="carousel slide" data-ride="carousel">
-            <!-- Indicators -->
-            <ol class="carousel-indicators">
-              <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-              <li data-target="#myCarousel" data-slide-to="1"></li>
-            </ol>
-            <div class="carousel-inner" role="listbox">
-              <div class="item active first-slide">
-                <%= image_tag "aircraft.jpg", :alt => "First-Slide", :size => "1050x700"%>
-                <div class="container">
-                  <div class="carousel-caption">
-                    <h1>Example headline.</h1>
-                    <p>Note: If you're viewing this page via</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
-                  </div>
-                </div>
-              </div>
-              <div class="item second-slide">
-                <%= image_tag "aircraft.jpg", :alt => "Second Slide", :size => "1050x700"%>
-                <div class="container">
-                  <div class="carousel-caption">
-                    <h1>Another example headline.</h1>
-                    <p>Cras justo odio, dapibus ac facilisis in</p>
-                    <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
-          </div><!-- /.carousel -->
-        </div>
-        
-      </div>
+    </div>
+    <div class="col-sm-7">
+      <%= render "message" %>
     </div>
   </div>
-<!-- </header> -->
-
-
-    <section id="contact" class="contact bg-primary">
-        <div class="container">
-            <h2>We <i class="fa fa-heart"></i> new friends!</h2>
-            <ul class="list-inline list-social">
-                <li class="social-twitter">
-                    <a href="#"><i class="fa fa-twitter"></i></a>
-                </li>
-                <li class="social-facebook">
-                    <a href="#"><i class="fa fa-facebook"></i></a>
-                </li>
-                <li class="social-google-plus">
-                    <a href="#"><i class="fa fa-google-plus"></i></a>
-                </li>
-            </ul>
-            <div class="row">
-      <div class="col-md-8 col-md-offset-2">
-        <h2 class="section-heading">Discover what all the buzz is about!</h2>
-        <p>Our app is available on any mobile device! Download now to get started!</p>
-        <div class="badges">
-          <a class="badge-link" href="#"><img src="img/google-play-badge.svg" alt=""></a>
-          <a class="badge-link" href="#"><img src="img/app-store-badge.svg" alt=""></a>
-        </div>
-      </div>
-    </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; Appifly. All Rights Reserved.</p>
-            <ul class="list-inline">
-                <li>
-                    <a href="#">Privacy</a>
-                </li>
-                <li>
-                    <a href="#">Terms</a>
-                </li>
-                <li>
-                    <a href="#">FAQ</a>
-                </li>
-            </ul>
-        </div>
-    </footer>
+</div>
+<section id="contact" class="contact bg-primary header-nav">
+  <div class="container">
+    <h2>We L<i class="fa fa-heart"></i>ve New Friends!</h2>
+    <h4>Connect with us to get the best offers first</h4>
+    <ul class="list-inline list-social">
+      <li class="social-twitter">
+        <a href="#"><i class="fa fa-twitter"></i></a>
+      </li>
+      <li class="social-facebook">
+        <a href="#"><i class="fa fa-facebook"></i></a>
+      </li>
+      <li class="social-google-plus">
+        <a href="#"><i class="fa fa-google-plus"></i></a>
+      </li>
+    </ul>
+  </div>
+</section>
