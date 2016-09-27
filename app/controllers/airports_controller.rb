@@ -2,7 +2,7 @@ class AirportsController < ApplicationController
   before_action :set_airport, only: [:show, :edit, :update, :destroy]
 
   def index
-    @airports = Airport.all
+    @airports = Airport.all.paginate(page: params[:page], per_page: 30)
   end
 
   def new
@@ -34,9 +34,7 @@ class AirportsController < ApplicationController
 
   def destroy
     @airport.destroy
-    redirect_to airports_url, notice: "#{@airport.name + ' ' +
-                                      @airport.airport_type} Airport has been
-                                      removed"
+    redirect_to airports_url, notice: "#{@airport.name} #{@airport.airport_type} Airport has been removed"
   end
 
   private

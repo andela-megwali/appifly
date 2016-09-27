@@ -34,11 +34,15 @@ gem "puma", "~> 3.6"
 # gem "devise"
 
 gem "cocoon"
-gem "jquery-ui-rails"
+#gem "jquery-ui-rails"
+gem 'will_paginate', '~> 3.1', '>= 3.1.3'
+gem 'will_paginate-bootstrap'
 # gem "toastr-rails", "~> 1.0", ">= 1.0.3"
 
 # Pry for debugging
 gem "pry-rails"
+
+gem 'rspec', '~> 3.4'
 
 # Integrate bootstrap for styling
 gem "bootstrap-sass", "~> 3.3.6"

@@ -1,0 +1,5 @@
+<%= form_for(:booking, :url => {:action => "manage"}, :method => "get") do |seek| %>
+<%= label_tag :reference_id %>
+<%= text_field_tag :reference_id %>
+<%= seek.submit "Get Booking Details"%>
+<% end %>

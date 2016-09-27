@@ -1,5 +1,6 @@
 <h1>Listing Flights</h1>
-
+<h3>Page <%= params[:page] %></h3>
+<%= will_paginate @flights, renderer: BootstrapPagination::Rails  %>
 <table class="table">
   <thead>
     <tr>
@@ -21,7 +22,7 @@
   <tbody>
     <% @flights.each_with_index do |flight, index| %>
       <tr>
-        <td><%= index + 1 %></td>
+        <td><%= ((params[:page].to_i - 1) * 30) + (index + 1) %></td>
         <td><%= flight.origin %></td>
         <td><%= flight.destination %></td>
         <td><%= flight.seat %></td>
@@ -47,6 +48,7 @@
     <% end %>
   </tbody>
 </table>
+<%= will_paginate @flights, renderer: BootstrapPagination::Rails  %>
 
 <br>
 

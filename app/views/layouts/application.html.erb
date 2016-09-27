@@ -9,9 +9,9 @@
 </head>
 <body>
   <header>
+  <div class="header-nav"></div>
     <%= render "layouts/navbar" %>
-    <p id="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
+    <%= "<p id='notice'>#{notice}</p>".html_safe if notice %>
     <%= yield %>
   </header>
 </body>

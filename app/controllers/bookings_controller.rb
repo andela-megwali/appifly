@@ -45,6 +45,20 @@ class BookingsController < ApplicationController
     redirect_to bookings_url, notice: "Booking was successfully Cancelled"
   end
 
+  def past
+    @bookings = Booking.where(:user_id => session[:user_id])
+    render "index"
+  end
+
+  def manage
+    @booking = Booking.find_by(:reference_id => params[:reference_id])
+    if @booking
+      redirect_to @booking, notice: "Booking Found."
+    else
+      render :manage, notice: "Booking Not Found."
+    end
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.
@@ -97,6 +111,7 @@ class BookingsController < ApplicationController
 
   def additional_booking_details
     @booking.flight_id = @flight_selected.id
+    @booking.user_id = session[:user_id] if session[:user_id]
     booking_ref_generator
     cost_calculator
     send_booking_notification

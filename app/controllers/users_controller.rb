@@ -58,7 +58,7 @@ class UsersController < ApplicationController
   def logout
     session[:user_id] = nil
     session[:user_username] = nil
-    redirect_to @user, notice: "User successfully signed out."
+    redirect_to login_path, notice: "User successfully signed out."
   end
 
   private

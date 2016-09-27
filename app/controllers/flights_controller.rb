@@ -3,7 +3,7 @@ class FlightsController < ApplicationController
   before_action :list_airport, only: [:new, :edit]
 
   def index
-    @flights = Flight.all
+    @flights = Flight.all.paginate(page: params[:page], per_page: 30)
   end
 
   def show
