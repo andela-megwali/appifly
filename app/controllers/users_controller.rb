@@ -42,14 +42,14 @@ class UsersController < ApplicationController
   end
 
   def attempt_login
-    if params[:sign_in][:username].present? && params[:sign_in][:password].present?
+    if params[:sign_in][:username] && params[:sign_in][:password]
       found_user = User.find_by(:username => params[:sign_in][:username])
+      authorized_user = found_user.authenticate(params[:sign_in][:password]) if found_user
     end
-    authorized_user = found_user.authenticate(params[:sign_in][:password]) if found_user
     if authorized_user
       session[:user_id] = authorized_user.id
       session[:user_username] = authorized_user.username
-      redirect_to root_path, notice: "User successfully signed in."
+      redirect_to past_bookings_path, notice: "User successfully signed in."
     else
       redirect_to login_path, notice: "Invalid password or username"
     end

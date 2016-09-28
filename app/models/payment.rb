@@ -11,7 +11,7 @@ class Payment < ActiveRecord::Base
       amount: @booking.total_cost,
       item_name: @booking.flight.flight_code,
       item_number: @booking.id,
-      quantity: '1'
+      quantity: "1"
   }
   "#{Rails.application.secrets.paypal_host}/cgi-bin/webscr?" + values.to_query
   end

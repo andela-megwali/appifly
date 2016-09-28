@@ -18,8 +18,9 @@
           <li>
             <%= link_to "Sign out", "/logout" %> 
           </li>
-          <li>
+          <li class="signed_in">
             Signed in as <%=session[:user_username] %> 
+            <%= "**" if User.find(session[:user_id]).admin_user %>
           </li>
         <% else %>
           <li>
@@ -28,9 +29,6 @@
           <li>
             <%= link_to "Sign up", new_user_path %>
           </li>
-        <% end %>
-        <% if session[:user_id] && User.find(session[:user_id]).admin_user %>
-          <li>Admin</li>
         <% end %>
       </ul>
     </div>

@@ -1,4 +1,5 @@
 class FlightsController < ApplicationController
+  before_action :verify_user_login
   before_action :set_flight, only: [:show, :edit, :update, :destroy]
   before_action :list_airport, only: [:new, :edit]
 

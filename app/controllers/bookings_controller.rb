@@ -1,4 +1,6 @@
 class BookingsController < ApplicationController
+  MULTIPLIER = { "Economy" => 1, "Business" => 1.5, "First" => 2 }
+  before_action :verify_user_login, except: [:new, :create, :show, :search_booking]
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
   before_action :set_flight_select, only: [:new, :create, :show, :edit, :update]
 
@@ -51,11 +53,12 @@ class BookingsController < ApplicationController
   end
 
   def search_booking
-    @booking = Booking.find_by(:reference_id => params[:reference_id])
+    @booking = Booking.find_by(reference_id: params[:reference_id])
     if @booking
-      redirect_to @booking, notice: "Booking Found."
+      redirect_to(@booking, notice: "Booking Found.") && return
     else
-      render :search_booking, notice: "Booking Not Found."
+      # render(:search_booking, notice: "Booking Not Found.") && return
+      flash[:notice] = "Booking Not Found." and return
     end
   end
 
@@ -88,15 +91,35 @@ class BookingsController < ApplicationController
     redirect_to :back, notice: "Select a flight first!" unless @flight_selected
   end
 
+  # def flight_from_booking
+  #   @flight_selected = Flight.find(@booking.flight_id) and return if @booking
+  # end
+
+  # def flight_from_passenger_enquiry
+  #   if flight_is_selected?
+  #     @flight_selected = Flight.find(@passenger_enquiry["Flight Selected"])
+  #     return
+  #   end
+  # end
+
+  # def flight_is_selected?
+  #   @passenger_enquiry.has_key? "Flight Selected"
+  # end
+
   def booking_ref_generator
     @booking.reference_id = @flight_selected.flight_code + "-" +
                             rand(1000..9999).to_s + "-" + rand(1000..9999).
                             to_s + "-" + rand(1000..9999).to_s + "-" +
                             @booking.flight_id.to_s + @booking.passengers.size.
                             to_s + @booking.id.to_s
+
+    # [@flight_selected.flight_code, rand(1000..9999).to_s, rand(1000..9999).
+    #                         to_s, rand(1000..9999).to_s, %Q(#{@booking.flight_id.to_s} #{@booking.passengers.size.
+    #                         to_s} #{@booking.id.to_s})].join "-"
   end
 
   def cost_calculator
+    # use multiplier constant and set it in the config/initializers
     multiplier = { "Economy" => 1, "Business" => 1.5, "First" => 2 }
     travel_value = multiplier[@booking.travel_class] * @booking.passengers.size
     @booking.total_cost = travel_value * @flight_selected.flight_cost

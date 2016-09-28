@@ -1,107 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
     <h3>Congratulations <%= "#{@passenger.title} #{@passenger.firstname}" %></h3>
-    <p>Your flight to <%= "#{@passenger.booking.flight.destination}" %> has been successfully booked via Appifly. Please find below the details of your flight.</p>
-<h3>Booking Details for <%= "#{@passenger.title} #{@passenger.firstname} #{@passenger.lastname}" %></h3>
-<h4>Booking Reference Number <%=@passenger.booking.reference_id %> </h4>
-<h4>Travel Class Booked: <%= @passenger.booking.travel_class %> Class</h4>
+    <p>Your flight to <%= "#{@passenger.booking.flight.destination}" %> has been successfully booked via Appifly. Please find the details of your flight below.</p>
 
-<h2>Your Flight Details</h2>
-<div>
-  <table>
-    <thead>
-      <tr>
-        <th colspan="2">Flight <%=@passenger.booking.flight.flight_code%></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Origin / From:</td>
-        <td><%= @passenger.booking.flight.origin %></td>
-      </tr>
-      <tr>
-        <td>Destination / To:</td>
-        <td><%= @passenger.booking.flight.destination %></td>
-      </tr>
-      <tr>
-        <td>Departure Time:</td>
-        <td><%= @passenger.booking.flight.departure.strftime("%d/%m/%Y %H:%M") %></td>
-      </tr>
-      <tr>
-        <td>Time of Arrival:</td>
-        <td><%= @passenger.booking.flight.arrival.strftime("%d/%m/%Y %H:%M") %></td>
-      </tr>
-      <tr>
-        <td>Flight Type:</td>
-        <td><%= @passenger.booking.flight.flight_type %></td>
-      </tr>
-      <tr>
-        <td>Flight Cost:</td>
-        <td>
-          $ <%= @passenger.booking.total_cost / @passenger.booking.passengers.count %> per person
-        </td>
-      </tr>
-      <tr>
-        <td>Airline:</td>
-        <td><%= @passenger.booking.flight.airline %></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<br>
+<%= render "booking" %>
 
-<h2>Your Passenger Details</h2>
-<div>
-  <table>
-    <thead>
-      <tr>
-        <th colspan="2"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Title:</td>
-        <td><%= @passenger.title %></td>
-      </tr>
-      <tr>
-        <td>Firstname:</td>
-        <td><%= @passenger.firstname %></td>
-      </tr>
-      <tr>
-        <td>Lastname:</td>
-        <td><%= @passenger.lastname %></td>
-      </tr>
-      <tr>
-        <td>Email Address:</td>
-        <td><%= @passenger.email %></td>
-      </tr>
-      <tr>
-        <td>Telephone Number:</td>
-        <td><%= @passenger.telephone %></td>
-      </tr>
-      <tr>
-        <td>Nationality:</td>
-        <td><%= @passenger.nationality %></td>
-      </tr>
-      <tr>
-        <td>Has Luggage:</td>
-        <td><%= @passenger.luggage %></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<p>If you haven't made a payment yet, we are happy to reserve your booking for 72hours pending your payment.</p>
-<p>If you signed up for a free account on Appifly, you can always go back and edit your details.</p>
-<p>If you have any questions or need help or ideas to make your trip memorable, please get in touch with us as soon as possible. </p>
-<p>Our experienced travel agent are there to ensure your happy flight.</p>
-
-<p>Please book again at <%= link_to "Appifly", "http://appifly.herokuapp.com" %></p>
-
-<p>Thanks for using our service and have a great day!</p>
   </body>
 </html>

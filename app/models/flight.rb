@@ -1,5 +1,5 @@
 class Flight < ActiveRecord::Base
-  has_many :bookings, :dependent => :destroy
+  has_many :bookings, dependent: :destroy
   belongs_to :airport
   scope :search_flight, lambda { |from, to, time_now, departure_time, bookable|
     where("origin LIKE ? AND destination LIKE ? AND departure >= ?

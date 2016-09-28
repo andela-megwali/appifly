@@ -16,7 +16,9 @@ class ApplicationController < ActionController::Base
   def verify_user_login
     unless session[:user_id]
       redirect_to login_path, notice: "There's more but please sign in first :)"
-      return false
+      # return false
+      # redirect_to(login_path,
+                  # notice: "There's more but please sign in first :)") && return
     end
   end
 end

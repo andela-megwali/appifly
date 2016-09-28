@@ -1,9 +1,4 @@
-Welcome to example.com, <%= @passenger.firstname %>
+Congratulations <%= "#{@passenger.title} #{@passenger.firstname} #{@passenger.lastname}" %>
 ===============================================
- 
-You have successfully signed up to example.com,
-your username is: <%= @passenger.title %>.
- 
-To login to the site, just follow this link: <%= @url %>.
- 
-Thanks for joining and have a great day!
+Your flight to <%= "#{@passenger.booking.flight.destination}" %> has been successfully booked via Appifly.
+<%= render "booking_text" %>

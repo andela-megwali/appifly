@@ -15,7 +15,8 @@ gem "coffee-rails", "~> 4.1.0"
 
 # Use jquery as the JavaScript library
 gem "jquery-rails"
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+# Turbolinks makes following links in your web application faster.
+# Read more: https://github.com/rails/turbolinks
 gem "turbolinks"
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem "jbuilder", "~> 2.0"
@@ -32,20 +33,21 @@ gem "bcrypt", "~> 3.1.7"
 gem "puma", "~> 3.6"
 # Use devise for authentication
 # gem "devise"
-gem 'font-awesome-sass'
+gem "font-awesome-sass"
 gem "cocoon"
-#gem "jquery-ui-rails"
-gem 'will_paginate', '~> 3.1', '>= 3.1.3'
-gem 'will_paginate-bootstrap'
+# gem "jquery-ui-rails"
+gem "will_paginate", "~> 3.1", ">= 3.1.3"
+gem "will_paginate-bootstrap"
 # gem "toastr-rails", "~> 1.0", ">= 1.0.3"
 
 # Pry for debugging
 gem "pry-rails"
 
-gem 'rspec', '~> 3.4'
+gem "rspec", "~> 3.4"
 
 # Integrate bootstrap for styling
 gem "bootstrap-sass", "~> 3.3.6"
+gem "bootstrap_form"
 
 # Automatic Ruby code style checking tool
 gem "rubocop", "~> 0.42.0"
@@ -62,7 +64,8 @@ group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem "web-console", "~> 2.0"
 
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  # Spring speeds up development by keeping your application running in the
+  # background. Read more: https://github.com/rails/spring
   gem "spring"
 
   gem "letter_opener"

@@ -1,7 +1,2 @@
 <h3>&nbsp; &nbsp; Now Booking</h3>
-<%= render 'form' %>
-<% if session[:user_id] %>
-  <%= link_to "My Bookings", past_bookings_path %>
-  <%= link_to "All Bookings", bookings_path if User.find(session[:user_id]).admin_user %>
-<% end %>
-<%= link_to "Find a different flight", root_path %>
+<%= render "form" %>

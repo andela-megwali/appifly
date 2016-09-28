@@ -69,7 +69,7 @@
       <table>
         <thead>
           <tr>
-            <th colspan="2">Booking Flight <%=@flight_selected.flight_code%></th>
+            <th colspan="2"> Your User Profile </th>
           </tr>
         </thead>
         <tbody>
@@ -98,7 +98,9 @@
             <td><%= @user.telephone %></td>
           </tr>
         </tbody>
-      </table>
+      </table><br>
+      <%= link_to "View All My Bookings", past_bookings_path %><br>
+      <%= link_to "View All Appifly Bookings", bookings_path if User.find(session[:user_id]).admin_user %>
     </div>
   <% else %>
     <h1>Notice</h1>
@@ -107,7 +109,6 @@
     <p>Please sign in or create an account so you can manage your bookings when you desire.</p>
   <% end %>
 </div>
-<hr>
 
 <div>
   <%= form_for(@booking) do |f| %>
@@ -115,16 +116,16 @@
       <div id="error_explanation">
         <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
         <ul>
-        <% @booking.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
+          <% @booking.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
         </ul>
       </div>
     <% end %>
     <div class="col-md-12 form-group">
       <div class="header-nav"></div>
-      <%= f.label :travel_class, "Set / Change Travel Class" %><br>
-      <%= f.select :travel_class, ["Economy", "Business", "First"] %>
+        <%= f.label :travel_class, "Set / Change Travel Class" %><br>
+        <%= f.select :travel_class, ["Economy", "Business", "First"] %>
     </div>
     <div class="col-md-4 form-group">
       <%= f.fields_for :passengers do |passenger_details| %>
@@ -160,12 +161,14 @@
         <div class="field">
           <%= passenger_details.label :_destroy, "Remove this passenger" %>
           <%= passenger_details.check_box :_destroy%>
-        <% end %><br>
-        <div class="actions">
-          <%= f.submit %>
         </div>
-      <% end %>
-    </div>
+      <% end %><br>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
   </div>
 </div>
-<br>
+<div class="col-md-12">
+  <%= link_to "Find a different flight", root_path %><br>
+</div>
