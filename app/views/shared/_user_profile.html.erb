@@ -1,0 +1,45 @@
+<% if session[:user_id] %>
+  <% @user = User.find(session[:user_id]) %>
+  <div class="col-sm-6">
+    <table>
+      <thead>
+        <tr>
+          <th colspan="2"> Your User Profile </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Title:</td>
+          <td><%= @user.title %></td>
+        </tr>
+        <tr>
+          <td>Firstname:</td>
+          <td><%= @user.firstname %></td>
+        </tr>
+        <tr>
+          <td> Lastname:</td>
+            <td><%= @user.lastname %></td>
+        </tr>
+        <tr>
+          <td>Username:</td>
+          <td><%= @user.username %></td>
+        </tr>
+        <tr>
+          <td>Email:</td>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <td>Telephone:</td>
+          <td><%= @user.telephone %></td>
+        </tr>
+      </tbody>
+    </table><br>
+    <%= link_to "View All My Bookings", past_bookings_path %><br>
+    <%= link_to "View All Appifly Bookings", bookings_path if User.find(session[:user_id]).admin_user %>
+  </div>
+<% else %>
+  <h1>Notice</h1>
+  <h3> You can make a one off anonymous booking or <%= link_to "SignUp", new_user_path %> to access and manage your bookings in the future.</h3>
+  <p> Once you create your booking you will not be able to edit / make changes to it. You would still be able to view it though.</p> 
+  <p>Please sign in or create an account so you can manage your bookings when you desire.</p>
+<% end %>

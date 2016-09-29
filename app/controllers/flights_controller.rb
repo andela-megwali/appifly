@@ -1,5 +1,6 @@
 class FlightsController < ApplicationController
   before_action :verify_user_login
+  before_action :verify_admin_login, except: [:index, :show]
   before_action :set_flight, only: [:show, :edit, :update, :destroy]
   before_action :list_airport, only: [:new, :edit]
 
@@ -44,12 +45,10 @@ class FlightsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_flight
     @flight = Flight.find(params[:id])
   end
 
-  # Never trust parameters from the internet, only allow the whitelist through
   def flight_params
     params.require(:flight).permit :origin, :destination, :seat, :flight_cost,
                                    :arrival, :airline, :flight_code, :departure,

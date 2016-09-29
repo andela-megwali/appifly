@@ -23,5 +23,5 @@ class WelcomeController < ApplicationController
   def search_params
     params.require(:enquiry).permit :origin, :destination, :departure,
                                     :travel_class, :passenger
-  end 
+  end
 end

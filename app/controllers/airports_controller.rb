@@ -1,5 +1,5 @@
 class AirportsController < ApplicationController
-  before_action :verify_user_login
+  before_action :verify_admin_login
   before_action :set_airport, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -35,18 +35,15 @@ class AirportsController < ApplicationController
 
   def destroy
     @airport.destroy
-    redirect_to airports_url, notice: "#{@airport.name} #{@airport.airport_type} "\
-                                      "Airport has been removed"
+    redirect_to airports_url, notice: "#{@airport.name} has been removed"
   end
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_airport
-    @airport = Airport.find_by id: params[:id]
+    @airport = Airport.find_by(id: params[:id])
   end
 
-  # Never trust parameters from the internet, only allow the white list through.
   def airport_params
     params.require(:airport).permit :name,
                                     :continent,
