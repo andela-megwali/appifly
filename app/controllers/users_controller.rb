@@ -49,7 +49,7 @@ class UsersController < ApplicationController
     if authorized_user
       session[:user_id] = authorized_user.id
       session[:user_username] = authorized_user.username
-      redirect_to past_bookings_path, notice: "User successfully signed in."
+      redirect_to root_path, notice: "User successfully signed in."
     else
       redirect_to login_path, notice: "Invalid password or username"
     end
