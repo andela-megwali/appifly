@@ -18,7 +18,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      send_welcome_email
+      #send_welcome_email
       redirect_to login_path, notice: "Account created. Sign in to continue."
     else
       render :new

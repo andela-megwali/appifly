@@ -38,7 +38,7 @@ class BookingsController < ApplicationController
   def update
     if @booking.update(booking_params)
       cost_calculator
-      send_booking_update_notification
+      #send_booking_update_notification
       redirect_to @booking, notice: "Booking was successfully updated."
     else
       render :edit
@@ -138,6 +138,6 @@ class BookingsController < ApplicationController
     @booking.user_id = session[:user_id] if session[:user_id]
     booking_ref_generator
     cost_calculator
-    send_booking_notification
+    #send_booking_notification
   end
 end
