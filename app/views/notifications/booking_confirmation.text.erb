@@ -1,0 +1,4 @@
+Congratulations <%= "#{@passenger.title} #{@passenger.firstname} #{@passenger.lastname}" %>
+===============================================
+Your flight to <%= "#{@passenger.booking.flight.destination}" %> has been successfully booked via Appifly.
+<%= render "booking_text" %>

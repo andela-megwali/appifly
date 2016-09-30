@@ -1,0 +1,275 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/config/environment.rb": [
+        null,
+        1,
+        null,
+        null,
+        1
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/config/application.rb": [
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        1,
+        null,
+        1,
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/config/boot.rb": [
+        1,
+        null,
+        1
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/config/environments/test.rb": [
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/config/initializers/assets.rb": [
+        null,
+        null,
+        null,
+        1,
+        null,
+        null,
+        null
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/config/initializers/backtrace_silencers.rb": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/config/initializers/cookies_serializer.rb": [
+        null,
+        null,
+        1
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/config/initializers/filter_parameter_logging.rb": [
+        null,
+        null,
+        null,
+        1
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/config/initializers/inflections.rb": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/config/initializers/mime_types.rb": [
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/config/initializers/session_store.rb": [
+        null,
+        null,
+        1
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/config/initializers/wrap_parameters.rb": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/config/routes.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/app/helpers/application_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/app/helpers/booking_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/app/helpers/bookings_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/app/helpers/flights_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/app/helpers/payments_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/app/helpers/sessions_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/app/helpers/user_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/app/helpers/welcome_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/app/models/flight.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0,
+        null,
+        null,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        null
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/app/models/booking.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        1,
+        null
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/app/models/airport.rb": [
+        1,
+        1,
+        null
+      ]
+    },
+    "timestamp": 1475274054
+  }
+}

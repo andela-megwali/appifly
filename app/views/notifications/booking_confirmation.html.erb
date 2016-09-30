@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h3>Congratulations <%= "#{@passenger.title} #{@passenger.firstname}" %></h3>
+    <p>Your flight to <%= "#{@passenger.booking.flight.destination}" %> has been successfully booked via Appifly. Please find the details of your flight below.</p>
+
+<%= render "booking" %>
+
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<h1>Welcome <%= User.find(session[:user_id]).firstname %></h1>
+<h3>Manage Your Bookings Here</h3>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Booking Reference</th>
+      <th>Travel Class</th>
+      <th>Passsengers Booked</th>
+      <th>Booking Cost</th>
+      <th>Flight Code</th>
+      <th>Payment</th>
+      <th colspan="3">Admin Actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @bookings.each do |booking| %>
+      <tr>
+        <td><%= booking.reference_id %></td>
+        <td><%= booking.travel_class %></td>
+        <td><%= booking.passengers.count %></td>
+        <td>$ <%= booking.total_cost %></td>
+        <td><%= booking.flight.flight_code %></td>
+        <td><%= booking.paid %></td>
+        <td><%= link_to "Show", booking %></td>
+        <td><%= link_to "Edit", edit_booking_path(booking) %></td>
+        <td><%= link_to "Cancel", booking, method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to "Book A Flight", root_path %> <br>
+<%= link_to "View My Profile", user_path(session[:user_id]) %>

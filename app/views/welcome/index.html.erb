@@ -1,0 +1,42 @@
+<% if @enquire && params[:enquiry][:view_format] == "Grid" %>
+  <%= render "search2" %>
+<% elsif @enquire %>
+  <%= render "search" %>
+<% end %>
+<div class="container header-nav">
+  <div class="row">        
+    <div class="col-sm-5">
+      <div class="device-container">
+        <div class="device-mockup iphone6_plus portrait white">
+          <div class="device">
+            <div class="screen">
+              <div class="welcome-form"> 
+                <%= render "form" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-7">
+      <%= render "message" %>
+    </div>
+  </div>
+</div>
+<section id="contact" class="contact bg-primary header-nav">
+  <div class="container">
+    <h2>We L<i class="fa fa-heart"></i>ve New Friends!</h2>
+    <h4>Connect with us to get the best offers first</h4>
+    <ul class="list-inline list-social">
+      <li class="social-twitter">
+        <a href="#"><i class="fa fa-twitter"></i></a>
+      </li>
+      <li class="social-facebook">
+        <a href="#"><i class="fa fa-facebook"></i></a>
+      </li>
+      <li class="social-google-plus">
+        <a href="#"><i class="fa fa-google-plus"></i></a>
+      </li>
+    </ul>
+  </div>
+</section>

@@ -1,0 +1,8 @@
+<h1>Editing Booking</h1>
+
+<%= render "form" %>
+<div class="col-md-12">
+  <% if session[:user_id] %>
+    <%= link_to "Back to Booking Details", @booking %>
+  <% end %>
+</div>

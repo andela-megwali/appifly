@@ -1,0 +1,114 @@
+<div class="col-md-12">
+<div class="col-md-6">
+<h2>Booking Details</h2>
+<h4>Booking Reference Number <%=@booking.reference_id %> </h4>
+<h4>Number of Passengers Booked: <%=@booking.passengers.count%> </h4>
+<h4>Travel Class Booked: <%= @booking.travel_class %> Class</h4>
+<h4>Total Booking Cost: $<%= @booking.total_cost %></h4>
+
+<h2>Flight Details</h2>
+<div>
+  <table>
+    <thead>
+      <tr>
+        <th colspan="2">Flight <%=@flight_selected.code%></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Origin:</td>
+        <td><%= @flight_selected.origin %></td>
+      </tr>
+      <tr>
+        <td>Destination:</td>
+        <td><%= @flight_selected.destination %></td>
+      </tr>
+      <tr>
+        <td>Departure Time:</td>
+        <td><%= @flight_selected.departure.strftime("%d/%m/%Y %H:%M") %></td>
+      </tr>
+      <tr>
+        <td>Time of Arrival:</td>
+        <td><%= @flight_selected.arrival.strftime("%d/%m/%Y %H:%M") %></td>
+      </tr>
+      <tr>
+        <td>Flight Type:</td>
+        <td><%= @flight_selected.jurisdiction %></td>
+      </tr>
+      <tr>
+        <td>Flight Cost:</td>
+        <td>
+        <% if @booking.passengers.count > 0 %>
+          $ <%= @booking.total_cost / @booking.passengers.count %> per person
+        <% else %>
+          <em>Invalid Booking Pending Addition of Passenger Details</em>
+        <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td>Airline:</td>
+        <td><%= @flight_selected.airline %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<br>
+</div>
+<div class="col-md-6">
+  <h2>Passenger Details</h2>
+  <% @booking.passengers.each.with_index(1) do |passenger, index| %>
+    <div class="col-md-6">
+      <table>
+        <thead>
+          <tr>
+            <th colspan="2"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Passenger:</td>
+            <td><%= "#{index}" %></td>
+          </tr>
+          <tr>
+            <td>Title:</td>
+            <td><%= passenger.title %></td>
+          </tr>
+          <tr>
+            <td>Firstname:</td>
+            <td><%= passenger.firstname %></td>
+          </tr>
+          <tr>
+            <td>Lastname:</td>
+            <td><%= passenger.lastname %></td>
+          </tr>
+          <tr>
+            <td>Email Address:</td>
+            <td><%= passenger.email %></td>
+          </tr>
+          <tr>
+            <td>Telephone Number:</td>
+            <td><%= passenger.telephone %></td>
+          </tr>
+          <tr>
+            <td>Nationality:</td>
+            <td><%= passenger.nationality %></td>
+          </tr>
+          <tr>
+            <td>Has Luggage:</td>
+            <td><%= passenger.luggage %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  <% end %>
+</div>
+</div>
+
+<div class="col-md-6">
+  <%= link_to "Book another flight", root_path %> <br>
+  <% if session[:user_id] %> 
+    <%= link_to "Edit This Booking", edit_booking_path(@booking) %> <br>
+    <%= link_to "View All My Bookings", past_bookings_path %> <br>
+    <%= link_to "View All Appifly Bookings", bookings_path if User.find(session[:user_id]).admin_user %>
+  <% end %>
+</div>

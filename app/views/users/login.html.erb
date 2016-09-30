@@ -1,0 +1,15 @@
+<div>
+  <%= form_for(:sign_in, :url => {:action => "attempt_login"}) do |f| %>
+  <div class="form-group">
+    <%= f.label :username %><br>
+    <%= f.text_field :username %>
+  </div>
+  <div class="form-group">
+    <%= f.label :password %><br>
+    <%= f.password_field :password %>
+  </div>
+  <div class="form-group">
+    <%= f.submit("Sign In") %>
+  </div>
+  <% end %>
+</div>

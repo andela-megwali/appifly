@@ -1,0 +1,51 @@
+<h3>
+  <strong>Flight <%= @flight.code %></strong>
+</h3>
+
+<p>
+  <strong>Origin Airport:</strong>
+  <%= @flight.origin %>
+</p>
+
+<p>
+  <strong>Destination:</strong>
+  <%= @flight.destination %>
+</p>
+
+<p>
+  <strong>Seat:</strong>
+  <%= @flight.seat %>
+</p>
+
+<p>
+  <strong>Departure:</strong>
+  <%= @flight.departure.strftime("%d/%m/%Y %H:%M")  %>
+</p>
+
+<p>
+  <strong>Arrival:</strong>
+  <%= @flight.arrival.strftime("%d/%m/%Y %H:%M")  %>
+</p>
+
+<p>
+  <strong>Airline:</strong>
+  <%= @flight.airline %>
+</p>
+
+<p>
+  <strong>Flight code:</strong>
+  <%= @flight.code %>
+</p>
+
+<p>
+  <strong>Flight type:</strong>
+  <%= @flight.jurisdiction %>
+</p>
+
+<p>
+  <strong>Flight cost:</strong>
+  $<%= @flight.cost %>
+</p>
+
+<%= link_to "Edit This Flight", edit_flight_path(@flight) %> |
+<%= link_to "Back to Flights List", flights_path %>

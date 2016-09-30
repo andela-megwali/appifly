@@ -1,0 +1,31 @@
+<h3>
+  <strong><%= @airport.name %></strong>
+</h3>
+
+<p>
+  <strong>Jurisdiction:</strong>
+  <%= @airport.jurisdiction %>
+</p>
+
+<p>
+  <strong>State (Code):</strong>
+  <%= @airport.state_and_code %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @airport.country %>
+</p>
+
+<p>
+  <strong>Continent:</strong>
+  <%= @airport.continent %>
+</p>
+
+<p>
+  <strong>Airport Rating:</strong>
+  <%= @airport.rating %>
+</p>
+
+<%= link_to "Edit This Airport", edit_airport_path(@airport) %> |
+<%= link_to "Back To Airport List", airports_path %>

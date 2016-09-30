@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h3>Good news <%= "#{@passenger.title} #{@passenger.firstname}" %></h3>
+    <p>Your flight to <%= "#{@passenger.booking.flight.destination}" %> with booking number <%= "#{@passenger.booking.reference_id}" %> has been successfully updated.</p>
+    <p>Please find the updated details of your flight below.</p>
+   
+    <%= render "booking" %>
+
+  </body>
+</html>
