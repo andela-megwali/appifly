@@ -2,6 +2,7 @@ class Flight < ActiveRecord::Base
   has_many :bookings, dependent: :destroy
   belongs_to :airport
   before_save :additional_flight_details
+  validates_presence_of :seat, :departure, :arrival, :airline, :code, :cost
 
   scope :sorted, lambda { order("flights.departure ASC") }
 
@@ -13,12 +14,6 @@ class Flight < ActiveRecord::Base
           time_now,
           departure_time,
           bookable).sorted
-  end
-
-  def additional_flight_details
-    get_flight_origin
-    self.jurisdiction = get_flight_type
-    self.status = get_flight_status
   end
 
   private
@@ -53,5 +48,11 @@ class Flight < ActiveRecord::Base
     else
       "Past"
     end
+  end
+
+  def additional_flight_details
+    get_flight_origin
+    self.jurisdiction = get_flight_type
+    self.status = get_flight_status
   end
 end
