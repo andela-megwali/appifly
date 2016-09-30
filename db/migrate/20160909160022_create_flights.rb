@@ -8,9 +8,9 @@ class CreateFlights < ActiveRecord::Migration
       t.datetime :departure
       t.datetime :arrival
       t.string :airline
-      t.string :flight_code
-      t.string :flight_type
-      t.integer :flight_cost
+      t.string :code
+      t.string :jurisdiction
+      t.integer :cost
       t.string :status
 
       t.timestamps null: false

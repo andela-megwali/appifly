@@ -29,9 +29,9 @@
         <td><%= flight.departure.strftime("%d/%m/%Y %H:%M") %></td>
         <td><%= flight.arrival.strftime("%d/%m/%Y %H:%M") %></td>
         <td><%= flight.airline %></td>
-        <td><%= flight.flight_code %></td>
-        <td><%= flight.flight_type %></td>
-        <td>$ <%= flight.flight_cost %></td>
+        <td><%= flight.code %></td>
+        <td><%= flight.jurisdiction %></td>
+        <td>$ <%= flight.cost %></td>
         <% if flight.status == "Cancelled" %>
           <td>Cancelled</td>
         <% elsif flight.departure > Time.now %>

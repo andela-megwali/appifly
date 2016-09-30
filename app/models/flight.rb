@@ -17,7 +17,7 @@ class Flight < ActiveRecord::Base
 
   def additional_flight_details
     get_flight_origin
-    self.flight_type = get_flight_type
+    self.jurisdiction = get_flight_type
     self.status = get_flight_status
   end
 
@@ -48,7 +48,7 @@ class Flight < ActiveRecord::Base
   def get_flight_status
     if status == "Yes"
       "Cancelled"
-    elsif self.departure > Time.now
+    elsif departure > Time.now
       "Booking"
     else
       "Past"

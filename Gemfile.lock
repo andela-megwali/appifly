@@ -49,7 +49,6 @@ GEM
       sass (>= 3.3.4)
     bootstrap_form (2.5.1)
     builder (3.2.2)
-    byebug (9.0.5)
     cocoon (1.2.9)
     coderay (1.1.1)
     coffee-rails (4.1.1)
@@ -143,10 +142,6 @@ GEM
     rake (11.3.0)
     rdoc (4.2.2)
       json (~> 1.4)
-    rspec (3.5.0)
-      rspec-core (~> 3.5.0)
-      rspec-expectations (~> 3.5.0)
-      rspec-mocks (~> 3.5.0)
     rspec-core (3.5.2)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -154,6 +149,14 @@ GEM
       rspec-support (~> 3.5.0)
     rspec-mocks (3.5.0)
       diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.5.0)
+    rspec-rails (3.5.1)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.5.0)
+      rspec-expectations (~> 3.5.0)
+      rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
     rubocop (0.42.0)
@@ -213,7 +216,6 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootstrap-sass (~> 3.3.6)
   bootstrap_form
-  byebug
   cocoon
   coffee-rails (~> 4.1.0)
   font-awesome-sass
@@ -225,7 +227,7 @@ DEPENDENCIES
   puma (~> 3.6)
   rails (= 4.2.6)
   rails_12factor
-  rspec (~> 3.4)
+  rspec-rails
   rubocop (~> 0.42.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

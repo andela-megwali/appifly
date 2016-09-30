@@ -11,7 +11,7 @@
         <table>
           <thead>
             <tr>
-              <th>Flight <%=flight.flight_code%></th>  
+              <th>Flight <%=flight.code%></th>  
               <th><%= radio_button_tag(:select_flight, "#{flight.id}") %> </th>
             </tr>
           </thead>
@@ -34,7 +34,7 @@
             </tr>
             <tr>
               <td>Flight Cost</td>
-              <td> $ <%= flight.flight_cost * travel_value %></td>
+              <td> $ <%= flight.cost * travel_value %></td>
             </tr>
             <tr>
               <td>Passengers</td>
@@ -42,7 +42,7 @@
             </tr>
             <tr>
               <td>Total Cost</td>
-              <td> $ <%= flight.flight_cost * @passenger_enquiry["Number Travelling"] * travel_value %></td>
+              <td> $ <%= flight.cost * @passenger_enquiry["Number Travelling"] * travel_value %></td>
             </tr>
             <tr>
               <td><strong>Select Flight</strong></td>

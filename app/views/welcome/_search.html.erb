@@ -27,10 +27,10 @@
           <td><%= flight.destination %></td>
           <td><%= flight.departure.strftime("%d/%m/%Y %H:%M") %></td>
           <td><%= flight.arrival.strftime("%d/%m/%Y %H:%M") %></td>
-          <td> $ <%= flight.flight_cost * travel_value %></td>
-          <td> $ <%= flight.flight_cost * @passenger_enquiry["Number Travelling"] * travel_value %></td>
+          <td> $ <%= flight.cost * travel_value %></td>
+          <td> $ <%= flight.cost * @passenger_enquiry["Number Travelling"] * travel_value %></td>
           <td>
-              <%= label_tag(:select_flight, "#{flight.flight_code}") %> 
+              <%= label_tag(:select_flight, "#{flight.code}") %> 
               <%= radio_button_tag(:select_flight, "#{flight.id}") %> 
           </td>
         </tr>

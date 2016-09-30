@@ -46,12 +46,12 @@ ActiveRecord::Schema.define(version: 20160920044155) do
     t.datetime "departure"
     t.datetime "arrival"
     t.string   "airline"
-    t.string   "flight_code"
-    t.string   "flight_type"
-    t.integer  "flight_cost"
+    t.string   "code"
+    t.string   "jurisdiction"
+    t.integer  "cost"
     t.string   "status"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
   add_index "flights", ["airport_id"], name: "index_flights_on_airport_id"
