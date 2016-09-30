@@ -18,7 +18,7 @@ ActiveRecord::Schema.define(version: 20160920044155) do
     t.string   "continent"
     t.string   "country"
     t.string   "state_and_code"
-    t.string   "airport_type"
+    t.string   "jurisdiction"
     t.integer  "rating"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false

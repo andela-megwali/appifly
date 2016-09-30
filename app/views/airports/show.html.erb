@@ -4,7 +4,7 @@
 
 <p>
   <strong>Jurisdiction:</strong>
-  <%= @airport.airport_type %>
+  <%= @airport.jurisdiction %>
 </p>
 
 <p>
@@ -27,5 +27,5 @@
   <%= @airport.rating %>
 </p>
 
-<%= link_to "Edit", edit_airport_path(@airport) %> |
-<%= link_to "Back", airports_path %>
+<%= link_to "Edit This Airport", edit_airport_path(@airport) %> |
+<%= link_to "Back To Airport List", airports_path %>

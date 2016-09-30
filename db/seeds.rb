@@ -6,13 +6,13 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-  Airport.create(name: "Murtala Muhammed", continent: "Africa", country: "Nigeria", state_and_code: "Lagos (LOS)", airport_type: "International", rating: 8)
-  Airport.create(name: "Nnamdi Azikiwe", continent: "Africa", country: "Nigeria", state_and_code: "Abuja (ABV)", airport_type: "International", rating: 8)
-  Airport.create(name: "Warri", continent: "Africa", country: "Nigeria", state_and_code: "Delta (QRW)", airport_type: "Local", rating: 7)
-  Airport.create(name: "Jomo Kenyatta", continent: "Africa", country: "Kenya", state_and_code: "Nairobi (NBO)", airport_type: "International", rating: 7)
-  Airport.create(name: "Eldoret", continent: "Africa", country: "Kenya", state_and_code: "Eldoret (EDL)", airport_type: "International", rating: 7)
-  Airport.create(name: "Idlewild", continent: "North America", country: "United States", state_and_code: "New York (IDL)", airport_type: "International", rating: 8)
-  Airport.create(name: "John F Kennedy", continent: "North America", country: "United States", state_and_code: "New York (JFK)", airport_type: "International", rating: 9)
+  Airport.create(name: "Murtala Muhammed", continent: "Africa", country: "Nigeria", state_and_code: "Lagos (LOS)", jurisdiction: "International", rating: 8)
+  Airport.create(name: "Nnamdi Azikiwe", continent: "Africa", country: "Nigeria", state_and_code: "Abuja (ABV)", jurisdiction: "International", rating: 8)
+  Airport.create(name: "Warri", continent: "Africa", country: "Nigeria", state_and_code: "Delta (QRW)", jurisdiction: "Local", rating: 7)
+  Airport.create(name: "Jomo Kenyatta", continent: "Africa", country: "Kenya", state_and_code: "Nairobi (NBO)", jurisdiction: "International", rating: 7)
+  Airport.create(name: "Eldoret", continent: "Africa", country: "Kenya", state_and_code: "Eldoret (EDL)", jurisdiction: "International", rating: 7)
+  Airport.create(name: "Idlewild", continent: "North America", country: "United States", state_and_code: "New York (IDL)", jurisdiction: "International", rating: 8)
+  Airport.create(name: "John F Kennedy", continent: "North America", country: "United States", state_and_code: "New York (JFK)", jurisdiction: "International", rating: 9)
 
 airport_codes =[]
 Airport.all.each {|airport| airport_codes << airport.state_and_code}

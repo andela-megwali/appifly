@@ -38,7 +38,7 @@ class BookingsController < ApplicationController
   def update
     if @booking.update(booking_params)
       cost_calculator
-      #send_booking_update_notification
+      send_booking_update_notification
       redirect_to @booking, notice: "Booking was successfully updated."
     else
       render :edit
@@ -60,7 +60,7 @@ class BookingsController < ApplicationController
     if @booking
       redirect_to(@booking, notice: "Booking Found.")
     else
-      flash[:notice] = "Booking Not Found."
+      flash[:notice] = "Booking Not Found." and return
     end
   end
 
@@ -87,24 +87,28 @@ class BookingsController < ApplicationController
     session[:passenger_enquiry]["Flight Selected"] = params[:select_flight] if
       params[:select_flight]
     @passenger_enquiry = session[:passenger_enquiry]
-    flight_from_passenger_enquiry
-    flight_from_booking
+    if @passenger_enquiry && @passenger_enquiry["Flight Selected"]
+      @flight_selected = Flight.find(@passenger_enquiry["Flight Selected"])
+    elsif @booking
+      @flight_selected = Flight.find(@booking.flight_id)
+    end
     redirect_to :back, notice: "Select a flight first!" unless @flight_selected
   end
 
-  def flight_from_booking
-    @flight_selected = Flight.find(@booking.flight_id) and return if @booking
-  end
+  # def flight_from_booking
+  #   @flight_selected = Flight.find(@booking.flight_id) and return if @booking
+  # end
 
-  def flight_from_passenger_enquiry
-    if flight_is_selected
-      @flight_selected = Flight.find(@passenger_enquiry["Flight Selected"])
-    end
-  end
+  # def flight_from_passenger_enquiry
+  #   if flight_is_selected?
+  #     @flight_selected = Flight.find(@passenger_enquiry["Flight Selected"])
+  #     return
+  #   end
+  # end
 
-  def flight_is_selected
-    @passenger_enquiry.key? "Flight Selected"
-  end
+  # def flight_is_selected?
+  #   @passenger_enquiry.has_key? "Flight Selected"
+  # end
 
   def booking_ref_generator
     @booking.reference_id = @flight_selected.flight_code + "-" +
@@ -112,9 +116,14 @@ class BookingsController < ApplicationController
                             to_s + "-" + rand(1000..9999).to_s + "-" +
                             @booking.flight_id.to_s + @booking.passengers.size.
                             to_s + @booking.id.to_s
+
+    # [@flight_selected.flight_code, rand(1000..9999).to_s, rand(1000..9999).
+    #                         to_s, rand(1000..9999).to_s, %Q(#{@booking.flight_id.to_s} #{@booking.passengers.size.
+    #                         to_s} #{@booking.id.to_s})].join "-"
   end
 
   def cost_calculator
+    # use multiplier constant and set it in the config/initializers
     multiplier = { "Economy" => 1, "Business" => 1.5, "First" => 2 }
     travel_value = multiplier[@booking.travel_class] * @booking.passengers.size
     @booking.total_cost = travel_value * @flight_selected.flight_cost
@@ -138,6 +147,6 @@ class BookingsController < ApplicationController
     @booking.user_id = session[:user_id] if session[:user_id]
     booking_ref_generator
     cost_calculator
-    #send_booking_notification
+    send_booking_notification
   end
 end

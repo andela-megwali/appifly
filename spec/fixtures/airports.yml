@@ -4,12 +4,12 @@ one:
   name: MyString
   country: MyString
   state: MyString
-  airport_type: MyString
+  jurisdiction: MyString
   rating: 1
 
 two:
   name: MyString
   country: MyString
   state: MyString
-  airport_type: MyString
+  jurisdiction: MyString
   rating: 1
