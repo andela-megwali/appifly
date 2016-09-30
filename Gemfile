@@ -23,6 +23,13 @@ group :development, :test do
   gem "pry-rails"
   gem "rspec-rails"
   gem "sqlite3"
+  gem "shoulda-matchers"
+  gem "capybara"
+  # gem "selenium-webdriver"
+  gem "capybara-webkit"
+  gem "coveralls"
+  gem "database_cleaner"
+  gem "factory_girl_rails"
 end
 
 group :development do
