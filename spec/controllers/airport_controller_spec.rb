@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe AirportsController, type: :controller do
-  describe '#index' do
+  describe 'GET #index' do
     context 'when there are no airports' do
       it 'returns empty array' do
         get :index
@@ -45,7 +45,22 @@ RSpec.describe AirportsController, type: :controller do
     end
   end
 
-  describe "#new" do
+  describe "GET #show" do
+    before do
+      2.times do
+        create :airport, name: Faker::Name.name
+      end
+    end
+    it "assigns the requested airport to @airport" do
+      get :show, id: 1
+      expect(assigns(:airport).id).to eq 1
+      get :show, id: 2
+      expect(assigns(:airport).id).to eq 2
+    end
     
+    it "renders the #show view" do
+      get :show, id: 1
+      expect(response).to render_template :show
+    end
   end
 end
