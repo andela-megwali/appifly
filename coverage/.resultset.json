@@ -193,7 +193,7 @@
         1,
         null
       ],
-      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/app/models/passenger.rb": [
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/app/models/user.rb": [
         1,
         1,
         1,
@@ -211,6 +211,6 @@
         null
       ]
     },
-    "timestamp": 1475280308
+    "timestamp": 1475281168
   }
 }
