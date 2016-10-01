@@ -50,4 +50,38 @@ RSpec.describe FlightsController, type: :controller do
       it { should route(:delete, "/flights/1").to(action: :destroy, id: 1) }
     end
   end
+
+  describe "Params Filter" do
+    it "Should allow the permitted params" do
+      create :airport
+      Airport.create(name: "Jefferson Airport",
+                     continent: "North America",
+                     country: "United States",
+                     state_and_code: "New York (JFK)",
+                     jurisdiction: "International",
+                     rating: 10)
+      params = {
+                flight: {
+                          origin: "Lagos (LOS)",
+                          destination: "New York (JFK)",
+                          seat: 200,
+                          cost: 230,
+                          arrival: Time.now + 5.days + 50.minutes,
+                          airline: "Chinese Airways",
+                          code: "CA122",
+                          departure: Time.now + 5.days,
+                          status: "Cancelled",
+                        }
+                }
+      should permit(:origin,
+                    :destination,
+                    :seat,
+                    :cost,
+                    :arrival,
+                    :airline,
+                    :code,
+                    :departure,
+                    :status).for(:create, params: params).on(:flight)
+    end
+  end
 end
