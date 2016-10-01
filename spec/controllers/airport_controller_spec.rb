@@ -186,14 +186,15 @@ RSpec.describe AirportsController, type: :controller do
       it { is_expected.to respond_with 200 }
       it { should render_template("new") }
     end
-    # context "DELETE #destroy" do
-    #   before do
-    #     create :airport, name: Faker::Name.name
+    
+    context "DELETE #destroy" do
+      before do
+        create :airport, name: Faker::Name.name
         
-    #     delete :destroy, id: 1
-    #   end
-    #   it { is_expected.to respond_with 302 }
-    #   it { should redirect_to(airports_path) }
-    # end
+        delete :destroy, id: 1
+      end
+      it { is_expected.to respond_with 302 }
+      it { should redirect_to(airports_path) }
+    end
   end
 end
