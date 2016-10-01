@@ -70,7 +70,7 @@ RSpec.describe FlightsController, type: :controller do
                           airline: "Chinese Airways",
                           code: "CA122",
                           departure: Time.now + 5.days,
-                          status: "Cancelled",
+                          status: "Yes",
                         }
                 }
       should permit(:origin,
