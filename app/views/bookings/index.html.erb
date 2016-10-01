@@ -21,7 +21,7 @@
         <td><%= booking.travel_class %></td>
         <td><%= booking.passengers.count %></td>
         <td>$ <%= booking.total_cost %></td>
-        <td><%= booking.flight.flight_code %></td>
+        <td><%= booking.flight.code %></td>
         <td><%= booking.paid %></td>
         <td><%= link_to "Show", booking %></td>
         <td><%= link_to "Edit", edit_booking_path(booking) %></td>
