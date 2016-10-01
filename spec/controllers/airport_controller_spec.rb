@@ -180,17 +180,16 @@ RSpec.describe AirportsController, type: :controller do
                           state_and_code: "Lagos (LOS)",
                           rating: 10,
                           }
-                }
+                  }
         post :create, airport: params
       end
       it { is_expected.to respond_with 200 }
       it { should render_template("new") }
     end
-    
+
     context "DELETE #destroy" do
       before do
         create :airport, name: Faker::Name.name
-        
         delete :destroy, id: 1
       end
       it { is_expected.to respond_with 302 }
