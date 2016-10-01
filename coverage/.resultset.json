@@ -193,8 +193,7 @@
         1,
         null
       ],
-      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/app/models/user.rb": [
-        1,
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/app/models/airport.rb": [
         1,
         1,
         null
@@ -209,8 +208,85 @@
         1,
         1,
         null
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/app/models/flight.rb": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        0,
+        null,
+        null,
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        null
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/app/models/passenger.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/app/models/user.rb": [
+        1,
+        1,
+        1,
+        null
+      ],
+      "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/app/models/payment.rb": [
+        1,
+        1,
+        null
       ]
     },
-    "timestamp": 1475281168
+    "timestamp": 1475281628
   }
 }

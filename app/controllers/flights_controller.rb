@@ -36,7 +36,7 @@ class FlightsController < ApplicationController
 
   def destroy
     @flight.destroy
-    redirect_to flights_url, notice: "Flight #{@flight.flight_code} has been
+    redirect_to flights_url, notice: "Flight #{@flight.code} has been
                                       removed."
   end
 
@@ -50,10 +50,10 @@ class FlightsController < ApplicationController
     params.require(:flight).permit(:origin,
                                    :destination,
                                    :seat,
-                                   :flight_cost,
+                                   :cost,
                                    :arrival,
                                    :airline,
-                                   :flight_code,
+                                   :code,
                                    :departure,
                                    :status)
   end

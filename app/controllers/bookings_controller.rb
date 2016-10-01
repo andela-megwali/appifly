@@ -111,14 +111,15 @@ class BookingsController < ApplicationController
   # end
 
   def booking_ref_generator
-    @booking.reference_id = @flight_selected.flight_code + "-" +
+    @booking.reference_id = @flight_selected.code + "-" +
                             rand(1000..9999).to_s + "-" + rand(1000..9999).
                             to_s + "-" + rand(1000..9999).to_s + "-" +
                             @booking.flight_id.to_s + @booking.passengers.size.
                             to_s + @booking.id.to_s
 
-    # [@flight_selected.flight_code, rand(1000..9999).to_s, rand(1000..9999).
-    #                         to_s, rand(1000..9999).to_s, %Q(#{@booking.flight_id.to_s} #{@booking.passengers.size.
+    #                       [@flight_selected.code, rand(1000..9999).to_s,
+    #                        rand(1000..9999).to_s, rand(1000..9999).to_s,
+                           # %Q(#{@booking.flight_id.to_s} #{@booking.passengers.size.
     #                         to_s} #{@booking.id.to_s})].join "-"
   end
 
@@ -126,7 +127,7 @@ class BookingsController < ApplicationController
     # use multiplier constant and set it in the config/initializers
     multiplier = { "Economy" => 1, "Business" => 1.5, "First" => 2 }
     travel_value = multiplier[@booking.travel_class] * @booking.passengers.size
-    @booking.total_cost = travel_value * @flight_selected.flight_cost
+    @booking.total_cost = travel_value * @flight_selected.cost
     @booking.save
   end
 
