@@ -36,7 +36,6 @@ RSpec.describe FlightsController, type: :controller do
                      rating: 10)
       2.times do
         create :flight, airline: Faker::Company.name
-      # binding.pry
       end
     end
 
@@ -48,6 +47,104 @@ RSpec.describe FlightsController, type: :controller do
       it { should route(:get, "/flights/1/edit").to(action: :edit, id: 1) }
       it { should route(:patch, "/flights/1").to(action: :update, id: 1) }
       it { should route(:delete, "/flights/1").to(action: :destroy, id: 1) }
+    end
+
+    context "GET #new" do
+      before do
+        create :airport
+        Airport.create(name: "Kenyatta Airport",
+                       continent: "Africa",
+                       country: "Kenya",
+                       state_and_code: "Nairobi (NBO)",
+                       jurisdiction: "International",
+                       rating: 10)
+        params = {
+                  flight: {
+                          origin: "Lagos (LOS)",
+                          destination: "Nairobi (NBO)",
+                          seat: 200,
+                          cost: 230,
+                          arrival: Time.now + 5.days + 50.minutes,
+                          airline: "Chinese Airways",
+                          code: "CA122",
+                          departure: Time.now + 5.days,
+                          status: "Yes",
+                          }
+                  }
+        get :new, flight: params
+      end
+      it { is_expected.to respond_with 200 }
+      it { should render_template("new") }
+    end
+
+    context "POST #create" do
+      before do
+        create :airport
+        Airport.create(name: "Kenyatta Airport",
+                       continent: "Africa",
+                       country: "Kenya",
+                       state_and_code: "Nairobi (NBO)",
+                       jurisdiction: "International",
+                       rating: 10)
+        params = {
+                  flight: {
+                          origin: "Lagos (LOS)",
+                          destination: "Nairobi (NBO)",
+                          seat: 200,
+                          cost: 230,
+                          arrival: Time.now + 5.days + 50.minutes,
+                          airline: "Chinese Airways",
+                          code: "CA122",
+                          departure: Time.now + 5.days,
+                          status: "No",
+                          }
+                  }
+        post :create, flight: params
+      end
+      it { is_expected.to respond_with 200 }
+      it { should render_template("new") }
+    end
+
+
+
+    context "PATCH #update" do
+      before do
+        create :airport
+        Airport.create(name: "Kenyatta Airport",
+                       continent: "Africa",
+                       country: "Kenya",
+                       state_and_code: "Nairobi (NBO)",
+                       jurisdiction: "International",
+                       rating: 10)
+        params = {
+                  flight: {
+                          origin: "Lagos (LOS)",
+                          destination: "Nairobi (NBO)",
+                          seat: 200,
+                          cost: 230,
+                          arrival: Time.now + 5.days + 50.minutes,
+                          airline: "Chinese Airways",
+                          code: "CA122",
+                          departure: Time.now + 5.days,
+                          status: "No",
+                          }
+                  }
+        patch :update, id: 1, flight: params
+      end
+      it { is_expected.to respond_with 302 }
+      it { should redirect_to(flight_path) }
+    end
+
+
+
+    context "DELETE #destroy" do
+      before do
+        create :airport, name: Faker::Name.name
+        create :flight
+        delete :destroy, id: 1
+      end
+      it { is_expected.to respond_with 302 }
+      it { should redirect_to(flights_path) }
     end
   end
 
