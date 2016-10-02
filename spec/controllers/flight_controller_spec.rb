@@ -49,6 +49,32 @@ RSpec.describe FlightsController, type: :controller do
       it { should route(:delete, "/flights/1").to(action: :destroy, id: 1) }
     end
 
+    context "GET #show" do
+      it "assigns the requested flight to @flight" do
+        get :show, id: 1
+        expect(assigns(:flight).id).to eq 1
+        get :show, id: 2
+        expect(assigns(:flight).id).to eq 2
+      end
+      it "renders the #show view" do
+        get :show, id: 1
+        expect(response).to render_template :show
+      end
+    end
+
+    context "GET #edit" do
+      it "assigns the requested flight to @flight" do
+        get :edit, id: 1
+        expect(assigns(:flight).id).to eq 1
+        get :edit, id: 2
+        expect(assigns(:flight).id).to eq 2
+      end
+      it "renders the #edit view" do
+        get :edit, id: 1
+        expect(response).to render_template :edit
+      end
+    end
+
     context "GET #new" do
       before do
         create :airport
