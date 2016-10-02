@@ -113,17 +113,19 @@ RSpec.describe AirportsController, type: :controller do
   end
 
   describe "Params Filter" do
-    it "Should allow the permitted params" do
-      params = {
+    params = {
                 airport: {
-                          name: "Murtala Muhammad",
-                          continent: "Africa",
-                          country: "Nigeria",
-                          jurisdiction: "International",
-                          state_and_code: "Lagos (LOS)",
-                          rating: 10,
+                            name: "Murtala Muhammad",
+                            continent: "Africa",
+                            country: "Nigeria",
+                            jurisdiction: "International",
+                            state_and_code: "Lagos (LOS)",
+                            rating: 10,
+                            admin: true,
+                            sql: "Yes",
                           }
-                }
+              }
+    it "Should allow the permitted params" do
       should permit(:name,
                     :continent,
                     :country,
@@ -132,19 +134,13 @@ RSpec.describe AirportsController, type: :controller do
                     :rating).for(:create, params: params).on(:airport)
     end
 
+    it "Should not allow unpermitted params" do
+      should_not permit(:admin, :sql).for(:create, params: params).on(:airport)
+    end
+
     context "PATCH #update" do
       before do
         create :airport, name: Faker::Name.name
-        params = {
-                airport: {
-                          name: "Murtala Muhammad",
-                          continent: "Africa",
-                          country: "Nigeria",
-                          jurisdiction: "International",
-                          state_and_code: "Lagos (LOS)",
-                          rating: 10,
-                          }
-                }
         patch :update, id: 1, airport: params
       end
       it { is_expected.to respond_with 302 }
@@ -152,37 +148,13 @@ RSpec.describe AirportsController, type: :controller do
     end
 
     context "GET #new" do
-      before do
-        params = {
-                airport: {
-                          name: "Murtala Muhammad",
-                          continent: "Africa",
-                          country: "Nigeria",
-                          jurisdiction: "International",
-                          state_and_code: "Lagos (LOS)",
-                          rating: 10,
-                          }
-                }
-        get :new, airport: params
-      end
+      before { get :new, airport: params }
       it { is_expected.to respond_with 200 }
       it { should render_template("new") }
     end
 
     context "POST #create" do
-      before do
-        params = {
-                airport: {
-                          name: "Murtala Muhammad",
-                          continent: "Africa",
-                          country: "Nigeria",
-                          jurisdiction: "International",
-                          state_and_code: "Lagos (LOS)",
-                          rating: 10,
-                          }
-                  }
-        post :create, airport: params
-      end
+      before { post :create, airport: params }
       it { is_expected.to respond_with 200 }
       it { should render_template("new") }
     end
