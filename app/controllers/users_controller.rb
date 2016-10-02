@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :verify_user_login, except: [:new, :create]
-  before_action :verify_admin_login, only: [:index, :destroy]
 
   def index
     @users = User.all
@@ -37,7 +36,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to user_url, notice: "User was successfully destroyed"
+    redirect_to users_url, notice: "User was successfully destroyed"
   end
 
   private
