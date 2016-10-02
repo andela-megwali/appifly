@@ -131,8 +131,6 @@ RSpec.describe FlightsController, type: :controller do
       it { should render_template("new") }
     end
 
-
-
     context "PATCH #update" do
       before do
         create :airport
@@ -160,8 +158,6 @@ RSpec.describe FlightsController, type: :controller do
       it { is_expected.to respond_with 302 }
       it { should redirect_to(flight_path) }
     end
-
-
 
     context "DELETE #destroy" do
       before do
