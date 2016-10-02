@@ -16,10 +16,6 @@ class SessionsController < ApplicationController
 
   private
 
-  def user_params
-    params.require(:sign_in).permit(:username, :password)
-  end
-
   def check_user
     if params[:sign_in][:username] && params[:sign_in][:password]
       User.find_by(username: params[:sign_in][:username])

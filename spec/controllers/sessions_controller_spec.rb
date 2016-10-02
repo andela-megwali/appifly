@@ -36,9 +36,12 @@ RSpec.describe SessionsController, type: :controller do
         params = { username: "MJ", password: "asdfghj" }
         post :attempt_login, sign_in: params
       end
+      it { should_not set_session[:admin_user_id] }
       it { should set_session[:user_id] }
       it { should set_session[:user_username] }
-      it { should_not set_session[:admin_user_id] }
+      it "sets the correct session username" do
+        expect(session[:user_username]).to eq("MJ")
+      end
       it { is_expected.to respond_with 302 }
       it { should redirect_to(past_bookings_path) }
     end
