@@ -103,18 +103,18 @@ RSpec.describe FlightsController, type: :controller do
                        jurisdiction: "International",
                        rating: 10)
         params = {
-                    flight: {
-                              origin: "Lagos (LOS)",
-                              destination: "Nairobi (NBO)",
-                              seat: 200,
-                              cost: 230,
-                              arrival: Time.now + 5.days + 50.minutes,
-                              airline: "Chinese Airways",
-                              code: "CA122",
-                              departure: Time.now + 5.days,
-                              status: "Yes",
-                            }
-                  }
+          flight: {
+            origin: "Lagos (LOS)",
+            destination: "Nairobi (NBO)",
+            seat: 200,
+            cost: 230,
+            arrival: Time.now + 5.days + 50.minutes,
+            airline: "Chinese Airways",
+            code: "CA122",
+            departure: Time.now + 5.days,
+            status: "Yes",
+          }
+        }
         get :new, flight: params
       end
       it { is_expected.to respond_with 200 }
@@ -131,18 +131,18 @@ RSpec.describe FlightsController, type: :controller do
                        jurisdiction: "International",
                        rating: 10)
         params = {
-                    flight: {
-                              origin: "Lagos (LOS)",
-                              destination: "Nairobi (NBO)",
-                              seat: 200,
-                              cost: 230,
-                              arrival: Time.now + 5.days + 50.minutes,
-                              airline: "Chinese Airways",
-                              code: "CA122",
-                              departure: Time.now + 5.days,
-                              status: "No",
-                            }
-                  }
+          flight: {
+            origin: "Lagos (LOS)",
+            destination: "Nairobi (NBO)",
+            seat: 200,
+            cost: 230,
+            arrival: Time.now + 5.days + 50.minutes,
+            airline: "Chinese Airways",
+            code: "CA122",
+            departure: Time.now + 5.days,
+            status: "No",
+          }
+        }
         post :create, flight: params
       end
       it { is_expected.to respond_with 200 }
@@ -159,18 +159,18 @@ RSpec.describe FlightsController, type: :controller do
                        jurisdiction: "International",
                        rating: 10)
         params = {
-                    flight: {
-                              origin: "Lagos (LOS)",
-                              destination: "Nairobi (NBO)",
-                              seat: 200,
-                              cost: 230,
-                              arrival: Time.now + 5.days + 50.minutes,
-                              airline: "Chinese Airways",
-                              code: "CA122",
-                              departure: Time.now + 5.days,
-                              status: "No",
-                            }
-                  }
+          flight: {
+            origin: "Lagos (LOS)",
+            destination: "Nairobi (NBO)",
+            seat: 200,
+            cost: 230,
+            arrival: Time.now + 5.days + 50.minutes,
+            airline: "Chinese Airways",
+            code: "CA122",
+            departure: Time.now + 5.days,
+            status: "No",
+          }
+        }
         patch :update, id: 1, flight: params
       end
       it { is_expected.to respond_with 302 }
@@ -190,20 +190,20 @@ RSpec.describe FlightsController, type: :controller do
 
   describe "Params Filter" do
     params = {
-                flight: {
-                          origin: "Lagos (LOS)",
-                          destination: "New York (JFK)",
-                          seat: 200,
-                          cost: 230,
-                          arrival: Time.now + 5.days + 50.minutes,
-                          airline: "Chinese Airways",
-                          code: "CA122",
-                          departure: Time.now + 5.days,
-                          status: "Yes",
-                          admin: true,
-                          sql: "Yes",
-                        }
-              }
+      flight: {
+        origin: "Lagos (LOS)",
+        destination: "New York (JFK)",
+        seat: 200,
+        cost: 230,
+        arrival: Time.now + 5.days + 50.minutes,
+        airline: "Chinese Airways",
+        code: "CA122",
+        departure: Time.now + 5.days,
+        status: "Yes",
+        admin: true,
+        sql: "Yes",
+      }
+    }
     before do
       session[:admin_user_id] = 1
       create :airport
@@ -214,7 +214,7 @@ RSpec.describe FlightsController, type: :controller do
                      jurisdiction: "International",
                      rating: 10)
     end
-    it "Should allow the permitted params" do  
+    it "Should allow the permitted params" do
       should permit(:origin,
                     :destination,
                     :seat,

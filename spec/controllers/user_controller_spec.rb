@@ -20,19 +20,19 @@ RSpec.describe UsersController, type: :controller do
 
   describe "Params Filter" do
     params = {
-              user: {
-                      title: "Mrs",
-                      firstname: "Moses",
-                      lastname: "Joanne",
-                      username: "MJ",
-                      password: "asdfghj",
-                      email: "m@j.com",
-                      telephone: "1234567890",
-                      subscription: true,
-                      admin: true,
-                      sql: "Yes",
-                    }
-              }
+      user: {
+        title: "Mrs",
+        firstname: "Moses",
+        lastname: "Joanne",
+        username: "MJ",
+        password: "asdfghj",
+        email: "m@j.com",
+        telephone: "1234567890",
+        subscription: true,
+        admin: true,
+        sql: "Yes",
+      }
+    }
     it "Should allow the permitted params" do
       should permit(:title,
                     :firstname,
@@ -87,17 +87,17 @@ RSpec.describe UsersController, type: :controller do
 
   describe "#CRUD Actions" do
     params = {
-              user: {
-                      title: "Mrs",
-                      firstname: "Moses",
-                      lastname: "Joanne",
-                      username: "MJ",
-                      password: "asdfghj",
-                      email: "m@j.com",
-                      telephone: "1234567890",
-                      subscription: true,
-                    }
-              }
+      user: {
+        title: "Mrs",
+        firstname: "Moses",
+        lastname: "Joanne",
+        username: "MJ",
+        password: "asdfghj",
+        email: "m@j.com",
+        telephone: "1234567890",
+        subscription: true,
+      }
+    }
     before do
       2.times do
         create :user, firstname: Faker::Name.name

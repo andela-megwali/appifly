@@ -1,8 +1,8 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Passenger, type: :model do
   describe "#belongs_to" do
-    it{ is_expected.to belong_to :booking }
+    it { is_expected.to belong_to :booking }
   end
 
   describe "validates presence" do

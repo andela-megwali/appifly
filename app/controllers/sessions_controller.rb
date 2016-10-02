@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
       redirect_to login_path, notice: "Invalid password or username"
     end
   end
-  
+
   def authorized_user
     check_user.authenticate(params[:sign_in][:password]) if check_user
   end

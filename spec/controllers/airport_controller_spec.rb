@@ -124,17 +124,17 @@ RSpec.describe AirportsController, type: :controller do
 
   describe "Params Filter" do
     params = {
-                airport: {
-                            name: "Murtala Muhammad",
-                            continent: "Africa",
-                            country: "Nigeria",
-                            jurisdiction: "International",
-                            state_and_code: "Lagos (LOS)",
-                            rating: 10,
-                            admin: true,
-                            sql: "Yes",
-                          }
-              }
+      airport: {
+        name: "Murtala Muhammad",
+        continent: "Africa",
+        country: "Nigeria",
+        jurisdiction: "International",
+        state_and_code: "Lagos (LOS)",
+        rating: 10,
+        admin: true,
+        sql: "Yes",
+      }
+    }
     it "Should allow the permitted params" do
       should permit(:name,
                     :continent,
