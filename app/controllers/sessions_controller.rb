@@ -8,6 +8,7 @@ class SessionsController < ApplicationController
   end
 
   def logout
+    session[:admin_user_id] = nil
     session[:user_id] = nil
     session[:user_username] = nil
     redirect_to login_path, notice: "User successfully signed out."
@@ -26,13 +27,16 @@ class SessionsController < ApplicationController
   end
 
   def authorize_the_user
-    if check_user
-      authorized_user = check_user.authenticate(params[:sign_in][:password])
+    if authorized_user
       set_session(authorized_user)
       redirect_to past_bookings_path, notice: "User successfully signed in."
     else
       redirect_to login_path, notice: "Invalid password or username"
     end
+  end
+  
+  def authorized_user
+    check_user.authenticate(params[:sign_in][:password]) if check_user
   end
 
   def set_session(authorized_user)
