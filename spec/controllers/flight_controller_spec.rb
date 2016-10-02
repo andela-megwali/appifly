@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe FlightsController, type: :controller do
   before { session[:user_id] = 1 }
@@ -8,14 +8,16 @@ RSpec.describe FlightsController, type: :controller do
     it { should use_before_action(:set_flight) }
     it { should use_before_action(:list_airport) }
     it { should use_before_action(:verify_user_login) }
+    it { should use_before_action(:verify_admin_login) }
   end
 
   describe "#authenticate" do
-    context 'when logged in' do
+    context "when logged in" do
       before { get :index }
       it { is_expected.to respond_with 200 }
     end
-    context 'when logged out' do
+
+    context "when logged out" do
       before do
         session[:user_id] = nil
         get :index
@@ -23,10 +25,26 @@ RSpec.describe FlightsController, type: :controller do
       it { is_expected.to respond_with 302 }
       it { should redirect_to(login_path) }
     end
+
+    context "when user requests restricted page" do
+      before { get :new }
+      it { is_expected.to respond_with 302 }
+      it { should redirect_to(login_path) }
+    end
+
+    context "when admin requests restricted page" do
+      before do
+        session[:admin_user_id] = 1
+        get :new
+      end
+      it { is_expected.to respond_with 200 }
+      it { should render_template("new") }
+    end
   end
 
   describe "#routes and CRUD" do
     before do
+      session[:admin_user_id] = 1
       create :airport
       Airport.create(name: "Nnamdi Azikiwe Airport",
                      continent: "Africa",
@@ -187,6 +205,7 @@ RSpec.describe FlightsController, type: :controller do
                         }
               }
     before do
+      session[:admin_user_id] = 1
       create :airport
       Airport.create(name: "Jefferson Airport",
                      continent: "North America",

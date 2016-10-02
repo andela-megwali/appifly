@@ -1,22 +1,32 @@
 require "rails_helper"
 
 RSpec.describe AirportsController, type: :controller do
-  before { session[:user_id] = 1 }
+  before { session[:admin_user_id] = 1 }
 
   describe "before action" do
     it { should use_before_action(:set_airport) }
     it { should_not use_before_action(:set_flight) }
-    it { should use_before_action(:verify_user_login) }
+    it { should_not use_before_action(:verify_user_login) }
+    it { should use_before_action(:verify_admin_login) }
   end
 
   describe "#authenticate" do
-    context 'when logged in' do
+    context "when logged in" do
       before { get :index }
       it { is_expected.to respond_with 200 }
     end
-    context 'when logged out' do
+    context "when logged out" do
       before do
-        session[:user_id] = nil
+        session[:admin_user_id] = nil
+        get :index
+      end
+      it { is_expected.to respond_with 302 }
+      it { should redirect_to(login_path) }
+    end
+    context "when logged in as user not admin" do
+      before do
+        session[:admin_user_id] = nil
+        session[:user_id] = 1
         get :index
       end
       it { is_expected.to respond_with 302 }
