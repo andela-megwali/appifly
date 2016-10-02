@@ -25,10 +25,10 @@ RSpec.describe SessionsController, type: :controller do
       expect(session[:user_id]).to equal(nil)
       expect(session[:admin_user_id]).to equal(nil)
       expect(session[:user_username]).to equal(nil)
-    end 
+    end
   end
 
-  describe "#attempt_login" do              
+  describe "#attempt_login" do
     before { create :user, firstname: Faker::Name.name }
 
     context "login with correct details" do
