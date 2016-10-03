@@ -8,8 +8,8 @@ class WelcomeController < ApplicationController
                                params[:enquiry][:departure],
                                "Booking")
       session[:passenger_enquiry] = {
-        "Travel Class" => params[:enquiry][:travel_class],
-        "Number Travelling" => params[:enquiry][:passenger].to_i,
+        :class_selected => params[:enquiry][:travel_class],
+        :number_travelling => params[:enquiry][:passenger].to_i,
       }
       @passenger_enquiry = session[:passenger_enquiry]
     end

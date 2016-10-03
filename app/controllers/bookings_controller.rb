@@ -1,8 +1,5 @@
 class BookingsController < ApplicationController
-  before_action :verify_user_login, except: [:new,
-                                             :create,
-                                             :show,
-                                             :search_booking]
+  before_action :verify_user_login, except: [:new, :create, :show, :search]
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
   before_action :set_flight_select, only: [:new, :create, :show, :edit, :update]
 
@@ -12,8 +9,8 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
-    @passenger_enquiry["Number Travelling"].times { @booking.passengers.build }
-    @booking.passengers.build if @passenger_enquiry["Number Travelling"] < 1
+    @passenger_enquiry[:number_travelling].times { @booking.passengers.build }
+    @booking.passengers.build if @passenger_enquiry[:number_travelling] < 1
   end
 
   def create
@@ -54,7 +51,7 @@ class BookingsController < ApplicationController
     render "index"
   end
 
-  def search_booking
+  def search
     @booking = Booking.find_by(reference_id: params[:reference_id])
     if @booking
       redirect_to(@booking, notice: "Booking Found.")

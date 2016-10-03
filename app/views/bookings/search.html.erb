@@ -1,6 +1,6 @@
 <h1>Find Your Booking Information</h1>
 <div class="form-group">
-<%= form_for(:booking, :url => {:action => "search_booking"}, :method => "get") do |seek| %>
+<%= form_for(:booking, :url => {:action => "search"}, :method => "get") do |seek| %>
   <%= label_tag :reference_id, "Enter Your Booking Reference Number" %><br>
   <%= text_field_tag :reference_id %>
   <%= seek.submit "Get Booking Details"%>
