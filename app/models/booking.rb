@@ -8,20 +8,18 @@ class Booking < ActiveRecord::Base
   accepts_nested_attributes_for :passengers, allow_destroy: true
   validates_associated :passengers
 
+  def self.past_bookings(user_id)
+    Booking.where(user_id: user_id)
+  end
+
   private
 
   def booking_ref_generator
-    flight.code + "-" + rand(1000..9999).to_s + "-" + rand(1000..9999).to_s + "-" + rand(1000..9999).to_s + "-" + flight_id.to_s + passengers.count.to_s + id.to_s
-
-# [flight.code, rand(1000..9999).to_s, rand(1000..9999).to_s,
-# rand(1000..9999).to_s, %Q(#{flight_id.to_s} #{passengers.size.to_s} #{@id.to_s})].join "-"
-  end
-
-  def cost_calculator
-    # use multiplier constant and set it in the config/initializers
-    multiplier = { "Economy" => 1, "Business" => 1.5, "First" => 2 }
-    travel_value = multiplier[travel_class] * passengers.count
-    travel_value * flight.cost
+    [flight.code,
+     rand(1000..9999).to_s,
+     rand(1000..9999).to_s,
+     rand(1000..9999).to_s,
+     "#{flight_id}#{passengers.size}#{id}"].join "-"
   end
 
   def send_booking_notification
@@ -31,7 +29,7 @@ class Booking < ActiveRecord::Base
   end
 
   def update_booking_details
-    update_attributes(reference_id: booking_ref_generator, total_cost: cost_calculator)
+    update_attributes(reference_id: booking_ref_generator)
     send_booking_notification
   end
 end

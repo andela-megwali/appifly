@@ -34,8 +34,7 @@ class BookingsController < ApplicationController
 
   def update
     if @booking.update(booking_params)
-      # cost_calculator
-      # send_booking_update_notification
+      cost_calculator
       redirect_to @booking, notice: "Booking was successfully updated."
     else
       render :edit
@@ -48,7 +47,7 @@ class BookingsController < ApplicationController
   end
 
   def past
-    @bookings = Booking.where(user_id: session[:user_id])
+    @bookings = Booking.past_bookings(session[:user_id])
     render "index"
   end
 
@@ -95,8 +94,13 @@ class BookingsController < ApplicationController
   def additional_booking_details
     @booking.flight_id = @flight_selected.id
     @booking.user_id = session[:user_id] if session[:user_id]
-    # booking_ref_generator
-    # cost_calculator
-    # send_booking_notification
+    cost_calculator
+  end
+
+  def cost_calculator
+    multiplier = { "Economy" => 1, "Business" => 1.5, "First" => 2 }
+    travel_value = multiplier[@booking.travel_class] * @booking.passengers.size
+    @booking.total_cost = travel_value * @booking.flight.cost
+    @booking.save
   end
 end
