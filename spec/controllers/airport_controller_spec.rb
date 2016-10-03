@@ -21,7 +21,7 @@ RSpec.describe AirportsController, type: :controller do
         get :index
       end
       it { is_expected.to respond_with 302 }
-      it { should redirect_to(login_path) }
+      it { should redirect_to(root_path) }
     end
     context "when logged in as user not admin" do
       before do
@@ -30,7 +30,7 @@ RSpec.describe AirportsController, type: :controller do
         get :index
       end
       it { is_expected.to respond_with 302 }
-      it { should redirect_to(login_path) }
+      it { should redirect_to(root_path) }
     end
   end
 

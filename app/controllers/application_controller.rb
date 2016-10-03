@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   def verify_admin_login
     unless session[:admin_user_id]
-      redirect_to login_path,
+      redirect_to root_path,
                   notice: "You are not authorized to access the requested page"
     end
   end

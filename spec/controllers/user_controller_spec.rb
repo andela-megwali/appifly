@@ -63,7 +63,7 @@ RSpec.describe UsersController, type: :controller do
     context "when user requests restricted action" do
       before { get :index }
       it { is_expected.to respond_with 302 }
-      it { should redirect_to(login_path) }
+      it { should redirect_to(root_path) }
     end
 
     context "when admin requests restricted action" do
