@@ -43,7 +43,7 @@ RSpec.describe BookingsController, type: :controller do
       create :airport
       Airport.create(name: "Nnamdi Azikiwe Airport",
                      continent: "Africa",
-                     country: "Nigeria",
+                     country: "Kenya",
                      state_and_code: "Abuja (ABV)",
                      jurisdiction: "International",
                      rating: 10)
