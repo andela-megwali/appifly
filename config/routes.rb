@@ -9,5 +9,5 @@ Rails.application.routes.draw do
   post "attempt_login" => "sessions#attempt_login"
   get "logout" => "sessions#logout"
   get "past_bookings" => "bookings#past"
-  get "search_booking" => "bookings#search_booking"
+  get "search_booking" => "bookings#search"
 end

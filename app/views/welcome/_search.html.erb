@@ -1,5 +1,5 @@
 <% multiplier = { "Economy" => 1, "Business" => 1.5, "First" => 2 } %>
-<% passenger_class = @passenger_enquiry["Travel Class"] %>
+<% passenger_class = @passenger_enquiry[:class_selected] %>
 <% travel_value = multiplier[passenger_class] || 1 %>
 <% passenger_class = "Economy" unless travel_value > 1 %>
 
@@ -28,7 +28,7 @@
           <td><%= flight.departure.strftime("%d/%m/%Y %H:%M") %></td>
           <td><%= flight.arrival.strftime("%d/%m/%Y %H:%M") %></td>
           <td> $ <%= flight.cost * travel_value %></td>
-          <td> $ <%= flight.cost * @passenger_enquiry["Number Travelling"] * travel_value %></td>
+          <td> $ <%= flight.cost * @passenger_enquiry[:number_travelling] * travel_value %></td>
           <td>
               <%= label_tag(:select_flight, "#{flight.code}") %> 
               <%= radio_button_tag(:select_flight, "#{flight.id}") %> 
@@ -40,6 +40,6 @@
 <p><%= submit_tag "Select Flight", class: "btn btn-outline btn-xl page-scroll" %></p>
 <% end %>
 
-<p>Passengers Travelling: <%= @passenger_enquiry["Number Travelling"] %></p>
+<p>Passengers Travelling: <%= @passenger_enquiry[:number_travelling] %></p>
 <p><%= "Travel Class: #{passenger_class} Class" %></p>
 <p><%= "Results found: #{@enquire.count}" %></p>
