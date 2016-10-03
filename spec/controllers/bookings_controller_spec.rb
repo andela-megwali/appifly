@@ -23,6 +23,22 @@ RSpec.describe BookingsController, type: :controller do
   end
 
   describe "#authenticate" do
+    params = {
+        booking: {
+          travel_class: "Economy",
+          passengers_attributes: [id: "",
+                                  nationality: "Nigerian",
+                                  firstname: "Mary",
+                                  lastname: "Dan",
+                                  email: "m@s.com",
+                                  telephone: "1234567",
+                                  title: "Mrs",
+                                  luggage: "No",
+                                  _destroy: 0,
+                                  parents: "two",
+                                  sql: "no"]
+        }
+      }
     before do
       create :airport
       Airport.create(name: "Nnamdi Azikiwe Airport",
@@ -66,6 +82,31 @@ RSpec.describe BookingsController, type: :controller do
         end
         it { is_expected.to respond_with 200 }
         it { should render_template("index") }
+      end
+
+      describe "cannot access restricted pages" do
+        before do
+          session[:user_id] = 1
+          get :index
+        end
+        it { is_expected.to respond_with 302 }
+        it { should redirect_to("/") }
+      end
+
+      context "logged in admin can access restricted pages" do
+        before do
+          session[:admin_user_id] = 1
+          get :index
+        end
+        it { is_expected.to respond_with 200 }
+        it { should render_template("index") }
+      end
+    end
+
+    describe "Params Filter" do
+      it "Should not allow unpermitted params" do
+        should_not permit(:parents,
+                          :sql).for(:create, params: params).on(:booking)
       end
     end
   end
