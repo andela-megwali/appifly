@@ -1,5 +1,9 @@
 # Appifly
 
+[![Code Climate](https://codeclimate.com/github/andela-megwali/appifly/badges/gpa.svg)](https://codeclimate.com/github/andela-megwali/appifly)
+[![Coverage Status](https://coveralls.io/repos/github/andela-megwali/appifly/badge.svg?branch=testing)](https://coveralls.io/github/andela-megwali/appifly?branch=testing)
+[![Build Status](https://travis-ci.org/andela-megwali/appifly.svg?branch=master)](https://travis-ci.org/andela-megwali/appifly)
+
 ##Description
 
 Appifly is a responsive and intuitive flight booking web application that helps users find quality flights to exciting destinations.
