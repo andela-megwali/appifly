@@ -1,6 +1,6 @@
 class AirportsController < ApplicationController
-  before_action :set_airport, only: [:show, :edit, :update, :destroy]
   before_action :verify_admin_login
+  before_action :set_airport, only: [:show, :edit, :update, :destroy]
 
   def index
     @airports = Airport.all.paginate(page: params[:page], per_page: 30)

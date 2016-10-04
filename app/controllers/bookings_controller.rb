@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
-  before_action :verify_user_login, except: [:new, :create, :show, :search]
   before_action :verify_admin_login, only: [:index]
+  before_action :verify_user_login, except: [:new, :create, :show, :search]
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
   before_action :set_flight_select, only: [:new, :create, :show, :edit, :update]
 
