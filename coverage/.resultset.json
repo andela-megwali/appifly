@@ -579,16 +579,6 @@
         null,
         1,
         null,
-        null,
-        1,
-        null,
-        1,
-        0,
-        null,
-        null,
-        null,
-        null,
-        null,
         null
       ],
       "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/app/models/airport.rb": [
@@ -739,6 +729,6 @@
         null
       ]
     },
-    "timestamp": 1475534099
+    "timestamp": 1475534635
   }
 }
