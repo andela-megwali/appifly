@@ -38,5 +38,12 @@ RSpec.describe WelcomeController, type: :controller do
       it { is_expected.to respond_with 200 }
       it { should render_template("index") }
     end
+
+    context "#search flights" do
+      before do
+        get :index, enquiry: params
+      end
+      it { should set_session[:enquiry] }
+    end
   end
 end
