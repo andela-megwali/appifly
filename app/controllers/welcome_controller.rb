@@ -17,14 +17,4 @@ class WelcomeController < ApplicationController
 
   def about
   end
-
-  private
-
-  def search_params
-    params.require(:enquiry).permit(:origin,
-                                    :destination,
-                                    :departure,
-                                    :travel_class,
-                                    :passenger)
-  end
 end
