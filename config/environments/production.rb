@@ -71,8 +71,10 @@ Rails.application.configure do
   address:              "smtp.andela.com",
   port:                 587,
   domain:               "appifly.herokuapp.com",
-  user_name:            "michael.egwali@andela.com",
-  password:             "1234567",
+  user_name:            ENV["GMAIL_USERNAME"],
+  password:             ENV["GMAIL_PASSWORD"],
+  # user_name:            "michael.egwali@andela.com",
+  # password:             "1234567",
   authentication:       "plain",
   enable_starttls_auto: true  }
 
