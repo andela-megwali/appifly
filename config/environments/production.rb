@@ -73,8 +73,6 @@ Rails.application.configure do
   domain:               "appifly.herokuapp.com",
   user_name:            ENV["GMAIL_USERNAME"],
   password:             ENV["GMAIL_PASSWORD"],
-  # user_name:            "michael.egwali@andela.com",
-  # password:             "1234567",
   authentication:       "plain",
   enable_starttls_auto: true  }
 
