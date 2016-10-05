@@ -63,14 +63,14 @@ Rails.application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   config.action_mailer.default_url_options = { host: "appifly.herokuapp.com" }
-  config.action_mailer.raise_delivery_errors = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default :charset => "utf-8"
   config.action_mailer.smtp_settings = {
-  address:              "smtp.andela.com",
+  address:              "smtp.gmail.com",
   port:                 587,
-  domain:               "andela.com",
+  domain:               "appifly.herokuapp.com",
   user_name:            ENV["GMAIL_USERNAME"],
   password:             ENV["GMAIL_PASSWORD"],
   # user_name:            "michael.egwali@andela.com",
