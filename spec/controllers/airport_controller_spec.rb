@@ -23,7 +23,7 @@ RSpec.describe AirportsController, type: :controller do
       it { is_expected.to respond_with 302 }
       it { should redirect_to(root_path) }
     end
-    context "when logged in as user not admin" do
+    context "when logged in user is not admin" do
       before do
         session[:admin_user_id] = nil
         session[:user_id] = 1
