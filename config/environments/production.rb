@@ -70,7 +70,7 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
   address:              "smtp.andela.com",
   port:                 587,
-  domain:               "appifly.herokuapp.com",
+  domain:               "andela.com",
   user_name:            ENV["GMAIL_USERNAME"],
   password:             ENV["GMAIL_PASSWORD"],
   # user_name:            "michael.egwali@andela.com",
