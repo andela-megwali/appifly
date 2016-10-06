@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe BookingsController, type: :controller do
   describe "before action" do
@@ -19,26 +19,25 @@ RSpec.describe BookingsController, type: :controller do
     it { should route(:delete, "/bookings/1").to(action: :destroy, id: 1) }
     it { should route(:get, "/past_bookings").to(action: :past) }
     it { should route(:get, "/search_booking").to(action: :search) }
-
   end
 
   describe "#authenticate" do
     params = {
-        booking: {
-          travel_class: "Economy",
-          passengers_attributes: [id: "",
-                                  nationality: "Nigerian",
-                                  firstname: "Mary",
-                                  lastname: "Dan",
-                                  email: "m@s.com",
-                                  telephone: "1234567",
-                                  title: "Mrs",
-                                  luggage: "No",
-                                  _destroy: 0,
-                                  parents: "two",
-                                  sql: "no"]
-        }
+      booking: {
+        travel_class: "Economy",
+        passengers_attributes: [id: "",
+                                nationality: "Nigerian",
+                                firstname: "Mary",
+                                lastname: "Dan",
+                                email: "m@s.com",
+                                telephone: "1234567",
+                                title: "Mrs",
+                                luggage: "No",
+                                _destroy: 0,
+                                parents: "two",
+                                sql: "no"]
       }
+    }
     before do
       create :airport
       Airport.create(name: "Nnamdi Azikiwe Airport",

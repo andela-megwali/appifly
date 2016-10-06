@@ -7,8 +7,5 @@
   <div class="form-group mobile-travel-disappear">
     <%= f.select :travel_class, ["Economy", "Business", "First"] %>
   </div>
-  <div class="form-group mobile-disappear">
-    <%= f.select :view_format, ["Grid", "List"], label: "Search Result Format" %>
-  </div>
     <%= f.submit "Find Flights", class: "btn btn-primary" %>
 <% end %>

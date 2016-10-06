@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe WelcomeController, type: :controller do
   describe "#routes" do
@@ -11,7 +11,7 @@ RSpec.describe WelcomeController, type: :controller do
         origin: "Lagos (LOS)",
         destination: "Abuja (ABV)",
         departure: Time.now,
-        password: "asdfghj",
+        view_format: "Grid",
         travel_class: "Business",
         passenger: "2",
         subscription: true,
@@ -31,19 +31,33 @@ RSpec.describe WelcomeController, type: :controller do
       2.times do
         create :flight, airline: Faker::Company.name
       end
+      get :index, enquiry: params
     end
 
     context "route and render" do
-      before { get :index }
       it { is_expected.to respond_with 200 }
       it { should render_template("index") }
     end
 
     context "#search flights" do
-      before do
-        get :index, enquiry: params
-      end
       it { should set_session[:enquiry] }
+    end
+
+    context "params filter" do
+      it "Should allow the permitted params" do
+        should permit(:origin,
+                      :destination,
+                      :departure,
+                      :travel_class,
+                      :passenger,
+                      :view_format).
+          for(:index, verb: :get, params: params).on(:enquiry)
+      end
+
+      it "Should not allow unpermitted params" do
+        should_not permit(:admin, :sql, :subscription).
+          for(:index, verb: :get, params: params).on(:enquiry)
+      end
     end
   end
 end
