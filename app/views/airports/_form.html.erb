@@ -13,27 +13,27 @@
 
   <div class="form-group">
     <%= f.label :name %><br>
-    <%= f.text_field :name %>
+    <%= f.text_field :name, required: true %>
   </div>
   <div class="form-group">
-    <%= f.label :airport_type %><br>
-    <%= f.text_field :airport_type %>
+    <%= f.label :jurisdiction %><br>
+    <%= f.text_field :jurisdiction, required: true %>
   </div>
   <div class="form-group">
     <%= f.label :state_and_code %><br>
-    <%= f.text_field :state_and_code %>
+    <%= f.text_field :state_and_code, required: true %>
   </div>
   <div class="form-group">
     <%= f.label :country %><br>
-    <%= f.text_field :country %>
+    <%= f.text_field :country, required: true %>
   </div>
   <div class="form-group">
     <%= f.label :continent %><br>
-    <%= f.text_field :continent %>
+    <%= f.text_field :continent, required: true %>
   </div>
   <div class="form-group">
     <%= f.label :rating %><br>
-    <%= f.text_field :rating %>
+    <%= f.text_field :rating, required: true %>
   </div>
   
   <div class="form-group actions">

@@ -1,5 +1,5 @@
 <h3>
-  <strong>Flight <%= @flight.flight_code %></strong>
+  <strong>Flight <%= @flight.code %></strong>
 </h3>
 
 <p>
@@ -34,18 +34,18 @@
 
 <p>
   <strong>Flight code:</strong>
-  <%= @flight.flight_code %>
+  <%= @flight.code %>
 </p>
 
 <p>
   <strong>Flight type:</strong>
-  <%= @flight.flight_type %>
+  <%= @flight.jurisdiction %>
 </p>
 
 <p>
   <strong>Flight cost:</strong>
-  $<%= @flight.flight_cost %>
+  $<%= @flight.cost %>
 </p>
 
-<%= link_to "Edit", edit_flight_path(@flight) %> |
-<%= link_to "Back", flights_path %>
+<%= link_to "Edit This Flight", edit_flight_path(@flight) if session[:admin_user_id] %> <br>
+<%= link_to "Back to Flights List", flights_path %>

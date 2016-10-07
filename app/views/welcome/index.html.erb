@@ -1,8 +1,5 @@
-<% if @enquire && params[:enquiry][:view_format] == "Grid" %>
-  <%= render "search2" %>
-<% elsif @enquire %>
-  <%= render "search" %>
-<% end %>
+<%= search_result_display_format %>
+
 <div class="container header-nav">
   <div class="row">        
     <div class="col-sm-5">

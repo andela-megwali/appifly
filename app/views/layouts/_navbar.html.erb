@@ -20,11 +20,11 @@
           </li>
           <li class="signed_in">
             Signed in as <%=session[:user_username] %> 
-            <%= "**" if User.find(session[:user_id]).admin_user %>
+            <%= "**" if session[:admin_user_id] %>
           </li>
         <% else %>
           <li>
-            <%= link_to "Sign in", "/login" %>
+            <%= link_to "Sign in", login_path %>
           </li>
           <li>
             <%= link_to "Sign up", new_user_path %>

@@ -1,0 +1,25 @@
+<div class="col-md-4 nested-fields">
+  <h3> Add Passenger Details </h3>
+  <div class="field">
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.text_field :firstname, required: true %>
+  </div>
+  <div class="field">
+    <%= f.text_field :lastname, required: true %>
+  </div>
+  <div class="field">
+    <%= f.text_field :email, required: true %>
+  </div>
+  <div class="field">
+    <%= f.text_field :telephone, required: true %>
+  </div>
+  <div class="field">
+    <%= f.text_field :nationality, required: true %>
+  </div>
+  <div class="field">
+    <%= f.select :luggage, ["No", "Yes"] %>
+  </div>
+  <%= link_to_remove_association "Remove this passenger", f, class: "btn btn-outline btn-xl page-scroll" %>
+ </div>

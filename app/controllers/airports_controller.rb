@@ -13,7 +13,7 @@ class AirportsController < ApplicationController
   def create
     @airport = Airport.new(airport_params)
     if @airport.save
-      redirect_to @airport, notice: "Airport was successfully created."
+      redirect_to @airport, notice: "#{@airport.name} Airport has been created."
     else
       render :new
     end
@@ -27,7 +27,7 @@ class AirportsController < ApplicationController
 
   def update
     if @airport.update(airport_params)
-      redirect_to @airport, notice: "Airport was successfully updated."
+      redirect_to @airport, notice: "#{@airport.name} Airport has been updated."
     else
       render :edit
     end
@@ -45,11 +45,11 @@ class AirportsController < ApplicationController
   end
 
   def airport_params
-    params.require(:airport).permit :name,
+    params.require(:airport).permit(:name,
                                     :continent,
                                     :country,
-                                    :airport_type,
+                                    :jurisdiction,
                                     :state_and_code,
-                                    :rating
+                                    :rating)
   end
 end
