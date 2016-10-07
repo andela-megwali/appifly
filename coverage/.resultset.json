@@ -186,6 +186,13 @@
       ],
       "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/app/helpers/flights_helper.rb": [
         1,
+        1,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
         null
       ],
       "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/app/helpers/payments_helper.rb": [
@@ -778,6 +785,6 @@
         null
       ]
     },
-    "timestamp": 1475840042
+    "timestamp": 1475847332
   }
 }

@@ -2,9 +2,13 @@ AllCops:
   Exclude:
     - "vendor/**/*"
     - "db/schema.rb"
+    - "db/seeds.rb"
     - "bin/*"
     - "config/environments/*"
+    - "config/initializers/*"
     - "app/assets/*"
+    - "spec/rails_helper.rb"
+    - "spec/spec_helper.rb"
   UseCache: false
   TargetRubyVersion: 2.2
 Style/CollectionMethods:
