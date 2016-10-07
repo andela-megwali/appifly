@@ -1,5 +1,5 @@
-<div class="col-sm-12">
-  <div class="col-sm-6">
+<div class="col-md-12">
+  <div class="col-md-6">
     <table>
   	  <thead>
   	    <tr>
@@ -33,11 +33,11 @@
   	    </tr>
         <tr>
           <td></td>
-          <td>$ <%= @flight_selected.cost * 1.5 %> per person (Business)</td>
+          <td>$ <%= business_class_flight_cost %> per person (Business)</td>
         </tr>
         <tr>
           <td></td>
-          <td>$ <%= @flight_selected.cost * 2 %> per person (First)</td>
+          <td>$ <%= first_class_flight_cost %> per person (First)</td>
         </tr>
   	    <tr>
   	      <td>Airline:</td>
@@ -62,13 +62,11 @@
   	  </tbody>
     </table>
   </div>
-
-  <%= render "shared/user_profile" %>
-  
+  <%= render "shared/user_profile" %> 
 </div>
 
-<div>
-  <%= form_for(@booking) do |f| %>
+<div class="col-md-12 header-nav form-group">
+  <%= bootstrap_form_for(@booking) do |f| %>
     <% if @booking.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
@@ -79,52 +77,27 @@
         </ul>
       </div>
     <% end %>
-    <div class="col-md-12 form-group">
-      <div class="header-nav"></div>
-        <%= f.label :travel_class, "Set / Change Travel Class" %><br>
-        <%= f.select :travel_class, ["Economy", "Business", "First"] %>
-    </div>
-    <div class="col-md-4 form-group">
-      <%= f.fields_for :passengers do |passenger_details| %>
-        <h3> Passenger Details </h3>
-        <div class="field">
-          <%= passenger_details.label :title %><br>
-          <%= passenger_details.text_field :title %>
-        </div>
-        <div class="field">
-          <%= passenger_details.label :firstname %><br>
-          <%= passenger_details.text_field :firstname %>
-        </div>
-        <div class="field">
-          <%= passenger_details.label :lastname %><br>
-          <%= passenger_details.text_field :lastname %>
-        </div>
-        <div class="field">
-          <%= passenger_details.label :email %><br>
-          <%= passenger_details.text_field :email %>
-        </div>
-        <div class="field">
-          <%= passenger_details.label :telephone %><br>
-          <%= passenger_details.text_field :telephone %>
-        </div>
-        <div class="field">
-          <%= passenger_details.label :nationality %><br>
-          <%= passenger_details.text_field :nationality %>
-        </div>
-        <div class="field">
-          <%= passenger_details.label :luggage %><br>
-          <%= passenger_details.select :luggage, ["No", "Yes"] %>
-        </div>
-        <div class="field">
-          <%= passenger_details.label :_destroy, "Remove this passenger" %>
-          <%= passenger_details.check_box :_destroy%>
-        </div>
-      <% end %><br>
-      <div class="actions">
-        <%= f.submit %>
+    <div class="col-md-12">
+      <div class="col-md-12">
+        <h3> Enter Your Booking Information</h3>
       </div>
-    <% end %>
-  </div>
+      <div class="col-md-4 form-group">
+        <%= f.select :travel_class, ["Economy", "Business", "First"], label: "Set / Change Travel Class" %>
+      </div>
+    </div>
+    <div class="col-md-12 form-group">
+      <%= f.fields_for :passengers do |passenger_details| %>
+          <%= render "passenger_fields", f: passenger_details %>
+      <% end %>
+      <div class="col-md-12 form-group">
+        <br>
+        <%= link_to_add_association "Add Another Passenger", f, :passengers, class: "btn btn-outline btn-xl page-scroll" %>
+      </div>
+    </div>
+    <div class="col-md-12 actions form-group">
+      <%= f.submit %>
+    </div>
+  <% end %>
 </div>
 <div class="col-md-12">
   <%= link_to "Find a different flight", root_path %><br>
