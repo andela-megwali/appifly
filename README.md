@@ -41,7 +41,7 @@ The app supports three tiers of users:
 
 ##Dependencies and Frameworks
 
-The application is designed with Ruby 2.3.1 and runs on Rails 4.2.6 and uses the Puma server.
+The application is designed with Ruby 2.3.1 and runs on Rails 4.2.7.1 and uses the Puma server.
 The front-end design was implemented with Bootstrap.
 
 To run this application. you need to install <a href="https://www.ruby-lang.org" target ="blank">Ruby</a> and <a href="http://rubyonrails.org/" target="blank">Rails</a>. Every other dependency will be installed when you run "bundle install".
