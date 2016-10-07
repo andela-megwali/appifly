@@ -4,6 +4,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th>Index</th>
       <th>Booking Reference</th>
       <th>Travel Class</th>
       <th>Passsengers Booked</th>
@@ -15,8 +16,9 @@
   </thead>
 
   <tbody>
-    <% @bookings.each do |booking| %>
+    <% @bookings.each.with_index(1) do |booking, index| %>
       <tr>
+        <td><%= index %></td>
         <td><%= booking.reference_id %></td>
         <td><%= booking.travel_class %></td>
         <td><%= booking.passengers.count %></td>

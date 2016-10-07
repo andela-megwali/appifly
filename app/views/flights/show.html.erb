@@ -47,5 +47,5 @@
   $<%= @flight.cost %>
 </p>
 
-<%= link_to "Edit This Flight", edit_flight_path(@flight) %> |
+<%= link_to "Edit This Flight", edit_flight_path(@flight) if session[:admin_user_id] %> <br>
 <%= link_to "Back to Flights List", flights_path %>

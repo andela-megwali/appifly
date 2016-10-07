@@ -4,19 +4,19 @@
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.text_field :firstname %>
+    <%= f.text_field :firstname, required: true %>
   </div>
   <div class="field">
-    <%= f.text_field :lastname %>
+    <%= f.text_field :lastname, required: true %>
   </div>
   <div class="field">
-    <%= f.text_field :email %>
+    <%= f.text_field :email, required: true %>
   </div>
   <div class="field">
-    <%= f.text_field :telephone %>
+    <%= f.text_field :telephone, required: true %>
   </div>
   <div class="field">
-    <%= f.text_field :nationality %>
+    <%= f.text_field :nationality, required: true %>
   </div>
   <div class="field">
     <%= f.select :luggage, ["No", "Yes"] %>

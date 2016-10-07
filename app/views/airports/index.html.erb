@@ -17,7 +17,7 @@
   <tbody>
     <% @airports.each_with_index do |airport, index| %>
       <tr>
-        <td><%= index + 1 %></td>
+        <td><%= index_for_pagination(index) %></td>
         <td><%= airport.name %></td>
         <td><%= airport.jurisdiction %></td>
         <td><%= airport.state_and_code %></td>
