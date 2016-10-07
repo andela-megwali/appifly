@@ -6,8 +6,7 @@
 
 ##Description
 
-Appifly is a responsive and intuitive flight booking web application that helps users find quality flights to exciting destinations.
-It enables users search forThe application can be viewed here [Appifly](http://appifly.herokuapp.com)
+Appifly is a responsive and intuitive flight booking web application that helps travellers find quality flights to exciting destinations. The application can be viewed here [Appifly](http://appifly.herokuapp.com)
 
 ## Functions and Features
 
