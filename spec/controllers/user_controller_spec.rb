@@ -109,8 +109,6 @@ RSpec.describe UsersController, type: :controller do
       it "assigns the requested user to @user" do
         get :show, id: 1
         expect(assigns(:user).id).to eq 1
-        get :show, id: 2
-        expect(assigns(:user).id).to eq 2
       end
       it "renders the #show view" do
         get :show, id: 1
@@ -122,8 +120,6 @@ RSpec.describe UsersController, type: :controller do
       it "assigns the requested user to @user" do
         get :edit, id: 1
         expect(assigns(:user).id).to eq 1
-        get :edit, id: 2
-        expect(assigns(:user).id).to eq 2
       end
       it "renders the #edit view" do
         get :edit, id: 1

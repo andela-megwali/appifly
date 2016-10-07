@@ -52,25 +52,16 @@ RSpec.describe AirportsController, type: :controller do
     end
 
     context "GET #show" do
+      before { get :show, id: 1 }
       it "assigns the requested airport to @airport" do
-        get :show, id: 1
         expect(assigns(:airport).id).to eq 1
-        get :show, id: 2
-        expect(assigns(:airport).id).to eq 2
       end
       it "renders the #show view" do
-        get :show, id: 1
         expect(response).to render_template :show
       end
     end
 
     context "GET #edit" do
-      it "assigns the requested airport to @airport" do
-        get :edit, id: 1
-        expect(assigns(:airport).id).to eq 1
-        get :edit, id: 2
-        expect(assigns(:airport).id).to eq 2
-      end
       it "renders the #edit view" do
         get :edit, id: 1
         expect(response).to render_template :edit

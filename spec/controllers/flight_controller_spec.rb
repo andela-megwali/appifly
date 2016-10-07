@@ -71,8 +71,6 @@ RSpec.describe FlightsController, type: :controller do
       it "assigns the requested flight to @flight" do
         get :show, id: 1
         expect(assigns(:flight).id).to eq 1
-        get :show, id: 2
-        expect(assigns(:flight).id).to eq 2
       end
       it "renders the #show view" do
         get :show, id: 1
@@ -84,8 +82,6 @@ RSpec.describe FlightsController, type: :controller do
       it "assigns the requested flight to @flight" do
         get :edit, id: 1
         expect(assigns(:flight).id).to eq 1
-        get :edit, id: 2
-        expect(assigns(:flight).id).to eq 2
       end
       it "renders the #edit view" do
         get :edit, id: 1
