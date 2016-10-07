@@ -10,7 +10,8 @@ class BookingsController < ApplicationController
 
   def new
     @booking = Booking.new
-    @booking.passengers.build
+    @passenger_enquiry["number_travelling"].times { @booking.passengers.build }
+    @booking.passengers.build if @passenger_enquiry["number_travelling"] < 1
   end
 
   def create
