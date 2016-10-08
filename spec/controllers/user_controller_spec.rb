@@ -133,9 +133,21 @@ RSpec.describe UsersController, type: :controller do
     end
 
     context "PATCH #update" do
-      before { patch :update, id: 1, user: params }
-      it { is_expected.to respond_with 302 }
-      it { should redirect_to(user_path) }
+      describe "#update success" do
+        before do
+          patch :update, id: 1, user: attributes_for(:user, firstname: "vfdrtj")
+        end
+        it { is_expected.to respond_with 302 }
+        it { should redirect_to(user_path) } 
+      end
+      describe "#update fail" do
+        before do
+          patch :update, id: 1, user: attributes_for(:user, firstname: nil)
+        end
+        it "re-renders the edit method" do
+          expect(response).to render_template :edit
+        end
+      end
     end
 
     context "GET #new" do

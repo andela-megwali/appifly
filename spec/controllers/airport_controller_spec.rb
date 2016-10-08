@@ -139,13 +139,23 @@ RSpec.describe AirportsController, type: :controller do
       should_not permit(:admin, :sql).for(:create, params: params).on(:airport)
     end
 
-    context "PATCH #update" do
+    context "PATCH #update success" do
       before do
         create :airport, name: Faker::Name.name
         patch :update, id: 1, airport: params
       end
       it { is_expected.to respond_with 302 }
       it { should redirect_to(airport_path) }
+    end
+    
+    context "PATCH #update fail" do
+      before do
+        create :airport, name: Faker::Name.name
+        patch :update, id: 1, airport: attributes_for(:airport, country: nil)
+      end
+      it "re-renders the edit method" do
+        expect(response).to render_template :edit
+      end
     end
 
     context "GET #new" do

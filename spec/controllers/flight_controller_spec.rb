@@ -146,6 +146,19 @@ RSpec.describe FlightsController, type: :controller do
     end
 
     context "PATCH #update" do
+      params = {
+        flight: {
+          origin: "Lagos (LOS)",
+          destination: "Nairobi (NBO)",
+          seat: 200,
+          cost: 230,
+          arrival: Time.now + 5.days + 50.minutes,
+          airline: "Chinese Airways",
+          code: "CA122",
+          departure: Time.now + 5.days,
+          status: "No",
+        }
+      }
       before do
         create :airport
         Airport.create(name: "Kenyatta Airport",
@@ -154,23 +167,22 @@ RSpec.describe FlightsController, type: :controller do
                        state_and_code: "Nairobi (NBO)",
                        jurisdiction: "International",
                        rating: 10)
-        params = {
-          flight: {
-            origin: "Lagos (LOS)",
-            destination: "Nairobi (NBO)",
-            seat: 200,
-            cost: 230,
-            arrival: Time.now + 5.days + 50.minutes,
-            airline: "Chinese Airways",
-            code: "CA122",
-            departure: Time.now + 5.days,
-            status: "No",
-          }
-        }
-        patch :update, id: 1, flight: params
       end
-      it { is_expected.to respond_with 302 }
-      it { should redirect_to(flight_path) }
+
+      describe "#update success" do
+        before { patch :update, id: 1, flight: params }
+        it { is_expected.to respond_with 302 }
+        it { should redirect_to(flight_path) }
+      end
+
+      describe "#update fail" do
+        before do
+          patch :update, id: 1, flight: attributes_for(:flight, airline: nil)
+        end
+        it "re-renders the edit method" do
+          expect(response).to render_template :edit
+        end
+      end
     end
 
     context "DELETE #destroy" do
