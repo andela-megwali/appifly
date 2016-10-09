@@ -80,7 +80,7 @@ RSpec.describe BookingsController, type: :controller do
           it { is_expected.to respond_with 200 }
           it { should render_template("index") }
         end
-        
+
         context "CRUD" do
           before { create :booking }
           describe "GET #edit" do
@@ -104,8 +104,9 @@ RSpec.describe BookingsController, type: :controller do
 
             context "#update fail" do
               before do
-                put :update, id: 1,
-                booking: attributes_for(:booking, travel_class: nil)
+                put :update,
+                    id: 1,
+                    booking: attributes_for(:booking, travel_class: nil)
               end
               it { should render_template("edit") }
             end

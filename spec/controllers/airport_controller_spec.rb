@@ -147,7 +147,7 @@ RSpec.describe AirportsController, type: :controller do
       it { is_expected.to respond_with 302 }
       it { should redirect_to(airport_path) }
     end
-    
+
     context "PATCH #update fail" do
       before do
         create :airport, name: Faker::Name.name

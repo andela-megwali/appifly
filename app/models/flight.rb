@@ -46,7 +46,7 @@ class Flight < ActiveRecord::Base
     elsif get_flight_type == "Continental"
       rand(350..600)
     else
-      rand (750..1250)
+      rand(750..1250)
     end
   end
 
