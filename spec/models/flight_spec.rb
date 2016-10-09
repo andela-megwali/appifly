@@ -15,7 +15,6 @@ RSpec.describe Flight, type: :model do
     it { should validate_presence_of(:arrival) }
     it { should validate_presence_of(:airline) }
     it { should validate_presence_of(:code) }
-    it { should validate_presence_of(:cost) }
   end
 
   describe "#search" do

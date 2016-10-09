@@ -138,7 +138,7 @@ RSpec.describe UsersController, type: :controller do
           patch :update, id: 1, user: attributes_for(:user, firstname: "vfdrtj")
         end
         it { is_expected.to respond_with 302 }
-        it { should redirect_to(user_path) } 
+        it { should redirect_to(user_path) }
       end
       describe "#update fail" do
         before do

@@ -202,7 +202,6 @@ RSpec.describe FlightsController, type: :controller do
         origin: "Lagos (LOS)",
         destination: "New York (JFK)",
         seat: 200,
-        cost: 230,
         arrival: Time.now + 5.days + 50.minutes,
         airline: "Chinese Airways",
         code: "CA122",

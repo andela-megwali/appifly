@@ -1,53 +1,27 @@
-<%= form_for(@flight) do |f| %>
-  <% if @flight.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@flight.errors.count, "error") %> prohibited this flight from being saved:</h2>
+<div class="col-md-12">
+  <div class="col-md-4">
+    <%= bootstrap_form_for(@flight) do |f| %>
+      <% if @flight.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@flight.errors.count, "error") %> prohibited this flight from being saved:</h2>
 
-      <ul>
-      <% @flight.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+          <ul>
+          <% @flight.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="form-group">
-    <%= f.label :origin %><br>
-    <%= f.select :origin, @list_airport %>
+      <%= f.select :origin, @list_airport, label: "Flight Origin" %>
+      <%= f.select :destination, @list_airport, label: "Flight Destination"  %>
+      <%= f.number_field :seat, required: true, label: "Seats" %>
+      <%= f.datetime_select :departure, label: "Departure Date / Time" %>
+      <%= f.datetime_select :arrival, label: "Arrival Date / Time" %>
+      <%= f.text_field :airline, required: true %>
+      <%= f.text_field :code, required: true %>
+      <%= f.number_field :cost, label: "Cost Override (Leave Blank Recommended)" %>
+      <%= f.select :status, ["No", "Yes"], label: "Cancel This Flight?" %><br>
+      <%= f.submit %>
+    <% end %><br>
   </div>
-  <div class="form-group">
-    <%= f.label :destination %><br>
-    <%= f.select :destination, @list_airport %>
-  </div>
-  <div class="form-group">
-    <%= f.label :seat, "Seats" %><br>
-    <%= f.number_field :seat, required: true %>
-  </div>
-  <div class="form-group">
-    <%= f.label :departure %><br>
-    <%= f.datetime_select :departure %>
-  </div>
-  <div class="form-group">
-    <%= f.label :arrival %><br>
-    <%= f.datetime_select :arrival %>
-  </div>
-  <div class="form-group">
-    <%= f.label :airline %><br>
-    <%= f.text_field :airline, required: true %>
-  </div>
-  <div class="form-group">
-    <%= f.label :code %><br>
-    <%= f.text_field :code, required: true %>
-  </div>
-  <div class="form-group">
-    <%= f.label :cost %><br>
-    <%= f.number_field :cost, required: true %>
-  </div>
-  <div class="form-group">
-    <%= f.label :status, "Cancel This Flight?"%>
-    <%= f.select :status, ["No", "Yes"] %>
-  </div>
-  <div class="form-group actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
