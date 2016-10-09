@@ -3,7 +3,6 @@ FactoryGirl.define do
     origin "Lagos (LOS)"
     destination "Abuja (ABV)"
     seat 200
-    cost 230
     arrival Time.now + 5.days + 50.minutes
     airline "Chinese Airways"
     code "CA112"
