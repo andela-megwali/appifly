@@ -6,6 +6,7 @@ class Booking < ActiveRecord::Base
   after_create :update_booking_details
 
   accepts_nested_attributes_for :passengers, allow_destroy: true
+  validates_presence_of :travel_class
   validates_associated :passengers
 
   def self.past_bookings(user_id)

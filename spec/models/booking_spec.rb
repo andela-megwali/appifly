@@ -20,4 +20,8 @@ RSpec.describe Booking, type: :model do
   describe "#accepts_nested_attributes_for " do
     it { should accept_nested_attributes_for :passengers }
   end
+
+  describe "validates presence" do
+    it { should validate_presence_of(:travel_class) }
+  end
 end
