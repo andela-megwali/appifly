@@ -45,19 +45,11 @@
   	    </tr>
   	    <tr>
   	      <td>Travel Class:</td>
-  	      <% if @passenger_enquiry %>
-          <td><%= @passenger_enquiry["class_selected"] %></td>
-          <% else %>
-          <td><%= @booking.travel_class %></td>
-          <% end %>
+          <td><%= booking_travel_class %></td>
   	    </tr>
   	    <tr>
   	      <td>Number of Passengers Travelling:</td>
-          <% if @passenger_enquiry %>
-  	      <td><%= @passenger_enquiry["number_travelling"] %></td>
-          <% else %>
-          <td><%= @booking.passengers.count %></td>
-          <% end %>
+  	      <td><%= booking_passenger_count %></td>
   	    </tr>
   	  </tbody>
     </table>

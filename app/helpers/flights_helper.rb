@@ -6,4 +6,10 @@ module FlightsHelper
       ((params[:page].to_i - 1) * 30) + (index + 1)
     end
   end
+
+  def flight_status_display(flight)
+    status = flight.status
+    status = "Past" if Time.now > flight.departure && status == "Booking"
+    status
+  end
 end

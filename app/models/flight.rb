@@ -55,8 +55,6 @@ class Flight < ActiveRecord::Base
       "Cancelled"
     elsif departure > Time.now
       "Booking"
-    else
-      "Past"
     end
   end
 

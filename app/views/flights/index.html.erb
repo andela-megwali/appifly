@@ -32,15 +32,7 @@
         <td><%= flight.code %></td>
         <td><%= flight.jurisdiction %></td>
         <td>$ <%= flight.cost %></td>
-        <% if flight.status == "Cancelled" %>
-          <td>Cancelled</td>
-        <% elsif flight.departure > Time.now %>
-          <td>Booking</td>
-        <% elsif flight.departure < Time.now && Time.now < flight.arrival %>
-          <td>In Transit</td>
-        <% else %>
-          <td>Past</td>
-        <% end %>
+        <td><%= flight_status_display(flight) %></td>
         <td><%= link_to "Show", flight %></td>
         <% if session[:admin_user_id] %>
           <td><%= link_to "Edit", edit_flight_path(flight) %></td>

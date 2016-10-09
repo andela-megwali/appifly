@@ -14,4 +14,20 @@ module BookingHelper
       "Invalid Booking Pending Addition of Passenger Details"
     end
   end
+
+  def booking_travel_class
+    if @passenger_enquiry
+      @passenger_enquiry["class_selected"]
+    else
+      @booking.travel_class
+    end
+  end
+
+  def booking_passenger_count
+    if @passenger_enquiry
+      @passenger_enquiry["number_travelling"]
+    else
+      @booking.passengers.count
+    end
+  end
 end
