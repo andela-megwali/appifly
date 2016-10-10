@@ -1,7 +1,7 @@
 # Appifly
 
 [![Code Climate](https://codeclimate.com/github/andela-megwali/appifly/badges/gpa.svg)](https://codeclimate.com/github/andela-megwali/appifly)
-[![Coverage Status](https://coveralls.io/repos/github/andela-megwali/appifly/badge.svg?branch=testing)](https://coveralls.io/github/andela-megwali/appifly?branch=testing)
+[![Coverage Status](https://coveralls.io/repos/github/andela-megwali/appifly/badge.svg?branch=develop)](https://coveralls.io/github/andela-megwali/appifly?branch=develop)
 [![Build Status](https://travis-ci.org/andela-megwali/appifly.svg?branch=master)](https://travis-ci.org/andela-megwali/appifly)
 
 ##Description

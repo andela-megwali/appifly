@@ -35,8 +35,8 @@ f = (rand 30).days
 g = f + (rand 11).hours + (rand 59).minutes
 
 100.times {
-Flight.create(origin: "#{airport_codes[rand airport_codes.count]}", destination: "#{airport_codes[rand airport_codes.count]}", seat: 250, departure: Time.now + 5.days, arrival: Time.now + 5.days + 50.minutes, airline: "Chinese Airlines", code: "MFM12", cost: 200, status: "Booking")
-Flight.create(origin: "#{airport_codes[rand airport_codes.count]}", destination: "#{airport_codes[rand airport_codes.count]}", seat: 250, departure: Time.now + 4.days, arrival: Time.now + 4.days + 2.hours + 50.minutes, airline: "Makinwa Flies Monthly", code: "MFM24", status: "Booking")
-Flight.create(origin: "#{airport_codes[rand airport_codes.count]}", destination: "#{airport_codes[rand airport_codes.count]}", seat: 250, departure: Time.now + 5.days, arrival: Time.now + 5.days + 8.hours, airline: "Arik Air", code: "MFM27", status: "Cancelled")
-Flight.create(origin: "#{airport_codes[rand airport_codes.count]}", destination: "#{airport_codes[rand airport_codes.count]}", seat: 250, departure: Time.now + 3.days, arrival: Time.now + 3.days + 6.hours, airline: "Chinese Airlines", code: "MFM23", cost: 900, status: "Cancelled")
+Flight.create(origin: d, destination: e, seat: 250, departure: f, arrival: g, airline: c[0], code: c[1], cost: 200, status: "Booking")
+Flight.create(origin: d, destination: e, seat: 250, departure: f, arrival: g, airline: c[0], code: c[1], status: "Booking")
+Flight.create(origin: d, destination: e, seat: 250, departure: f, arrival: g, airline: c[0], code: c[1], status: "Cancelled")
+Flight.create(origin: d, destination: e, seat: 250, departure: f, arrival: g, airline: c[0], code: c[1], cost: 900, status: "Cancelled")
 }
