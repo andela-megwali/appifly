@@ -17,26 +17,17 @@
 airport_codes =[]
 Airport.all.each {|airport| airport_codes << airport.state_and_code}
 
-d = airport_codes[rand airport_codes.count]
-e = airport_codes[rand airport_codes.count]
-while d == e
- e = airport_codes[rand airport_codes.count]
-end
+# airline_list = [["Chinese Airlines", "CA123"], ["Makinwa Flies Monthly", "MFM234"], ["Arik Air", "AA178"], "Virgin Nigeria", "Kenya Airways", "KLM", "Air France", "British Airways", "Mic on Air", "Happy Flights"]
 
 
-airline_list = [["Chinese Airlines", "CA123"], ["Makinwa Flies Monthly", "MFM234"], ["Arik Air", "AA178"], ["Virgin Nigeria", "VN345"], ["Kenya Airways", "KA243"], ["KLM", "KLM76"], ["Air France", "AF64"], ["British Airways", "BA534"], ["Imagine Nation", "IN832"], ["Happy Flights", "HF232"]]
-
-
-c = airline_list[rand airline_list.count]
-c[0]
-c[1]
-
-f = (rand 30).days
-g = f + (rand 11).hours + (rand 59).minutes
+# c = airline_list[rand airline_list.count]
+# c[0]
+# c[1]
 
 100.times {
-Flight.create(origin: d, destination: e, seat: 250, departure: f, arrival: g, airline: c[0], code: c[1], cost: 200, status: "Booking")
-Flight.create(origin: d, destination: e, seat: 250, departure: f, arrival: g, airline: c[0], code: c[1], status: "Booking")
-Flight.create(origin: d, destination: e, seat: 250, departure: f, arrival: g, airline: c[0], code: c[1], status: "Cancelled")
-Flight.create(origin: d, destination: e, seat: 250, departure: f, arrival: g, airline: c[0], code: c[1], cost: 900, status: "Cancelled")
+Flight.create(origin: "#{airport_codes[rand airport_codes.count]}", destination: "#{airport_codes[rand airport_codes.count]}", seat: 250, departure: Time.now + 5.days, arrival: Time.now + 5.days + 50.minutes, airline: "Chinese Airlines", code: "MFM12", jurisdiction: "Local", cost: 200, status: "Booking")
+Flight.create(origin: "#{airport_codes[rand airport_codes.count]}", destination: "#{airport_codes[rand airport_codes.count]}", seat: 250, departure: Time.now + 4.days, arrival: Time.now + 4.days + 2.hours + 50.minutes, airline: "Makinwa Flies Monthly", code: "MFM24", jurisdiction: "Continental", cost: 500, status: "Booking")
+Flight.create(origin: "#{airport_codes[rand airport_codes.count]}", destination: "#{airport_codes[rand airport_codes.count]}", seat: 250, departure: Time.now + 5.days, arrival: Time.now + 5.days + 8.hours, airline: "Arik Air", code: "MFM27", jurisdiction: "International", cost: 900, status: "Cancelled")
+Flight.create(origin: "#{airport_codes[rand airport_codes.count]}", destination: "#{airport_codes[rand airport_codes.count]}", seat: 250, departure: Time.now + 3.days, arrival: Time.now + 3.days + 6.hours, airline: "Chinese Airlines", code: "MFM23", jurisdiction: "International", cost: 900, status: "Cancelled")
+Flight.create(origin: "#{airport_codes[rand airport_codes.count]}", destination: "#{airport_codes[rand airport_codes.count]}", seat: 250, departure: Time.now + 5.days, arrival: Time.now + 5.days + 3.hours, airline: "Makinwa Flies Monthly", code: "MFM24", jurisdiction: "Continental", cost: 500, airport_id: 1)
 }
