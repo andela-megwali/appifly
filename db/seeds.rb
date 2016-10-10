@@ -15,7 +15,7 @@
   Airport.create(name: "John F Kennedy", continent: "North America", country: "United States", state_and_code: "New York (JFK)", jurisdiction: "International", rating: 9)
 
 airport_codes =[]
-Airport.all.each {|airport| airport_codes << airport.state_and_code unless airport_codes.includes? airport.state_and_code}
+Airport.all.each {|airport| airport_codes << airport.state_and_code}
 
 d = airport_codes[rand airport_codes.count]
 e = airport_codes[rand airport_codes.count]
