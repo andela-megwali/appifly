@@ -6,11 +6,11 @@ RSpec.describe Airport, type: :model do
   end
 
   describe "validates presence" do
-    it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:continent) }
-    it { should validate_presence_of(:country) }
-    it { should validate_presence_of(:jurisdiction) }
-    it { should validate_presence_of(:state_and_code) }
-    it { should validate_presence_of(:rating) }
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:continent) }
+    it { is_expected.to validate_presence_of(:country) }
+    it { is_expected.to validate_presence_of(:jurisdiction) }
+    it { is_expected.to validate_presence_of(:state_and_code) }
+    it { is_expected.to validate_presence_of(:rating) }
   end
 end

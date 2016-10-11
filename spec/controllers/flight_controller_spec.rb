@@ -45,13 +45,6 @@ RSpec.describe FlightsController, type: :controller do
   describe "#routes and CRUD" do
     before do
       session[:admin_user_id] = 1
-      create :airport
-      Airport.create(name: "Nnamdi Azikiwe Airport",
-                     continent: "Africa",
-                     country: "Nigeria",
-                     state_and_code: "Abuja (ABV)",
-                     jurisdiction: "International",
-                     rating: 10)
       2.times do
         create :flight, airline: Faker::Company.name
       end
