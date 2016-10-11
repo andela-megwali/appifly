@@ -11,7 +11,7 @@ module FlightsHelper
     status = flight.status
     unless status == "Cancelled"
       status = "Past" if Time.now > flight.departure
-      status = "In Transit" if Time.now > flight.departure && Time.now < flight.arrival
+      status = "Fly" if Time.now > flight.departure && Time.now < flight.arrival
     end
     status
   end
