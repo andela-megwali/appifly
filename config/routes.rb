@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   get "login" => "sessions#login"
   post "attempt_login" => "sessions#attempt_login"
   get "logout" => "sessions#logout"
-  get "past_bookings" => "bookings#past"
-  get "search_booking" => "bookings#search"
+  get "past_bookings" => "manage_booking#past"
+  get "search_booking" => "manage_booking#search"
 end

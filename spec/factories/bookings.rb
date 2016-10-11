@@ -14,5 +14,9 @@ FactoryGirl.define do
                            title: "Mrs",
                            luggage: "No",
                            _destroy: 0]
+
+    trait(:other_user) do
+      user_id 3
+    end
   end
 end

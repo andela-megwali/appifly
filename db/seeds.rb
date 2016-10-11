@@ -68,22 +68,19 @@ airline_list = [
                  ["Happy Flights", "HF#{rand(100..999)}"],
                  ["On Air", "OA#{rand(100..999)}"],
                ]
-
-status_list = ["Booking", "Booking", "Cancel Flight", "Booking"]
+status_list = ["Booking", "Booking", "Cancelled", "Booking"]
 
 750.times do
+  f_departure = Time.now + (rand 90).days
+  f_arrival = f_departure + (rand 11).hours + (rand 59).minutes
+  f_airline = airline_list[rand airline_list.count]
+  f_status = status_list[rand status_list.count]
   f_origin = airport_codes[rand airport_codes.count]
   f_destination = airport_codes[rand airport_codes.count]
-
+  
   while f_destination == f_origin
     f_destination = airport_codes[rand airport_codes.count]
   end
-
-  f_departure = Time.now + (rand 90).days
-  f_arrival = f_departure + (rand 11).hours + (rand 59).minutes
-
-  f_airline = airline_list[rand airline_list.count]
-  f_status = status_list[rand status_list.count]
 
   Flight.create(origin: f_origin,
                 destination: f_destination,

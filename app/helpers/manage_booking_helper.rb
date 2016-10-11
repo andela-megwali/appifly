@@ -1,0 +1,2 @@
+module ManageBookingHelper
+end

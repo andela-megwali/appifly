@@ -45,13 +45,6 @@ RSpec.describe FlightsController, type: :controller do
   describe "#routes and CRUD" do
     before do
       session[:admin_user_id] = 1
-      create :airport
-      Airport.create(name: "Nnamdi Azikiwe Airport",
-                     continent: "Africa",
-                     country: "Nigeria",
-                     state_and_code: "Abuja (ABV)",
-                     jurisdiction: "International",
-                     rating: 10)
       2.times do
         create :flight, airline: Faker::Company.name
       end
@@ -108,7 +101,7 @@ RSpec.describe FlightsController, type: :controller do
             airline: "Chinese Airways",
             code: "CA122",
             departure: Time.now + 5.days,
-            status: "Cancel Flight",
+            status: "Cancelled",
           }
         }
         get :new, flight: params
@@ -206,7 +199,7 @@ RSpec.describe FlightsController, type: :controller do
         airline: "Chinese Airways",
         code: "CA122",
         departure: Time.now + 5.days,
-        status: "Cancel Flight",
+        status: "Cancelled",
         admin: true,
         sql: "Yes",
       }
