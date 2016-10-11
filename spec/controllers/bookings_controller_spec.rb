@@ -2,21 +2,11 @@ require "rails_helper"
 
 RSpec.describe BookingsController, type: :controller do
   describe "before action" do
-    it { should_not use_before_action(:set_flight) }
-    it { should use_before_action(:set_booking) }
-    it { should use_before_action(:set_flight_select) }
-    it { should use_before_action(:verify_user_login) }
-    it { should use_before_action(:verify_admin_login) }
-  end
-
-  describe "#routes" do
-    it { should route(:get, "/bookings").to(action: :index) }
-    it { should route(:get, "/bookings/new").to(action: :new) }
-    it { should route(:post, "/bookings").to(action: :create) }
-    it { should route(:get, "/bookings/1").to(action: :show, id: 1) }
-    it { should route(:get, "/bookings/1/edit").to(action: :edit, id: 1) }
-    it { should route(:patch, "/bookings/1").to(action: :update, id: 1) }
-    it { should route(:delete, "/bookings/1").to(action: :destroy, id: 1) }
+    it { is_expected.to_not use_before_action(:set_flight) }
+    it { is_expected.to use_before_action(:set_booking) }
+    it { is_expected.to use_before_action(:set_flight_select) }
+    it { is_expected.to use_before_action(:verify_user_login) }
+    it { is_expected.to use_before_action(:verify_admin_login) }
   end
 
   describe "#authenticate" do
@@ -66,20 +56,20 @@ RSpec.describe BookingsController, type: :controller do
           describe "GET #edit" do
             before { get :edit, id: 1 }
             it { is_expected.to respond_with 200 }
-            it { should render_template("edit") }
+            it { is_expected.to render_template("edit") }
           end
 
           describe "GET #show" do
             before { get :show, id: 1 }
             it { is_expected.to respond_with 200 }
-            it { should render_template("show") }
+            it { is_expected.to render_template("show") }
           end
 
           describe "PUT #update" do
             context "#update success" do
               before { put :update, id: 1, booking: params }
               it { is_expected.to respond_with 302 }
-              it { should redirect_to(booking_path) }
+              it { is_expected.to redirect_to(booking_path) }
             end
 
             context "#update fail" do
@@ -88,14 +78,14 @@ RSpec.describe BookingsController, type: :controller do
                     id: 1,
                     booking: attributes_for(:booking, travel_class: nil)
               end
-              it { should render_template("edit") }
+              it { is_expected.to render_template("edit") }
             end
           end
 
           describe "DELETE #destroy" do
             before { delete :destroy, id: 1 }
             it { is_expected.to respond_with 302 }
-            it { should redirect_to(past_bookings_path) }
+            it { is_expected.to redirect_to(past_bookings_path) }
           end
         end
       end
@@ -106,7 +96,7 @@ RSpec.describe BookingsController, type: :controller do
           get :index
         end
         it { is_expected.to respond_with 302 }
-        it { should redirect_to("/") }
+        it { is_expected.to redirect_to("/") }
       end
 
       context "logged in admin can access restricted pages" do
@@ -115,7 +105,7 @@ RSpec.describe BookingsController, type: :controller do
           get :index
         end
         it { is_expected.to respond_with 200 }
-        it { should render_template("index") }
+        it { is_expected.to render_template("index") }
       end
     end
 
