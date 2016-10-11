@@ -38,8 +38,9 @@ RSpec.describe Flight, type: :model do
                                Time.now,
                                "Booking")
       expect(@flights.count).to eq 3
-      expect(@flights.first.destination).to eq (create :flight).destination
-      expect(@flights.first).to_not eq (create :flight, :cancelled).status
+      expect(@flights.first.destination).to eq create(:flight).destination
+      expect(@flights.first).to_not eq create(:flight, :cancelled).status
+      expect(@flights.first).to_not eq create(:flight, :jfk_flight).destination
     end
   end
 end
