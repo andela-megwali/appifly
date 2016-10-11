@@ -20,7 +20,7 @@
       <%= f.text_field :airline, required: true %>
       <%= f.text_field :code, required: true %>
       <%= f.number_field :cost, label: "Cost Override (Leave Blank Recommended)" %>
-      <%= f.select :status, ["No", "Yes"], label: "Cancel This Flight?" %><br>
+      <%= f.select :status, ["No", "Cancel Flight"], label: "Cancel This Flight?" %><br>
       <%= f.submit %>
     <% end %><br>
   </div>

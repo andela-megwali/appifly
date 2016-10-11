@@ -9,7 +9,10 @@ module FlightsHelper
 
   def flight_status_display(flight)
     status = flight.status
-    status = "Past" if Time.now > flight.departure && status == "Booking"
+    unless status == "Cancelled"
+      status = "Past" if Time.now > flight.departure
+      status = "In Transit" if Time.now > flight.departure && Time.now < flight.arrival
+    end
     status
   end
 end

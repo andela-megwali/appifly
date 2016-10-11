@@ -52,9 +52,9 @@ class Flight < ActiveRecord::Base
   end
 
   def get_flight_status
-    if status == "Yes"
+    if status == "Cancel Flight"
       "Cancelled"
-    elsif departure > Time.now
+    elsif departure >= Time.now
       "Booking"
     end
   end
