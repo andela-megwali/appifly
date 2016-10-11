@@ -68,7 +68,7 @@ airline_list = [
                  ["Happy Flights", "HF#{rand(100..999)}"],
                  ["On Air", "OA#{rand(100..999)}"],
                ]
-status_list = ["Booking", "Booking", "Cancel Flight", "Booking"]
+status_list = ["Booking", "Booking", "Cancelled", "Booking"]
 
 750.times do
   f_departure = Time.now + (rand 90).days

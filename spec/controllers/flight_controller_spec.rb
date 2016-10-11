@@ -101,7 +101,7 @@ RSpec.describe FlightsController, type: :controller do
             airline: "Chinese Airways",
             code: "CA122",
             departure: Time.now + 5.days,
-            status: "Cancel Flight",
+            status: "Cancelled",
           }
         }
         get :new, flight: params
@@ -199,7 +199,7 @@ RSpec.describe FlightsController, type: :controller do
         airline: "Chinese Airways",
         code: "CA122",
         departure: Time.now + 5.days,
-        status: "Cancel Flight",
+        status: "Cancelled",
         admin: true,
         sql: "Yes",
       }

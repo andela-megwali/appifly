@@ -27,10 +27,8 @@ RSpec.describe Booking, type: :model do
 
   describe ".past_bookings" do
     before do
-      3.times do
-        create :flight
-        create :booking, :other_user
-      end
+      create :flight
+      3.times { create :booking, :other_user }
       create :booking
     end
 

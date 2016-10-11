@@ -16,5 +16,9 @@ FactoryGirl.define do
     trait(:jfk_flight) do
       destination { create(:airport, :jfk_airport).state_and_code }
     end
+
+    trait(:cancelled) do
+      status "Cancelled"
+    end
   end
 end
