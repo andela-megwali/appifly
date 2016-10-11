@@ -6,10 +6,10 @@ RSpec.describe Passenger, type: :model do
   end
 
   describe "validates presence" do
-    it { should validate_presence_of(:firstname) }
-    it { should validate_presence_of(:lastname) }
-    it { should validate_presence_of(:email) }
-    it { should validate_presence_of(:telephone) }
-    it { should validate_presence_of(:nationality) }
+    it { is_expected.to validate_presence_of(:firstname) }
+    it { is_expected.to validate_presence_of(:lastname) }
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_presence_of(:telephone) }
+    it { is_expected.to validate_presence_of(:nationality) }
   end
 end

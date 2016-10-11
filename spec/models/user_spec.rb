@@ -6,14 +6,14 @@ RSpec.describe User, type: :model do
   end
 
   describe "#has_many" do
-    it { should have_secure_password }
+    it { is_expected.to have_secure_password }
   end
 
   describe "validates presence" do
-    it { should validate_presence_of(:firstname) }
-    it { should validate_presence_of(:lastname) }
-    it { should validate_presence_of(:email) }
-    it { should validate_presence_of(:username) }
-    it { should validate_presence_of(:password) }
+    it { is_expected.to validate_presence_of(:firstname) }
+    it { is_expected.to validate_presence_of(:lastname) }
+    it { is_expected.to validate_presence_of(:email) }
+    it { is_expected.to validate_presence_of(:username) }
+    it { is_expected.to validate_presence_of(:password) }
   end
 end
