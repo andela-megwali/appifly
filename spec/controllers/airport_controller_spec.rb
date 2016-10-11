@@ -4,17 +4,13 @@ RSpec.describe AirportsController, type: :controller do
   before { session[:admin_user_id] = 1 }
 
   describe "before action" do
-    it { should use_before_action(:set_airport) }
-    it { should_not use_before_action(:set_flight) }
-    it { should_not use_before_action(:verify_user_login) }
-    it { should use_before_action(:verify_admin_login) }
+    it { is_expected.to use_before_action(:set_airport) }
+    it { is_expected.to_not use_before_action(:set_flight) }
+    it { is_expected.to_not use_before_action(:verify_user_login) }
+    it { is_expected.to use_before_action(:verify_admin_login) }
   end
 
-  describe "#authenticate" do
-    context "when logged in" do
-      before { get :index }
-      it { is_expected.to respond_with 200 }
-    end
+  describe "#index" do
     context "when logged out" do
       before do
         session[:admin_user_id] = nil
@@ -32,6 +28,12 @@ RSpec.describe AirportsController, type: :controller do
       it { is_expected.to respond_with 302 }
       it { should redirect_to(root_path) }
     end
+
+     context "when logged in as admin" do
+      before { get :index }
+      it { is_expected.to respond_with 200 }
+    end
+
   end
 
   describe "#routes and CRUD" do
@@ -39,16 +41,6 @@ RSpec.describe AirportsController, type: :controller do
       2.times do
         create :airport, name: Faker::Name.name
       end
-    end
-
-    context "routes" do
-      it { should route(:get, "/airports").to(action: :index) }
-      it { should route(:get, "/airports/new").to(action: :new) }
-      it { should route(:post, "/airports").to(action: :create) }
-      it { should route(:get, "/airports/1").to(action: :show, id: 1) }
-      it { should route(:get, "/airports/1/edit").to(action: :edit, id: 1) }
-      it { should route(:patch, "/airports/1").to(action: :update, id: 1) }
-      it { should route(:delete, "/airports/1").to(action: :destroy, id: 1) }
     end
 
     context "GET #show" do
