@@ -9,7 +9,7 @@ RSpec.describe BookingsController, type: :controller do
     it { is_expected.to use_before_action(:verify_admin_login) }
   end
 
-  describe "#authenticate" do
+  describe "CRUD" do
     params = {
       booking: {
         travel_class: "Economy",
@@ -26,90 +26,101 @@ RSpec.describe BookingsController, type: :controller do
       }
     }
     before do
-      create :airport
-      Airport.create(name: "Nnamdi Azikiwe Airport",
-                     continent: "Africa",
-                     country: "Kenya",
-                     state_and_code: "Abuja (ABV)",
-                     jurisdiction: "International",
-                     rating: 10)
-      2.times do
-        create :flight, airline: Faker::Company.name
-      end
+      create :flight
+      create :booking
       session[:enquiry] = { "flight_selected" => 1, "number_travelling" => 1 }
     end
-    context "anonymous user" do
-      describe "can access unrestricted booking pages" do
+
+    context "when user is anonymous" do
+      describe "can access unrestricted booking CRUD actions/pages" do
         context "#GET new" do
           before { get :new }
           it { is_expected.to respond_with 200 }
           it { is_expected.to render_template("new") }
         end
+
+        context "#POST create success" do
+          before { post :create, booking: { travel_class: "Economy" } }
+          it { is_expected.to respond_with 302 }
+          it { is_expected.to redirect_to(booking_path(2)) }
+        end
+
+        context "#POST create fail" do
+          before do
+            post :create,
+            booking: { travel_class: "Economy",
+                       passengers_attributes: [firstname: nil] }
+          end
+          it { is_expected.to respond_with 200 }
+          it { is_expected.to render_template("new") }
+        end
+      end
+
+      describe "cannot access restricted booking CRUD actions/pages" do
+        context "GET #edit" do
+          before { get :edit, id: 1 }
+          it { is_expected.to respond_with 302 }
+          it { is_expected.to redirect_to(login_path) }
+        end
       end
     end
 
-    context "logged in user" do
-      describe "can access authorised pages" do
-        before { session[:user_id] = 1 }
-        context "CRUD" do
-          before { create :booking }
-          describe "GET #edit" do
-            before { get :edit, id: 1 }
-            it { is_expected.to respond_with 200 }
-            it { is_expected.to render_template("edit") }
-          end
+    context "when user is logged in" do
+      before { session[:user_id] = 1 }
+      describe "can access authorised CRUD actions/pages" do
+        context "GET #edit" do
+          before { get :edit, id: 1 }
+          it { is_expected.to respond_with 200 }
+          it { is_expected.to render_template("edit") }
+        end
 
-          describe "GET #show" do
-            before { get :show, id: 1 }
-            it { is_expected.to respond_with 200 }
-            it { is_expected.to render_template("show") }
-          end
+        context "GET #show" do
+          before { get :show, id: 1 }
+          it { is_expected.to respond_with 200 }
+          it { is_expected.to render_template("show") }
+        end
 
-          describe "PUT #update" do
-            context "#update success" do
-              before { put :update, id: 1, booking: params }
-              it { is_expected.to respond_with 302 }
-              it { is_expected.to redirect_to(booking_path) }
-            end
+        context "PUT #update success" do
+          before { put :update, id: 1, booking: params }
+          it { is_expected.to respond_with 302 }
+          it { is_expected.to redirect_to(booking_path) }
+        end
 
-            context "#update fail" do
-              before do
-                put :update,
-                    id: 1,
-                    booking: attributes_for(:booking, travel_class: nil)
-              end
-              it { is_expected.to render_template("edit") }
-            end
+        context "PUT #update fail" do
+          before do
+            put :update,
+                id: 1,
+                booking: attributes_for(:booking, travel_class: nil)
           end
+          it { is_expected.to render_template("edit") }
+        end
 
-          describe "DELETE #destroy" do
-            before { delete :destroy, id: 1 }
-            it { is_expected.to respond_with 302 }
-            it { is_expected.to redirect_to(past_bookings_path) }
-          end
+        context "DELETE #destroy" do
+          before { delete :destroy, id: 1 }
+          it { is_expected.to respond_with 302 }
+          it { is_expected.to redirect_to(past_bookings_path) }
         end
       end
 
-      describe "cannot access restricted pages" do
-        before do
-          session[:user_id] = 1
-          get :index
-        end
+      describe "cannot access admin restricted pages" do
+        before { get :index }
         it { is_expected.to respond_with 302 }
         it { is_expected.to redirect_to("/") }
       end
 
-      context "logged in admin can access restricted pages" do
+      context "when logged in as admin" do
         before do
           session[:admin_user_id] = 1
           get :index
         end
-        it { is_expected.to respond_with 200 }
-        it { is_expected.to render_template("index") }
+        it "can access all restricted pages" do
+          is_expected.to respond_with 200
+          is_expected.to render_template("index")
+        end
       end
     end
 
-    describe "Params Filter" do
+    context "Params Filter" do
       it "Should not allow unpermitted params" do
         should_not permit(:parents,
                           :sql).for(:create, params: params).on(:booking)
