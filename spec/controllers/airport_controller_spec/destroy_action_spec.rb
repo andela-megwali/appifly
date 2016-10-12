@@ -24,7 +24,7 @@ RSpec.describe AirportsController, type: :controller do
         delete :destroy, id: 1
       end
       it { is_expected.to respond_with 302 }
-      it { is_expected.to redirect_to(airports_path) } 
+      it { is_expected.to redirect_to(airports_path) }
     end
-  end  
+  end
 end

@@ -4,7 +4,9 @@ RSpec.describe AirportsController, type: :controller do
   describe "PUT #update" do
     before { create :airport }
     context "when user is anonymous" do
-      before { put :update, id: 1, airport: FactoryGirl.attributes_for(:airport) }
+      before do
+        put :update, id: 1, airport: FactoryGirl.attributes_for(:airport)
+      end
       it { is_expected.to respond_with 302 }
       it { is_expected.to redirect_to(root_path) }
     end
@@ -31,5 +33,5 @@ RSpec.describe AirportsController, type: :controller do
         it { is_expected.to render_template("edit") }
       end
     end
-  end  
+  end
 end

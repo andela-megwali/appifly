@@ -26,5 +26,5 @@ RSpec.describe AirportsController, type: :controller do
       it { is_expected.to respond_with 200 }
       it { is_expected.to render_template("show") }
     end
-  end  
+  end
 end

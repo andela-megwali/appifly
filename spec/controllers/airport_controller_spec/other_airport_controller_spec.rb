@@ -18,7 +18,7 @@ RSpec.describe AirportsController, type: :controller do
     it { should route(:patch, "/airports/1").to(action: :update, id: 1) }
     it { should route(:delete, "/airports/1").to(action: :destroy, id: 1) }
   end
-    
+
   describe "Params Filter" do
     params = {
       airport: {
