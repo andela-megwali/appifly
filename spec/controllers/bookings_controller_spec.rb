@@ -48,8 +48,8 @@ RSpec.describe BookingsController, type: :controller do
         context "#POST create fail" do
           before do
             post :create,
-            booking: { travel_class: "Economy",
-                       passengers_attributes: [firstname: nil] }
+                 booking: { travel_class: "Economy",
+                            passengers_attributes: [firstname: nil] }
           end
           it { is_expected.to respond_with 200 }
           it { is_expected.to render_template("new") }
