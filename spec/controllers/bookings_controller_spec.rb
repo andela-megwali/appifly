@@ -78,6 +78,9 @@ RSpec.describe BookingsController, type: :controller do
           before { get :show, id: 1 }
           it { is_expected.to respond_with 200 }
           it { is_expected.to render_template("show") }
+          it "assigns the selected flight" do
+            expect(assigns(:flight_selected)).to eq(Flight.first)
+          end
         end
 
         context "PUT #update success" do
