@@ -5,7 +5,7 @@ RSpec.describe AirportsController, type: :controller do
     before { create :airport }
     context "when user is anonymous" do
       before do
-        put :update, id: 1, airport: FactoryGirl.attributes_for(:airport)
+        put :update, id: 1, airport: { country: "Niger" }
       end
       it { is_expected.to respond_with 302 }
       it { is_expected.to redirect_to(root_path) }
@@ -14,7 +14,7 @@ RSpec.describe AirportsController, type: :controller do
     context "when logged in user is not admin" do
       before do
         session[:user_id] = 1
-        put :update, id: 1, airport: FactoryGirl.attributes_for(:airport)
+        put :update, id: 1, airport: { country: "Niger" }
       end
       it { is_expected.to respond_with 302 }
       it { is_expected.to redirect_to(root_path) }
