@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe BookingsController, type: :controller do
   before do
     create :flight
-    session[:enquiry] = { "flight_selected" => 1, "number_travelling" => 1 }
+    session[:enquiry] = { "number_travelling" => 1 }
   end
 
   describe "GET #new" do
@@ -18,7 +18,7 @@ RSpec.describe BookingsController, type: :controller do
     end
 
     context "when a valid flight is selected" do
-      before { get :new }
+      before { get :new, select_flight: 1 }
       it { is_expected.to respond_with 200 }
       it { is_expected.to render_template("new") }
     end
@@ -26,7 +26,11 @@ RSpec.describe BookingsController, type: :controller do
 
   describe "POST #create" do
     context "create booking success" do
-      before { post :create, booking: FactoryGirl.attributes_for(:booking) }
+      before do
+        post :create,
+             select_flight: 1,
+             booking: { travel_class: "Business" }
+      end
       it { is_expected.to respond_with 302 }
       it { is_expected.to redirect_to(booking_path(1)) }
     end
@@ -34,7 +38,8 @@ RSpec.describe BookingsController, type: :controller do
     context "create booking fail" do
       before do
         post :create,
-             booking: { travel_class: "Economy",
+             select_flight: 1,
+             booking: { travel_class: "Business",
                         passengers_attributes: [firstname: nil] }
       end
       it { is_expected.to respond_with 200 }
