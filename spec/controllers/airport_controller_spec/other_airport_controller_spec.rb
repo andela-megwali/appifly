@@ -32,7 +32,6 @@ RSpec.describe AirportsController, type: :controller do
         sql: "Yes",
       }
     }
-    before { create :airport }
     it "Should allow the permitted params" do
       should permit(:name,
                     :continent,
