@@ -18,6 +18,8 @@ class WelcomeController < ApplicationController
   def about
   end
 
+  private
+
   def enquiry_params
     params.require(:enquiry).permit(:origin,
                                     :destination,

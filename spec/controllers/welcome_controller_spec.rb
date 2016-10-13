@@ -5,7 +5,7 @@ RSpec.describe WelcomeController, type: :controller do
     it { should route(:get, "/").to(action: :index) }
     it { should route(:get, "/about").to(action: :about) }
   end
-  describe "#index" do
+  describe "GET #index" do
     params = {
       enquiry: {
         origin: "Lagos (LOS)",
@@ -20,27 +20,20 @@ RSpec.describe WelcomeController, type: :controller do
       }
     }
     before do
-      session[:admin_user_id] = 1
-      create :airport
-      Airport.create(name: "Nnamdi Azikiwe Airport",
-                     continent: "Africa",
-                     country: "Nigeria",
-                     state_and_code: "Abuja (ABV)",
-                     jurisdiction: "International",
-                     rating: 10)
-      2.times do
+      3.times do
         create :flight, airline: Faker::Company.name
+        create :flight, :jfk_flight, airline: Faker::Company.name
+        create :flight, :cancelled, airline: Faker::Company.name
       end
-      get :index, enquiry: params
+      get :index, enquiry: params[:enquiry]
     end
-
-    context "route and render" do
-      it { is_expected.to respond_with 200 }
-      it { should render_template("index") }
-    end
-
-    context "#search flights" do
-      it { should set_session[:enquiry] }
+    it { is_expected.to respond_with 200 }
+    it { should render_template("index") }
+    it { should set_session[:enquiry] }
+    it "returns array of relevant flights" do
+      expect(assigns(:enquire).empty?).to be_falsey
+      expect(assigns(:enquire)[0]).to be_instance_of Flight
+      expect assigns(:enquire).include? create :flight
     end
 
     context "params filter" do
