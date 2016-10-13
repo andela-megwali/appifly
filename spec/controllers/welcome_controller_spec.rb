@@ -35,6 +35,9 @@ RSpec.describe WelcomeController, type: :controller do
       expect(assigns(:enquire)[0]).to be_instance_of Flight
       expect assigns(:enquire).include? create :flight
     end
+    it "assigns @passenger_enquiry" do
+      expect(assigns(:passenger_enquiry)[:class_selected]).to eq "Business"
+    end
 
     context "params filter" do
       it "Should allow the permitted params" do
