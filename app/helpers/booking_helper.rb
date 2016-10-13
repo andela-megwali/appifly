@@ -1,4 +1,8 @@
 module BookingHelper
+  def multiplier
+    { "Economy" => 1, "Business" => 1.5, "First" => 2 }
+  end
+
   def business_class_flight_cost
     @flight_selected.cost * multiplier["Business"]
   end

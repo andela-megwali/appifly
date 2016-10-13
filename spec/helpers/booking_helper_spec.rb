@@ -68,7 +68,24 @@ RSpec.describe BookingHelper, type: :helper do
     end
   end
 
-  describe "#" do
-    
+  describe "set flight cost" do
+    before do
+      create :flight, cost: 300
+      create :booking
+    end
+
+    context "when business class is selected" do
+      it "runs business_class_flight_cost" do
+        @flight_selected = Flight.find(1)
+        expect(business_class_flight_cost).to eq 450
+      end
+    end
+
+    context "when first class is selected" do
+      it "runs first_class_flight_cost" do
+        @flight_selected = Flight.find(1)
+        expect(first_class_flight_cost).to eq 600
+      end
+    end
   end
 end
