@@ -54,4 +54,24 @@ RSpec.describe WelcomeHelper, type: :helper do
     end
   end
 
+  describe "#search_result_display_format" do
+    before do
+      2.times { create :flight }
+      @passenger_enquiry = { class_selected: "Business", number_travelling: 2 }
+      @enquire =  Flight.all
+    end
+    context "when grid format is selected" do
+      before { params[:view_format] = "Grid" }
+      it "returns a grid partial view" do
+        expect(search_result_display_format).to eq (render "search2")
+      end
+    end
+
+    context "when list format is selected" do
+      before { params[:view_format] = "List" }
+      it "returns a list partial view" do
+        expect(search_result_display_format).to eq (render "search")
+      end
+    end
+  end
 end
