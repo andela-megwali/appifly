@@ -2,8 +2,8 @@ require "rails_helper"
 
 RSpec.describe ManageBookingController, type: :controller do
   describe "before action" do
-    it { should_not use_before_action(:set_booking) }
-    it { should use_before_action(:verify_user_login) }
+    it { is_expected.to_not use_before_action(:set_booking) }
+    it { is_expected.to use_before_action(:verify_user_login) }
   end
 
   describe "#routes" do
