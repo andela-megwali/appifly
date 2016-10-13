@@ -1,15 +1,5 @@
 require "rails_helper"
 
-# Specs in this file have access to a helper object that includes
-# the ManageBookingHelper. For example:
-#
-# describe ManageBookingHelper do
-#   describe "string concat" do
-#     it "concats two strings with spaces" do
-#       expect(helper.concat_strings("this","that")).to eq("this that")
-#     end
-#   end
-# end
 RSpec.describe FlightsHelper, type: :helper do
   before do
     create :flight, :transit_flight
@@ -23,6 +13,22 @@ RSpec.describe FlightsHelper, type: :helper do
 
       it "sets status as past if flight has arrived" do
         expect(flight_status_display(Flight.find(2))).to eq "Past"
+      end
+    end
+  end
+
+  describe "#index_for_pagination" do
+    context "when no page number is available" do
+      it "adjusts the pagination index to start from 1" do
+        expect(index_for_pagination(0)).to eq 1
+        expect(index_for_pagination(9)).to eq 10
+      end
+    end
+
+    context "when no page number is available" do
+      it "adjusts the pagination index to match page" do
+        params[:page] = 2
+        expect(index_for_pagination(0)).to eq 31
       end
     end
   end
