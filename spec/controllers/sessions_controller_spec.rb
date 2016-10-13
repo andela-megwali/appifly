@@ -7,12 +7,12 @@ RSpec.describe SessionsController, type: :controller do
     it { should route(:post, "/attempt_login").to(action: :attempt_login) }
   end
 
-  describe "#GET login" do
+  describe "GET #login" do
     before { get :login }
     it { should render_template("login") }
   end
 
-  describe "#GET logout" do
+  describe "GET #logout" do
     before do
       session[:admin_user_id] = 1
       session[:user_id] = 1
@@ -28,7 +28,7 @@ RSpec.describe SessionsController, type: :controller do
     end
   end
 
-  describe "#attempt_login" do
+  describe "POST #attempt_login" do
     before { create :user, firstname: Faker::Name.name }
 
     context "login with correct details" do

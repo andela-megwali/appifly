@@ -1,6 +1,6 @@
 <h1>Welcome <%= User.find(session[:user_id]).firstname %></h1>
 <h3>Manage Your Bookings Here</h3>
-
+<%= will_paginate @bookings, renderer: BootstrapPagination::Rails %>
 <table class="table">
   <thead>
     <tr>
@@ -16,9 +16,9 @@
   </thead>
 
   <tbody>
-    <% @bookings.each.with_index(1) do |booking, index| %>
+    <% @bookings.each_with_index do |booking, index| %>
       <tr>
-        <td><%= index %></td>
+        <td><%= index_for_pagination(index) %></td>
         <td><%= booking.reference_id %></td>
         <td><%= booking.travel_class %></td>
         <td><%= booking.passengers.count %></td>
@@ -32,6 +32,7 @@
     <% end %>
   </tbody>
 </table>
+<%= will_paginate @bookings, renderer: BootstrapPagination::Rails %>
 
 <br>
 
