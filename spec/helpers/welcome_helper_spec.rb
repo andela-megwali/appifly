@@ -1,28 +1,6 @@
 require "rails_helper"
 
 RSpec.describe WelcomeHelper, type: :helper do
-  # params = {
-  #   enquiry: {
-  #     origin: "Lagos (LOS)",
-  #     destination: "Abuja (ABV)",
-  #     departure: Time.now,
-  #     view_format: "Grid",
-  #     travel_class: "Business",
-  #     passenger: "2",
-  #     subscription: true,
-  #     admin: true,
-  #     sql: "Yes",
-  #   }
-  # }
-  # before do
-  #   3.times do
-  #     create :flight, airline: Faker::Company.name
-  #     create :flight, :jfk_flight, airline: Faker::Company.name
-  #     create :flight, :cancelled, airline: Faker::Company.name
-  #   end
-  #   get root_path, enquiry: params[:enquiry]
-  # end
-
   describe "#multiplier" do
     it "assigns a value to a travel class" do
       expect(multiplier["Economy"]).to eq 1
