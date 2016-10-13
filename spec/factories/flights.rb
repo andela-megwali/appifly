@@ -20,5 +20,14 @@ FactoryGirl.define do
     trait(:cancelled) do
       status "Cancelled"
     end
+
+    trait(:transit_flight) do
+      departure Time.now - 5.days
+    end
+
+    trait(:past_flight) do
+      departure Time.now - 5.days
+      arrival Time.now - 4.days + 50.minutes
+    end
   end
 end
