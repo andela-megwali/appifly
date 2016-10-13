@@ -1,10 +1,19 @@
+# language: ruby
+# rvm:
+#   - 2.3.1
+# script: 
+#   - RAILS_ENV=test bundle exec rake db:migrate --trace
+#   - bundle exec rspec spec/
+  
+# addons:
+#     code_climate:
+#         repo_token: c97350fe7b8cec576f8cd39de9cfe3d00fb3beea1a4bd11aa4a839efd600179d
+
+script: bundle exec rspec
 language: ruby
 rvm:
   - 2.3.1
-script: 
-  - RAILS_ENV=test bundle exec rake db:migrate --trace
-  - bundle exec rspec spec/
-  
+
 addons:
     code_climate:
         repo_token: c97350fe7b8cec576f8cd39de9cfe3d00fb3beea1a4bd11aa4a839efd600179d
