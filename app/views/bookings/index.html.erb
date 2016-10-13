@@ -1,6 +1,5 @@
 <h1>Welcome <%= User.find(session[:user_id]).firstname %></h1>
 <h3>Manage Your Bookings Here</h3>
-<%= will_paginate @bookings, renderer: BootstrapPagination::Rails %>
 <table class="table">
   <thead>
     <tr>
@@ -32,7 +31,6 @@
     <% end %>
   </tbody>
 </table>
-<%= will_paginate @bookings, renderer: BootstrapPagination::Rails %>
 
 <br>
 

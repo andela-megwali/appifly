@@ -5,7 +5,7 @@ class BookingsController < ApplicationController
   before_action :set_flight_select, only: [:new, :create, :show, :edit, :update]
 
   def index
-    @bookings = Booking.all.paginate(page: params[:page], per_page: 30)
+    @bookings = Booking.all
   end
 
   def new
