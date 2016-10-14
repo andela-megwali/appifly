@@ -14,6 +14,7 @@ RSpec.describe BookingHelper, type: :helper do
         create :flight
         create :booking
       end
+
       it "sets the passenger count" do
         @booking = Booking.first
         expect(booking_passenger_count).to eq 1
@@ -34,6 +35,7 @@ RSpec.describe BookingHelper, type: :helper do
         create :flight
         create :booking
       end
+
       it "sets the travel class" do
         @booking = Booking.first
         expect(booking_travel_class).to eq "Economy"
@@ -47,6 +49,7 @@ RSpec.describe BookingHelper, type: :helper do
         create :flight, cost: 300
         create :booking
       end
+
       it "sets unit flight cost" do
         @booking = Booking.first
         expect(unit_flight_cost).to eq "$ 300 per person"
@@ -60,6 +63,7 @@ RSpec.describe BookingHelper, type: :helper do
         c = Booking.first
         c.passengers.first.destroy
       end
+
       it "sets unit flight cost" do
         @booking = Booking.first
         expect(unit_flight_cost).to eq "Invalid Booking Pending Addition of "\

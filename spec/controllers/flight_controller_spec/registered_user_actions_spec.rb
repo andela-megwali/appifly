@@ -7,6 +7,7 @@ RSpec.describe FlightsController, type: :controller do
         session[:user_id] = nil
         get :index
       end
+
       it { is_expected.to respond_with 302 }
       it { is_expected.to redirect_to(login_path) }
     end
@@ -16,6 +17,7 @@ RSpec.describe FlightsController, type: :controller do
         session[:user_id] = 1
         get :index
       end
+
       it { is_expected.to respond_with 200 }
       it { is_expected.to render_template("index") }
 
@@ -33,6 +35,7 @@ RSpec.describe FlightsController, type: :controller do
               create :flight
             end
           end
+
           it "returns array of flights" do
             expect(assigns(:flights).empty?).to be_falsey
             expect(assigns(:flights)[0]).to be_instance_of Flight
@@ -61,8 +64,10 @@ RSpec.describe FlightsController, type: :controller do
 
   describe "GET #show" do
     before { create :flight }
+
     context "when user is anonymous" do
       before { get :show, id: 1 }
+
       it { is_expected.to respond_with 302 }
       it { is_expected.to redirect_to(login_path) }
     end
@@ -72,6 +77,7 @@ RSpec.describe FlightsController, type: :controller do
         session[:user_id] = 1
         get :show, id: 1
       end
+
       it { is_expected.to respond_with 200 }
       it "assigns the requested flight to @flight" do
         expect(assigns(:flight).id).to eq 1

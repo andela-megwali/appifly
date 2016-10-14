@@ -12,6 +12,7 @@ RSpec.describe WelcomeHelper, type: :helper do
   describe "#passenger_class" do
     context "when passenger class is valid" do
       before { @passenger_enquiry = { class_selected: "Business" } }
+
       it "assigns the value to passenger_class" do
         expect(passenger_class).to eq "Business"
       end
@@ -19,6 +20,7 @@ RSpec.describe WelcomeHelper, type: :helper do
 
     context "when passenger class is not valid" do
       before { @passenger_enquiry = { class_selected: "Forever" } }
+
       it "assigns default value to passenger_class" do
         expect(passenger_class).to eq "Economy"
       end
@@ -27,6 +29,7 @@ RSpec.describe WelcomeHelper, type: :helper do
 
   describe "#travel_value" do
     before { @passenger_enquiry = { class_selected: "Business" } }
+
     it "assigns a numerical value to travel value" do
       expect(travel_value).to eq 1.5
     end
@@ -38,8 +41,10 @@ RSpec.describe WelcomeHelper, type: :helper do
       @passenger_enquiry = { class_selected: "Business", number_travelling: 2 }
       @enquire = Flight.all
     end
+
     context "when grid format is selected" do
       before { params[:view_format] = "Grid" }
+
       it "returns a grid partial view" do
         expect(search_result_display_format).to eq render("search2")
       end
@@ -47,6 +52,7 @@ RSpec.describe WelcomeHelper, type: :helper do
 
     context "when list format is selected" do
       before { params[:view_format] = "List" }
+
       it "returns a list partial view" do
         expect(search_result_display_format).to eq render("search")
       end

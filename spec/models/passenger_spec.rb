@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe Passenger, type: :model do
-  describe "#belongs_to" do
+  describe "associations" do
     it { is_expected.to belong_to :booking }
   end
 

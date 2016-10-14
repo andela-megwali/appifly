@@ -4,6 +4,7 @@ RSpec.describe AirportsController, type: :controller do
   describe "GET #index" do
     context "when user is anonymous" do
       before { get :index }
+
       it { is_expected.to respond_with 302 }
       it { is_expected.to redirect_to(root_path) }
     end
@@ -13,6 +14,7 @@ RSpec.describe AirportsController, type: :controller do
         session[:user_id] = 1
         get :index
       end
+
       it { is_expected.to respond_with 302 }
       it { is_expected.to redirect_to(root_path) }
     end
@@ -22,6 +24,7 @@ RSpec.describe AirportsController, type: :controller do
         session[:admin_user_id] = 1
         get :index
       end
+
       it { is_expected.to respond_with 200 }
       it { is_expected.to render_template("index") }
 
@@ -39,6 +42,7 @@ RSpec.describe AirportsController, type: :controller do
               create :airport, name: Faker::Name.name
             end
           end
+
           it "returns array of airports" do
             expect(assigns(:airports).empty?).to be_falsey
             expect(assigns(:airports)[0]).to be_instance_of Airport

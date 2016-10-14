@@ -9,6 +9,7 @@ RSpec.describe SessionsController, type: :controller do
 
   describe "GET #login" do
     before { get :login }
+
     it { should render_template("login") }
   end
 
@@ -19,6 +20,7 @@ RSpec.describe SessionsController, type: :controller do
       session[:user_username] = "Lugard"
       get :logout
     end
+
     it { is_expected.to respond_with 302 }
     it { should redirect_to(login_path) }
     it "ends the session" do
@@ -36,6 +38,7 @@ RSpec.describe SessionsController, type: :controller do
         params = { username: "MJ", password: "asdfghj" }
         post :attempt_login, sign_in: params
       end
+
       it { should_not set_session[:admin_user_id] }
       it { should set_session[:user_id] }
       it { should set_session[:user_username] }
@@ -51,6 +54,7 @@ RSpec.describe SessionsController, type: :controller do
         params = { username: "MJ", password: "1234567" }
         post :attempt_login, sign_in: params
       end
+
       it { should_not set_session[:user_id] }
       it { should_not set_session[:user_username] }
       it { should_not set_session[:admin_user_id] }

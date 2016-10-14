@@ -39,6 +39,7 @@ RSpec.describe FlightsController, type: :controller do
       create :airport
       create :airport, :jfk_airport
     end
+
     it "Should allow the permitted params" do
       should permit(:origin,
                     :destination,

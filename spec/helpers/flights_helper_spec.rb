@@ -5,12 +5,12 @@ RSpec.describe FlightsHelper, type: :helper do
     create :flight, :transit_flight
     create :flight, :past_flight
   end
+
   describe "#flight_status_display" do
     context "when departure time has passed" do
       it "sets status as fly if flight has not arrived" do
         expect(flight_status_display(Flight.find(1))).to eq "Fly"
       end
-
       it "sets status as past if flight has arrived" do
         expect(flight_status_display(Flight.find(2))).to eq "Past"
       end

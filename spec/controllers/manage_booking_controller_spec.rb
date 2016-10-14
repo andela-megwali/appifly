@@ -16,8 +16,10 @@ RSpec.describe ManageBookingController, type: :controller do
       create :flight
       3.times { create :booking }
     end
+
     context "when booking reference id is not valid" do
       before { get :search, reference_id: "qwert23467" }
+
       it { is_expected.to respond_with 200 }
       it { is_expected.to render_template("search") }
       it { is_expected.to set_flash[:notice] }
@@ -25,6 +27,7 @@ RSpec.describe ManageBookingController, type: :controller do
 
     context "when booking reference id is valid" do
       before { get :search, reference_id: Booking.second.reference_id }
+
       it { is_expected.to respond_with 302 }
       it { is_expected.to redirect_to(booking_path(2)) }
       it { is_expected.to set_flash[:notice] }
@@ -34,6 +37,7 @@ RSpec.describe ManageBookingController, type: :controller do
   describe "GET #past" do
     context "when user is anonymous" do
       before { get :past }
+
       it { is_expected.to respond_with 302 }
       it { should redirect_to(login_path) }
     end
@@ -43,6 +47,7 @@ RSpec.describe ManageBookingController, type: :controller do
         session[:user_id] = 1
         get :past
       end
+
       it { is_expected.to respond_with 200 }
       it { should render_template("bookings/index") }
     end

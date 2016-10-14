@@ -5,6 +5,7 @@ RSpec.describe WelcomeController, type: :controller do
     it { should route(:get, "/").to(action: :index) }
     it { should route(:get, "/about").to(action: :about) }
   end
+
   describe "GET #index" do
     params = {
       enquiry: {
@@ -19,6 +20,7 @@ RSpec.describe WelcomeController, type: :controller do
         sql: "Yes",
       }
     }
+
     before do
       3.times do
         create :flight, airline: Faker::Company.name
@@ -27,6 +29,7 @@ RSpec.describe WelcomeController, type: :controller do
       end
       get :index, enquiry: params[:enquiry]
     end
+
     it { is_expected.to respond_with 200 }
     it { should render_template("index") }
     it { should set_session[:enquiry] }

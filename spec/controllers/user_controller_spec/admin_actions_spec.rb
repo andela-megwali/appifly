@@ -4,6 +4,7 @@ RSpec.describe UsersController, type: :controller do
   describe "GET #index" do
     context "when user is anonymous" do
       before { get :index }
+
       it { is_expected.to respond_with 302 }
       it { is_expected.to redirect_to(root_path) }
     end
@@ -13,6 +14,7 @@ RSpec.describe UsersController, type: :controller do
         session[:user_id] = 1
         get :index
       end
+
       it { is_expected.to respond_with 302 }
       it { is_expected.to redirect_to(root_path) }
     end
@@ -22,6 +24,7 @@ RSpec.describe UsersController, type: :controller do
         session[:admin_user_id] = 1
         get :index
       end
+
       it { is_expected.to respond_with 200 }
       it { is_expected.to render_template("index") }
 
@@ -39,6 +42,7 @@ RSpec.describe UsersController, type: :controller do
               create :user
             end
           end
+
           it "returns array of users" do
             expect(assigns(:users).empty?).to be_falsey
             expect(assigns(:users)[0]).to be_instance_of User
@@ -67,6 +71,7 @@ RSpec.describe UsersController, type: :controller do
 
   describe "DELETE #destroy" do
     before { create :user, firstname: Faker::Name.name }
+
     context "when user is anonymous" do
       before { delete :destroy, id: 1 }
       it { is_expected.to respond_with 302 }
@@ -78,6 +83,7 @@ RSpec.describe UsersController, type: :controller do
         session[:user_id] = 1
         delete :destroy, id: 1
       end
+
       it { is_expected.to respond_with 302 }
       it { is_expected.to redirect_to(root_path) }
     end
@@ -87,6 +93,7 @@ RSpec.describe UsersController, type: :controller do
         session[:admin_user_id] = 1
         delete :destroy, id: 1
       end
+
       it { is_expected.to respond_with 302 }
       it { should redirect_to(users_path) }
     end

@@ -2,6 +2,7 @@ require "rails_helper"
 
 RSpec.describe AirportsController, type: :controller do
   before { session[:admin_user_id] = 1 }
+
   describe "before action" do
     it { is_expected.to use_before_action(:set_airport) }
     it { is_expected.to_not use_before_action(:set_flight) }

@@ -1,11 +1,8 @@
 require "rails_helper"
 
 RSpec.describe Flight, type: :model do
-  describe "#has_many" do
+  describe "associations" do
     it { is_expected.to have_many :bookings }
-  end
-
-  describe "#belongs_to" do
     it { is_expected.to belong_to :airport }
   end
 
@@ -39,8 +36,9 @@ RSpec.describe Flight, type: :model do
                                "Booking")
       expect(@flights.count).to eq 3
       expect(@flights.first.destination).to eq create(:flight).destination
-      expect(@flights.first).to_not eq create(:flight, :cancelled).status
-      expect(@flights.first).to_not eq create(:flight, :jfk_flight).destination
+      expect(@flights.first.status).to_not eq create(:flight, :cancelled).status
+      expect(@flights.first.destination).to_not eq create(:flight, :jfk_flight).
+        destination
     end
   end
 end
