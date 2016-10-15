@@ -3,5 +3,5 @@
 <%= render "form" %>
 
 <%= link_to "View Profile", @user %> <br>
-<%= link_to "Manage Appifly Users", users_path if User.find_by(session[:user_id]).admin_user %>
+<%= link_to "Manage Appifly Users", users_path if session[:admin_user_id] %>
 

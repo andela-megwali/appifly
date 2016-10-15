@@ -1,4 +1,5 @@
 class AirportsController < ApplicationController
+  before_action :verify_admin_login
   before_action :set_airport, only: [:show, :edit, :update, :destroy]
 
   def index

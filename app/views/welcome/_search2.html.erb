@@ -1,10 +1,5 @@
-<% multiplier = { "Economy" => 1, "Business" => 1.5, "First" => 2 } %>
-<% passenger_class = @passenger_enquiry["Travel Class"] %>
-<% travel_value = multiplier[passenger_class] || 1 %>
-<% passenger_class = "Economy" unless travel_value > 1 %>
-
-<h3>Available Flights | Search Results</h3>
-<%= form_for(:select_flight, :url => {:controller => "bookings", :action => "new"}, :method => "get" ) do |x|%>
+<%= render "heading" %>
+<%= form_for(:select_flight, url: {controller: "bookings", action: "new"}, method: "get" ) do |x|%>
   <div class="col-md-12">
     <% @enquire.each do |flight| %>
       <div class="col-md-2 search_grid">
@@ -34,15 +29,15 @@
             </tr>
             <tr>
               <td>Flight Cost</td>
-              <td> $ <%= flight.cost * travel_value %></td>
+              <td> $ <%= flight_cost(flight) %></td>
             </tr>
             <tr>
               <td>Passengers</td>
-              <td><%= @passenger_enquiry["Number Travelling"] %></td>
+              <td><%= @passenger_enquiry[:number_travelling] %></td>
             </tr>
             <tr>
               <td>Total Cost</td>
-              <td> $ <%= flight.cost * @passenger_enquiry["Number Travelling"] * travel_value %></td>
+              <td> $ <%= total_flight_cost(flight) %></td>
             </tr>
             <tr>
               <td><strong>Select Flight</strong></td>
@@ -61,5 +56,3 @@
     </div>
   </div>
 <% end %>
-
-

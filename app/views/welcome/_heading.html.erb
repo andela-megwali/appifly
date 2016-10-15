@@ -1,0 +1,19 @@
+<div class="col-md-12">
+  <div class="col-md-6">
+    <h3>Available Flights | Search Results</h3>
+  </div>
+  <div class="col-md-6">
+    <div class="btn-group float-right">
+      <button type="button" class="btn btn-primary">Display In</button>
+      <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <span class="caret"></span>
+      <span class="sr-only">Toggle Dropdown</span>
+      </button>
+      <ul class="dropdown-menu">
+        <li><%= link_to "Grid Format", root_path(params: params, view_format: "Grid") %></li>
+        <li role="separator" class="divider"></li>
+        <li><%= link_to "List Format", root_path(params: params, view_format: "List") %></li>
+      </ul>
+    </div>
+  </div>
+</div>

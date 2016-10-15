@@ -1,5 +1,5 @@
 <h1>Listing Users</h1>
-
+<%= will_paginate @users, renderer: BootstrapPagination::Rails %>
 <table class="table">
   <thead>
     <tr>
@@ -19,7 +19,7 @@
   <tbody>
     <% @users.each_with_index do |user, index| %>
       <tr>
-        <td><%= index + 1 %></td>
+        <td><%= index_for_pagination(index) %></td>
         <td><%= user.title %></td>
         <td><%= user.firstname %></td>
         <td><%= user.lastname %></td>
@@ -36,9 +36,10 @@
     <% end %>
   </tbody>
 </table>
+<%= will_paginate @users, renderer: BootstrapPagination::Rails %>
 
 <br>
 
-<%= link_to "New User", new_user_path %>
-<%= link_to "Manage Appifly Users", users_path if User.find_by(session[:user_id]).admin_user %>
+<%= link_to "New User", new_user_path %><br>
+<%= link_to "Manage Appifly Users", users_path %>
 

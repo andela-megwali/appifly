@@ -1,14 +1,11 @@
 <%= bootstrap_form_for(:enquiry, :url => {:action => "index"}, :method => "get") do |f| %>
   <legend class="form-group">Search Flights Here</legend>
     <%= f.select :origin, @list_airport, required: true, label: "Travelling From:" %>
-    <%= f.select :destination, @list_airport, required: true, label: "Travelling To:" %>
-    <%= f.date_field :departure, required: true, label: "Earliest Departure Date" %>
-    <%= f.number_field :passenger, required: true, label: "Number of Passengers" %>
+    <%= f.select :destination, @list_airport.reverse, required: true, label: "Travelling To:" %>
+    <%= f.date_field :departure, required: true, label: "Earliest Departure Date", min: Date.today %>
+    <%= f.select :passenger, 1..9, required: true, label: "Number of Passengers" %>
   <div class="form-group mobile-travel-disappear">
     <%= f.select :travel_class, ["Economy", "Business", "First"] %>
-  </div>
-  <div class="form-group mobile-disappear">
-    <%= f.select :view_format, ["Grid", "List"], label: "Search Result Format" %>
   </div>
     <%= f.submit "Find Flights", class: "btn btn-primary" %>
 <% end %>
