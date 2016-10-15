@@ -828,19 +828,6 @@
         64,
         null,
         null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
         null
       ],
       "/Users/andela/Desktop/mic/checkpoints/fly/advance/appifly/app/mailers/application_mailer.rb": [
@@ -855,6 +842,6 @@
         null
       ]
     },
-    "timestamp": 1476546414
+    "timestamp": 1476546646
   }
 }
