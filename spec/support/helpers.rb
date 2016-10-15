@@ -7,7 +7,7 @@ module Helpers
       fill_in("Firstname", with: "John")
       fill_in("Lastname", with: "Smith")
       fill_in("Email", with: "John@smith.com")
-      fill_in("Password", with: "1234567")
+      fill_in("Password", with: "asdfghj")
       fill_in("Telephone", with: "1234567890")
       fill_in("Username", with: "John")
       check("Subscription")
@@ -15,9 +15,8 @@ module Helpers
     end
 
     def sign_in
-      sign_up
       fill_in("Username", with: "John")
-      fill_in("Password", with: "1234567")
+      fill_in("Password", with: "asdfghj")
       click_on("Sign In")
     end
 
@@ -42,6 +41,20 @@ module Helpers
       fill_in("Telephone", with: "1234567890")
       fill_in("Nationality", with: "Indian")
       click_on("Create Booking")
+    end
+
+    def manage_past_bookings
+      sign_up
+      sign_in
+      search_for_flights
+      create_a_booking
+      click_on("Manage Bookings")
+    end
+
+    def find_booking_info
+      search_for_flights
+      create_a_booking
+      click_on("Find Your Booking")
     end
   end
 end

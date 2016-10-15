@@ -31,18 +31,14 @@ RSpec.feature "AnonymousUserUsesApp", type: :feature do
   end
 
   scenario "User searches for booking via reference id" do
-    search_for_flights
-    create_a_booking
-    click_on("Find Your Booking")
+    find_booking_info
     expect(page).to have_content("Find Your Booking Information")
     expect(page).to have_content("Enter Your Booking Reference Number")
     expect(page.current_path).to eq search_booking_path
   end
 
   scenario "User finds booking via reference id" do
-    search_for_flights
-    create_a_booking
-    click_on("Find Your Booking")
+    find_booking_info
     fill_in("reference_id", with: Booking.first.reference_id.to_s)
     click_on("Get Booking Details")
     expect(page).to have_content("Booking Found")
@@ -53,9 +49,7 @@ RSpec.feature "AnonymousUserUsesApp", type: :feature do
   end
 
   scenario "User tries invalid booking reference id" do
-    search_for_flights
-    create_a_booking
-    click_on("Find Your Booking")
+    find_booking_info
     fill_in("reference_id", with: "Qwer1234767")
     click_on("Get Booking Details")
     expect(page).to have_content("Booking Not Found")

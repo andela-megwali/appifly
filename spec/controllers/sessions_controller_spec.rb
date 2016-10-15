@@ -35,7 +35,7 @@ RSpec.describe SessionsController, type: :controller do
 
     context "login with correct details" do
       before do
-        params = { username: "MJ", password: "asdfghj" }
+        params = { username: "John", password: "asdfghj" }
         post :attempt_login, sign_in: params
       end
 
@@ -43,7 +43,7 @@ RSpec.describe SessionsController, type: :controller do
       it { should set_session[:user_id] }
       it { should set_session[:user_username] }
       it "sets the correct session username" do
-        expect(session[:user_username]).to eq("MJ")
+        expect(session[:user_username]).to eq("John")
       end
       it { is_expected.to respond_with 302 }
       it { should redirect_to(past_bookings_path) }
@@ -51,7 +51,7 @@ RSpec.describe SessionsController, type: :controller do
 
     context "login with incorrect details" do
       before do
-        params = { username: "MJ", password: "1234567" }
+        params = { username: "John", password: "1234567" }
         post :attempt_login, sign_in: params
       end
 

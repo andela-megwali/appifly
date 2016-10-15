@@ -7,14 +7,29 @@ RSpec.feature "RegisteredUserUsesApp", type: :feature do
     expect(page.current_path).to eq login_path
   end
 
+  scenario "User signs in with invalid credentials" do
+    sign_up
+    fill_in("Username", with: "John")
+    fill_in("Password", with: "1234567")
+    click_on("Sign In")
+    expect(page).to have_content("Invalid password or username")
+    expect(page).to have_content("Log in")
+    expect(page).to_not have_content("Welcome John")
+    expect(page.current_path).to eq login_path
+  end
+
   scenario "User signs in" do
+    sign_up
     sign_in
     expect(page).to have_content("User successfully signed in")
+    expect(page).to_not have_content("Signed in as John **")
+    expect(page).to have_content("Signed in as John")
     expect(page).to have_content("Welcome John")
     expect(page.current_path).to eq past_bookings_path
   end
 
   scenario "User searches for flights" do
+    sign_up
     sign_in
     search_for_flights
     expect(page).to have_content("Available Flights")
@@ -24,6 +39,7 @@ RSpec.feature "RegisteredUserUsesApp", type: :feature do
   end
 
   scenario "User selects a Flight" do
+    sign_up
     sign_in
     search_for_flights
     choose("select_flight_1")
@@ -35,6 +51,7 @@ RSpec.feature "RegisteredUserUsesApp", type: :feature do
   end
 
   scenario "User creates a booking" do
+    sign_up
     sign_in
     search_for_flights
     create_a_booking
@@ -45,6 +62,7 @@ RSpec.feature "RegisteredUserUsesApp", type: :feature do
   end
 
   scenario "User tries to edit booking" do
+    sign_up
     sign_in
     search_for_flights
     create_a_booking
@@ -54,6 +72,7 @@ RSpec.feature "RegisteredUserUsesApp", type: :feature do
   end
 
   scenario "User Updates booking" do
+    sign_up
     sign_in
     search_for_flights
     create_a_booking
@@ -67,10 +86,7 @@ RSpec.feature "RegisteredUserUsesApp", type: :feature do
   end
 
   scenario "User manages past booking" do
-    sign_in
-    search_for_flights
-    create_a_booking
-    click_on("Manage Bookings")
+    manage_past_bookings
     expect(page).to have_content("Welcome John")
     expect(page).to have_content("Manage Your Bookings Here")
     expect(page).to have_content("Show")
@@ -80,10 +96,7 @@ RSpec.feature "RegisteredUserUsesApp", type: :feature do
   end
 
   scenario "User cancels booking" do
-    sign_in
-    search_for_flights
-    create_a_booking
-    click_on("Manage Bookings")
+    manage_past_bookings
     click_on("Cancel")
     expect(page).to have_content("Booking was successfully Cancelled")
     expect(page).to_not have_content("111")
@@ -91,20 +104,18 @@ RSpec.feature "RegisteredUserUsesApp", type: :feature do
   end
 
   scenario "User searches for booking via reference id" do
+    sign_up
     sign_in
-    search_for_flights
-    create_a_booking
-    click_on("Find Your Booking")
+    find_booking_info
     expect(page).to have_content("Find Your Booking Information")
     expect(page).to have_content("Enter Your Booking Reference Number")
     expect(page.current_path).to eq search_booking_path
   end
 
   scenario "User finds booking via reference id" do
+    sign_up
     sign_in
-    search_for_flights
-    create_a_booking
-    click_on("Find Your Booking")
+    find_booking_info
     fill_in("reference_id", with: Booking.first.reference_id.to_s)
     click_on("Get Booking Details")
     expect(page).to have_content("Booking Found")
@@ -115,10 +126,9 @@ RSpec.feature "RegisteredUserUsesApp", type: :feature do
   end
 
   scenario "User tries invalid booking reference id" do
+    sign_up
     sign_in
-    search_for_flights
-    create_a_booking
-    click_on("Find Your Booking")
+    find_booking_info
     fill_in("reference_id", with: "Qwer1234767")
     click_on("Get Booking Details")
     expect(page).to have_content("Booking Not Found")
@@ -128,6 +138,7 @@ RSpec.feature "RegisteredUserUsesApp", type: :feature do
   end
 
   scenario "User views flights list" do
+    sign_up
     sign_in
     search_for_flights
     create_a_booking
@@ -140,6 +151,7 @@ RSpec.feature "RegisteredUserUsesApp", type: :feature do
   end
 
   scenario "User tries to hack any admin action" do
+    sign_up
     sign_in
     search_for_flights
     create_a_booking
