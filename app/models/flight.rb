@@ -4,8 +4,8 @@ class Flight < ActiveRecord::Base
   before_save :additional_flight_details
   validates_presence_of :seat, :departure, :arrival, :airline, :code
 
-  scope :sorted, lambda { order("flights.departure ASC") }
-  scope :reverse_sorted, lambda { order("flights.departure DESC") }
+  scope :sorted, -> { order("flights.departure ASC") }
+  scope :reverse_sorted, -> { order("flights.departure DESC") }
 
   def self.search(from, to, time_now, departure_time, bookable)
     where("origin = ? AND destination = ? AND departure >= ? "\
