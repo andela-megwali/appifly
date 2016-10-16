@@ -11,8 +11,7 @@ RSpec.feature "AnonymousUserUsesApp", type: :feature do
 
   scenario "User selects a Flight" do
     search_for_flights
-    choose("select_flight_1")
-    click_on("Select Flight")
+    select_a_flight
     expect(page).to have_content("You are not signed in")
     expect(page).to have_content("Now Booking")
     expect(page).to have_content("Enter Your Booking Information")
@@ -58,7 +57,7 @@ RSpec.feature "AnonymousUserUsesApp", type: :feature do
     expect(page.current_path).to eq search_booking_path
   end
 
-  scenario "User tries hack to edit booking" do
+  scenario "User attempts hack to edit booking" do
     search_for_flights
     create_a_booking
     visit edit_booking_path(1)
@@ -67,7 +66,7 @@ RSpec.feature "AnonymousUserUsesApp", type: :feature do
     expect(page.current_path).to eq login_path
   end
 
-  scenario "User tries hack to manage past booking" do
+  scenario "User attempts hack to manage past booking" do
     search_for_flights
     create_a_booking
     visit past_bookings_path
@@ -76,7 +75,7 @@ RSpec.feature "AnonymousUserUsesApp", type: :feature do
     expect(page.current_path).to eq login_path
   end
 
-  scenario "User tries to hack flights list" do
+  scenario "User attempts hack to view flights list" do
     search_for_flights
     create_a_booking
     visit flights_path

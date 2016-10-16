@@ -1,14 +1,13 @@
 require "rails_helper"
 
 RSpec.feature "RegisteredUserUsesApp", type: :feature do
+  before { sign_up }
   scenario "User signs up" do
-    sign_up
     expect(page).to have_content("Account created. Sign in to continue")
     expect(page.current_path).to eq login_path
   end
 
   scenario "User signs in with invalid credentials" do
-    sign_up
     fill_in("Username", with: "John")
     fill_in("Password", with: "1234567")
     click_on("Sign In")
@@ -19,7 +18,6 @@ RSpec.feature "RegisteredUserUsesApp", type: :feature do
   end
 
   scenario "User signs in" do
-    sign_up
     sign_in
     expect(page).to have_content("User successfully signed in")
     expect(page).to_not have_content("Signed in as John **")
@@ -29,7 +27,6 @@ RSpec.feature "RegisteredUserUsesApp", type: :feature do
   end
 
   scenario "User searches for flights" do
-    sign_up
     sign_in
     search_for_flights
     expect(page).to have_content("Available Flights")
@@ -39,11 +36,9 @@ RSpec.feature "RegisteredUserUsesApp", type: :feature do
   end
 
   scenario "User selects a Flight" do
-    sign_up
     sign_in
     search_for_flights
-    choose("select_flight_1")
-    click_on("Select Flight")
+    select_a_flight
     expect(page).to have_content("Now Booking")
     expect(page).to have_content("Enter Your Booking Information")
     expect(page).to have_content("Signed in as John")
@@ -51,10 +46,7 @@ RSpec.feature "RegisteredUserUsesApp", type: :feature do
   end
 
   scenario "User creates a booking" do
-    sign_up
-    sign_in
-    search_for_flights
-    create_a_booking
+    booking_just_created
     expect(page).to have_content("Booking was successfully created")
     expect(page).to have_content("111")
     expect(page).to have_content("Firstname: John")
@@ -62,20 +54,14 @@ RSpec.feature "RegisteredUserUsesApp", type: :feature do
   end
 
   scenario "User tries to edit booking" do
-    sign_up
-    sign_in
-    search_for_flights
-    create_a_booking
+    booking_just_created
     click_on("Edit This Booking")
     expect(page).to have_content("Editing Booking")
     expect(page.current_path).to eq edit_booking_path(1)
   end
 
   scenario "User Updates booking" do
-    sign_up
-    sign_in
-    search_for_flights
-    create_a_booking
+    booking_just_created
     click_on("Edit This Booking")
     fill_in("Firstname", with: "Joanna")
     click_on("Update Booking")
@@ -103,8 +89,19 @@ RSpec.feature "RegisteredUserUsesApp", type: :feature do
     expect(page.current_path).to eq past_bookings_path
   end
 
+  scenario "User manages profile" do
+    manage_past_bookings
+    click_on("View My Profile")
+    click_on("Edit My Profile")
+    fill_in("Firstname", with: "Kay")
+    fill_in("Password", with: "1234567")
+    click_on("Update User")
+    expect(page).to have_content("User was successfully updated.")
+    expect(page).to have_content("Firstname: Kay")
+    expect(page.current_path).to eq user_path(1)
+  end
+
   scenario "User searches for booking via reference id" do
-    sign_up
     sign_in
     find_booking_info
     expect(page).to have_content("Find Your Booking Information")
@@ -113,7 +110,6 @@ RSpec.feature "RegisteredUserUsesApp", type: :feature do
   end
 
   scenario "User finds booking via reference id" do
-    sign_up
     sign_in
     find_booking_info
     fill_in("reference_id", with: Booking.first.reference_id.to_s)
@@ -126,7 +122,6 @@ RSpec.feature "RegisteredUserUsesApp", type: :feature do
   end
 
   scenario "User tries invalid booking reference id" do
-    sign_up
     sign_in
     find_booking_info
     fill_in("reference_id", with: "Qwer1234767")
@@ -138,10 +133,7 @@ RSpec.feature "RegisteredUserUsesApp", type: :feature do
   end
 
   scenario "User views flights list" do
-    sign_up
-    sign_in
-    search_for_flights
-    create_a_booking
+    booking_just_created
     visit flights_path
     expect(page).to have_content("Listing Flights")
     expect(page).to have_content("Flight code")
@@ -150,11 +142,8 @@ RSpec.feature "RegisteredUserUsesApp", type: :feature do
     expect(page.current_path).to eq flights_path
   end
 
-  scenario "User tries to hack any admin action" do
-    sign_up
-    sign_in
-    search_for_flights
-    create_a_booking
+  scenario "User attempts any admin action" do
+    booking_just_created
     visit edit_flight_path(1)
     expect(page).to have_content("Signed in as John")
     expect(page).to have_content("You are not authorized to access")

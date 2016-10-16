@@ -31,9 +31,13 @@ module Helpers
       click_on("Find Flights")
     end
 
-    def create_a_booking
+    def select_a_flight
       choose("select_flight_1")
       click_on("Select Flight")
+    end
+
+    def create_a_booking
+      select_a_flight
       fill_in("Title", with: "Mr")
       fill_in("Firstname", with: "John")
       fill_in("Lastname", with: "Smith")
@@ -43,11 +47,14 @@ module Helpers
       click_on("Create Booking")
     end
 
-    def manage_past_bookings
-      sign_up
+    def booking_just_created
       sign_in
       search_for_flights
       create_a_booking
+    end
+
+    def manage_past_bookings
+      booking_just_created
       click_on("Manage Bookings")
     end
 
@@ -55,6 +62,51 @@ module Helpers
       search_for_flights
       create_a_booking
       click_on("Find Your Booking")
+    end
+
+    def admin_searches_for_flight
+      visit login_path
+      sign_in
+      search_for_flights
+    end
+
+    def admin_lists_flights
+      admin_searches_for_flight
+      visit flights_path
+    end
+
+    def admin_creates_a_new_flight
+      click_on("Create A New Flight")
+      select("Abuja (ABV)", from: "flight_origin")
+      select("Lagos (LOS)", from: "flight_destination")
+      fill_in("Seats", with: 230)
+      select("17", from: "flight_departure_4i")
+      select("18", from: "flight_arrival_4i")
+      fill_in("Airline", with: "Chinese Airlines")
+      fill_in("Code", with: "CA111")
+      click_on("Create Flight")
+    end
+
+    def admin_creates_a_new_airport
+      click_on("Create New Airport")
+      fill_in("Name", with: "Warri")
+      fill_in("Jurisdiction", with: "Local")
+      fill_in("State and code", with: "Delta (QRW)")
+      fill_in("Country", with: "Nigeria")
+      fill_in("Continent", with: "Africa")
+      fill_in("Rating", with: "7")
+      click_on("Create Airport")
+    end
+
+    def admin_lists_airports
+      admin_searches_for_flight
+      visit airports_path
+    end
+
+    def admin_lists_bookings
+      admin_searches_for_flight
+      create_a_booking
+      visit bookings_path
     end
   end
 end

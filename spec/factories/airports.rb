@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :airport do
-    name "Murtala Mohammad Airport I"
+    name "Murtala Mohammad Airport"
     continent "Africa"
     country "Nigeria"
     state_and_code "Lagos (LOS)"
