@@ -23,7 +23,7 @@ a {
   -webkit-transition: all 0.35s;
   -moz-transition: all 0.35s;
   transition: all 0.35s;
-  color: #fdcc52;
+  color: #ff9800;
 }
 a:hover,
 a:focus {
@@ -67,7 +67,7 @@ p {
   font-family: "Catamaran", "Helvetica", "Arial", "sans-serif";
   font-weight: 200;
   letter-spacing: 1px;
-  color: #fdcc52;
+  color: #ff9800;
 }
 .navbar-default .navbar-header .navbar-brand:hover,
 .navbar-default .navbar-header .navbar-brand:focus {
@@ -90,11 +90,11 @@ p {
 }
 .navbar-default .nav > li > a:hover,
 .navbar-default .nav > li > a:focus:hover {
-  color: #fdcc52;
+  color: #ff9800;
 }
 .navbar-default .nav > li.active > a,
 .navbar-default .nav > li.active > a:focus {
-  color: #fdcc52 !important;
+  color: #ff9800 !important;
   background-color: transparent;
 }
 .navbar-default .nav > li.active > a:hover,
@@ -130,7 +130,7 @@ p {
   }
   .navbar-default.affix .navbar-header .navbar-brand:hover,
   .navbar-default.affix .navbar-header .navbar-brand:focus {
-    color: #fdcc52;
+    color: #ff9800;
   }
   .navbar-default.affix .nav > li > a,
   .navbar-default.affix .nav > li > a:focus {
@@ -138,7 +138,7 @@ p {
   }
   .navbar-default.affix .nav > li > a:hover,
   .navbar-default.affix .nav > li > a:focus:hover {
-    color: #fdcc52;
+    color: #ff9800;
   }
 }
 header {
@@ -146,13 +146,8 @@ header {
   width: 100%;
   min-height: auto;
   overflow-y: hidden;
-  background: url("../assets/bg-pattern.png"), #7b4397;
-  /* fallback for old browsers */
-  background: url("../assets/bg-pattern.png"), -webkit-linear-gradient(to left, #7b4397, #dc2430);
-  /* Chrome 10-25, Safari 5.1-6 */
-  background: url("../assets/bg-pattern.png"), linear-gradient(to left, #7b4397, #dc2430);
-  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-  color: white;
+  background: #ffffff;
+  background-size: cover;
 }
 header .header-content {
   text-align: center;
@@ -170,6 +165,14 @@ header .header-content .header-content-inner h1 {
   margin-bottom: 30px;
   font-size: 30px;
 }
+header .header-content .header-content-inner h2 {
+  padding-top: 130px;
+  color: #ffffff;
+}
+header .header-content .header-content-inner .action {
+  color: #1da1f2;
+  font-weight: 600;
+}
 header .header-content .header-content-inner .list-badges {
   margin-bottom: 25px;
 }
@@ -183,6 +186,20 @@ header .device-container {
 }
 header .device-container .screen img {
   border-radius: 3px;
+}
+.heading-row {
+  padding: 100px 0 30px;
+}
+.sub-heading-row {
+  padding: 40px 0 30px;
+}
+.heading-row h3 {
+  font-weight: 500;
+  color: #1da1f2;
+  margin-top: 0;
+}
+.sub-heading-row h3 {
+  font-size: 20px;
 }
 @media (min-width: 768px) {
   header {
@@ -366,10 +383,11 @@ section.contact ul.list-social li.social-google-plus a:hover {
   background-color: #d73925;
 }
 footer {
-  background-color: #222222;
+  background-color: #0f1b25;
   padding: 25px 0;
   color: rgba(255, 255, 255, 0.3);
   text-align: center;
+  border-top: 1px solid #565656;
 }
 footer p {
   font-size: 12px;
@@ -389,12 +407,10 @@ footer ul li a.active {
   text-decoration: none;
 }
 .bg-primary {
-  background: #fdcc52;
-  background: -webkit-linear-gradient(#fdcc52, #fdc539);
-  background: linear-gradient(#fdcc52, #fdc539);
+  background: #0f1b25;
 }
 .text-primary {
-  color: #fdcc52;
+  color: #ff9800;
 }
 .no-gutter > [class*="col-"] {
   padding-right: 0;
@@ -410,8 +426,8 @@ footer ul li a.active {
 .btn-outline:active,
 .btn-outline.active {
   color: white;
-  background-color: #fdcc52;
-  border-color: #fdcc52;
+  background-color: rgba(253, 204, 82, 0.61);
+  border-color: rgba(253, 204, 82, 0.61);
 }
 .btn {
   font-family: "Lato", "Helvetica", "Arial", "sans-serif";
@@ -420,9 +436,15 @@ footer ul li a.active {
   border-radius: 7px;
 }
 .btn-xl {
-  padding: 15px 45px;
+  padding: 10px 45px;
+  width: 100%;
   font-size: 14px;
-  background-color: rgba(255, 255, 255, 0.1);
+}
+.btn-outline {
+  background-color: #ff9800;
+}
+.clearfix {
+  clear: both;
 }
 ::-moz-selection {
   color: white;
@@ -498,17 +520,25 @@ body {
   background-image: url("../assets/iphone_6_plus_white_port.png");
 }
 
-
 button, input, optgroup, select, textarea {
   color: #787878
 }
 
+.radio-td {
+  text-align: center;
+}
+
 legend {
-  color: inherit;
+  color: #ddd;
 }
 
 .welcome-form {
   margin: 40px 10px 0;
+}
+
+.welcome-form label {
+  color: #999;
+  font-weight: 300;
 }
 
 @media(max-width: 1200px) {
@@ -534,8 +564,11 @@ legend {
     margin: 20px 10px 0;
   }
 }
- .header-nav {
-  margin-top: 75px;
+
+.header-nav.home-header {
+  background: url('<%= asset_path('passengers.jpg') %>') no-repeat center center;
+  margin-top: 0;
+  padding: 75px;
  }
 
  .carousel {
@@ -547,14 +580,19 @@ legend {
   padding-bottom: 1em;
 }
 
- .search_grid {
-  margin: 0 auto 3em;
+.search_grid {
+  margin: 2em auto 3em;
   display: inline-block
  }
 
+.search_grid table {
+  background: #f8f8f9;
+  width: 100%;
+}
+
  td, th {
-  padding: 3px;
-  }
+  padding: 5px 30px;
+}
 
 
 #notice {
@@ -644,4 +682,9 @@ pointer-events: none;
 
 .card-block.width {
   width: 425px;
+}
+
+.card {
+  background: rgba(126, 188, 232, 0.1);
+  padding: 50px;
 }

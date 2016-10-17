@@ -55,6 +55,12 @@
     </table>
   </div>
   <%= render "shared/user_profile" %> 
+  <div class="col-md-12">
+    <br>
+    <p>
+      <%= link_to "Find a different flight", root_path, class: "" %><br>
+    </p>
+  </div>
 </div>
 
 <div class="col-md-12 header-nav form-group">
@@ -69,28 +75,25 @@
         </ul>
       </div>
     <% end %>
-    <div class="col-md-12">
+    <div class="heading-row">
       <div class="col-md-12">
         <h3> Enter Your Booking Information</h3>
       </div>
       <div class="col-md-4 form-group">
         <%= f.select :travel_class, ["Economy", "Business", "First"], label: "Set / Change Travel Class" %>
       </div>
-    </div>
-    <div class="col-md-12 form-group">
-      <%= f.fields_for :passengers do |passenger_details| %>
+      <div class="col-md-12 sub-heading-row form-group">
+        <%= f.fields_for :passengers do |passenger_details| %>
           <%= render "passenger_fields", f: passenger_details %>
-      <% end %>
-      <div class="col-md-12 form-group">
-        <br>
-        <%= link_to_add_association "Add Another Passenger", f, :passengers, class: "btn btn-outline btn-xl page-scroll" %>
+        <% end %>
+        <div class="col-md-4 clearfix form-group">
+          <br>
+          <%= link_to_add_association "Add Another Passenger", f, :passengers, class: "btn btn-primary btn-xl page-scroll" %>
+        </div>
+      </div>
+      <div class="col-md-12 actions form-group">
+        <%= f.submit %>
       </div>
     </div>
-    <div class="col-md-12 actions form-group">
-      <%= f.submit %>
-    </div>
   <% end %>
-</div>
-<div class="col-md-12">
-  <%= link_to "Find a different flight", root_path %><br>
 </div>
