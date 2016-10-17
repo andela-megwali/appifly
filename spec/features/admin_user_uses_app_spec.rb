@@ -60,9 +60,9 @@ RSpec.feature "AdminUserUsesApp", type: :feature do
     click_on("Update Flight")
     expect(page).to have_content("Flight was successfully updated.")
     expect(page.current_path).to eq flight_path(1)
+    expect(page).to have_content("Flight Status: Cancelled")
 
     visit flights_path
-    expect(page).to have_content("Lagos (LOS)")
     expect(page).to have_content("Cancelled")
   end
 
