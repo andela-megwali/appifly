@@ -41,10 +41,9 @@
   <div class="col-md-6">
     <div class="bootstrap-demo">
       <div class="card">
-        <%= image_tag "happy-traveller.jpg", :alt => "First-Slide", :size => "360x240"%>
         <div class="card-block width"> 
           <h3 class="card-title">Notice: You are not signed in</h3>
-          <h5 class="card-text">Once you create your booking you will not be able to make changes to it afterwards. You would still be able to view it though. Please <%= link_to "sign in", login_path %> or <%= link_to "create an account" %> so you can manage your bookings when you desire. </h5>
+          <h5 class="card-text">Once you create your booking you will not be able to make changes to it afterwards. You would still be able to view it though. Please <b><%= link_to "sign in", login_path %></b> or <b><%= link_to "create an account" %></b> so you can manage your bookings when you desire. </h5>
           <h5>If you prefer booking anonymously please continue below.</h5>
         </div>
       </div>

@@ -1,22 +1,24 @@
 <%= search_result_display_format %>
 
-<div class="container header-nav">
-  <div class="row">        
-    <div class="col-sm-5">
-      <div class="device-container">
-        <div class="device-mockup iphone6_plus portrait white">
-          <div class="device">
-            <div class="screen">
-              <div class="welcome-form"> 
-                <%= render "form" %>
+<div class="home-header header-nav">
+  <div class="container">
+    <div class="row">        
+      <div class="col-sm-5">
+        <div class="device-container">
+          <div class="device-mockup iphone6_plus portrait white">
+            <div class="device">
+              <div class="screen">
+                <div class="welcome-form"> 
+                  <%= render "form" %>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="col-sm-7">
-      <%= render "message" %>
+      <div class="col-sm-7">
+        <%= render "message" %>
+      </div>
     </div>
   </div>
 </div>
