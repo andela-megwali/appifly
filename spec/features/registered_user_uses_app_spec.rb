@@ -31,7 +31,7 @@ RSpec.feature "RegisteredUserUsesApp", type: :feature do
     search_for_flights
     expect(page).to have_content("Available Flights")
     expect(page).to have_content("Results found: 1")
-    expect(page).to have_content("Select a Flight")
+    expect(page).to have_content("Select Flight")
     expect(page.current_path).to eq root_path
   end
 
