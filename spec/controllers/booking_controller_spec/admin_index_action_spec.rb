@@ -29,7 +29,7 @@ RSpec.describe BookingsController, type: :controller do
         get :index
       end
 
-      it { is_expected.to respond_with 200 }
+      it { is_expected.to respond_with :success }
       it { is_expected.to render_template("index") }
     end
   end

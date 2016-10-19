@@ -47,14 +47,16 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:title,
-                                 :firstname,
-                                 :lastname,
-                                 :username,
-                                 :password,
-                                 :email,
-                                 :telephone,
-                                 :subscription)
+    params.require(:user).permit(
+      :title,
+      :firstname,
+      :lastname,
+      :username,
+      :password,
+      :email,
+      :telephone,
+      :subscription
+    )
   end
 
   def send_welcome_email

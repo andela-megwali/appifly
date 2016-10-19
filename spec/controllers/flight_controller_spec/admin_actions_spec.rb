@@ -32,7 +32,7 @@ RSpec.describe FlightsController, type: :controller do
 
   describe "POST #create" do
     context "when user is anonymous" do
-      before { post :create, flight: FactoryGirl.attributes_for(:flight) }
+      before { post :create, flight: attributes_for(:flight) }
 
       it { is_expected.to respond_with 302 }
       it { is_expected.to redirect_to(root_path) }
@@ -41,7 +41,7 @@ RSpec.describe FlightsController, type: :controller do
     context "when logged in user is not admin" do
       before do
         session[:user_id] = 1
-        post :create, flight: FactoryGirl.attributes_for(:flight)
+        post :create, flight: attributes_for(:flight)
       end
 
       it { is_expected.to respond_with 302 }
@@ -52,7 +52,7 @@ RSpec.describe FlightsController, type: :controller do
       before { session[:admin_user_id] = 1 }
 
       describe "create flight success" do
-        before { post :create, flight: FactoryGirl.attributes_for(:flight) }
+        before { post :create, flight: attributes_for(:flight) }
 
         it { is_expected.to respond_with 302 }
         it { is_expected.to redirect_to(flight_path(1)) }

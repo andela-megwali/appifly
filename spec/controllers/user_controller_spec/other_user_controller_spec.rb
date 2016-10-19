@@ -17,35 +17,4 @@ RSpec.describe UsersController, type: :controller do
     it { should route(:patch, "/users/1").to(action: :update, id: 1) }
     it { should route(:delete, "/users/1").to(action: :destroy, id: 1) }
   end
-
-  describe "Params Filter" do
-    params = {
-      user: {
-        title: "Mrs",
-        firstname: "Moses",
-        lastname: "Joanne",
-        username: "MJ",
-        password: "asdfghj",
-        email: "m@j.com",
-        telephone: "1234567890",
-        subscription: true,
-        admin: true,
-        sql: "Yes",
-      }
-    }
-    it "Should allow the permitted params" do
-      should permit(:title,
-                    :firstname,
-                    :lastname,
-                    :username,
-                    :password,
-                    :email,
-                    :telephone,
-                    :subscription).for(:create, params: params).on(:user)
-    end
-
-    it "Should not allow unpermitted params" do
-      should_not permit(:admin, :sql).for(:create, params: params).on(:user)
-    end
-  end
 end

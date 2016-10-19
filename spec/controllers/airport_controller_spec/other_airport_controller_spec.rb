@@ -19,31 +19,4 @@ RSpec.describe AirportsController, type: :controller do
     it { should route(:patch, "/airports/1").to(action: :update, id: 1) }
     it { should route(:delete, "/airports/1").to(action: :destroy, id: 1) }
   end
-
-  describe "Params Filter" do
-    params = {
-      airport: {
-        name: "Murtala Muhammad",
-        continent: "Africa",
-        country: "Nigeria",
-        jurisdiction: "International",
-        state_and_code: "Lagos (LOS)",
-        rating: 10,
-        admin: true,
-        sql: "Yes",
-      }
-    }
-    it "Should allow the permitted params" do
-      should permit(:name,
-                    :continent,
-                    :country,
-                    :jurisdiction,
-                    :state_and_code,
-                    :rating).for(:create, params: params).on(:airport)
-    end
-
-    it "Should not allow unpermitted params" do
-      should_not permit(:admin, :sql).for(:create, params: params).on(:airport)
-    end
-  end
 end

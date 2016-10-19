@@ -16,11 +16,13 @@ class Booking < ActiveRecord::Base
   private
 
   def booking_ref_generator
-    [flight.code,
-     rand(1000..9999).to_s,
-     rand(1000..9999).to_s,
-     rand(1000..9999).to_s,
-     "#{flight_id}#{passengers.size}#{id}"].join "-"
+    [
+      flight.code,
+      rand(1000..9999).to_s,
+      rand(1000..9999).to_s,
+      rand(1000..9999).to_s,
+      "#{flight_id}#{passengers.size}#{id}"
+    ].join "-"
   end
 
   def send_booking_notification

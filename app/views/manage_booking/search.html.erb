@@ -2,9 +2,11 @@
   <h1>Find Your Booking Information</h1>
 </div>
 <div class="col-md-6 form-group">
-<%= form_for(:manage_booking, :url => {:action => "search"}, :method => "get") do |seek| %>
-  <%= label_tag :reference_id, "Enter Your Booking Reference Number" %><br>
-  <%= text_field_tag :reference_id, "", required: true %>
-  <%= seek.submit "Get Booking Details"%>
+<%= form_for(:manage_booking, :url => {:action => "search"}, :method => "get", class: "form-inline") do |seek| %>
+  <div class="form-group">
+    <%= label_tag :reference_id, "Enter Your Booking Reference Number" %><br>
+    <%= text_field_tag :reference_id, "", required: true, class: "form-control" %>
+  </div>
+  <%= seek.submit "Get Booking Details", class: "btn btn-primary" %>
 <% end %>
 </div>

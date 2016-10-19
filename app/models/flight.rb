@@ -8,13 +8,15 @@ class Flight < ActiveRecord::Base
   scope :reverse_sorted, -> { order("flights.departure DESC") }
 
   def self.search(from, to, time_now, departure_time, bookable)
-    where("origin = ? AND destination = ? AND departure >= ? "\
-          "AND departure >= ? AND status = ?",
-          from,
-          to,
-          time_now,
-          departure_time,
-          bookable).sorted
+    where(
+      "origin = ? AND destination = ? AND departure >= ? "\
+        "AND departure >= ? AND status = ?",
+      from,
+      to,
+      time_now,
+      departure_time,
+      bookable
+    ).sorted
   end
 
   private
