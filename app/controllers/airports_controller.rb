@@ -45,11 +45,13 @@ class AirportsController < ApplicationController
   end
 
   def airport_params
-    params.require(:airport).permit(:name,
-                                    :continent,
-                                    :country,
-                                    :jurisdiction,
-                                    :state_and_code,
-                                    :rating)
+    params.require(:airport).permit(
+      :name,
+      :continent,
+      :country,
+      :jurisdiction,
+      :state_and_code,
+      :rating
+    )
   end
 end

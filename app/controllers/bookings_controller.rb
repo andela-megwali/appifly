@@ -53,15 +53,17 @@ class BookingsController < ApplicationController
 
   def booking_params
     params.require(:booking).permit :travel_class,
-                                    passengers_attributes: [:id,
-                                                            :nationality,
-                                                            :firstname,
-                                                            :email,
-                                                            :title,
-                                                            :telephone,
-                                                            :lastname,
-                                                            :luggage,
-                                                            :_destroy]
+                                    passengers_attributes: [
+                                      :id,
+                                      :nationality,
+                                      :firstname,
+                                      :email,
+                                      :title,
+                                      :telephone,
+                                      :lastname,
+                                      :luggage,
+                                      :_destroy
+                                    ]
   end
 
   def set_flight_select

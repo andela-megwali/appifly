@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe AirportsController, type: :controller do
   describe "POST #create" do
     context "when user is anonymous" do
-      before { post :create, airport: FactoryGirl.attributes_for(:airport) }
+      before { post :create, airport: attributes_for(:airport) }
 
       it { is_expected.to respond_with 302 }
       it { is_expected.to redirect_to(root_path) }
@@ -12,7 +12,7 @@ RSpec.describe AirportsController, type: :controller do
     context "when logged in user is not admin" do
       before do
         session[:user_id] = 1
-        post :create, airport: FactoryGirl.attributes_for(:airport)
+        post :create, airport: attributes_for(:airport)
       end
 
       it { is_expected.to respond_with 302 }
@@ -23,7 +23,7 @@ RSpec.describe AirportsController, type: :controller do
       before { session[:admin_user_id] = 1 }
 
       describe "create airport success" do
-        before { post :create, airport: FactoryGirl.attributes_for(:airport) }
+        before { post :create, airport: attributes_for(:airport) }
 
         it { is_expected.to respond_with 302 }
         it { is_expected.to redirect_to(airport_path(1)) }
