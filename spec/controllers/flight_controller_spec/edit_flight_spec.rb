@@ -34,5 +34,4 @@ RSpec.describe FlightsController, type: :controller do
       it { is_expected.to render_template("edit") }
     end
   end
-
 end
