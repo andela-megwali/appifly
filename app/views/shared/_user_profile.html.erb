@@ -34,8 +34,10 @@
         </tr>
       </tbody>
     </table><br>
-    <%= link_to "View All My Bookings", past_bookings_path %><br>
-    <%= link_to "View All Appifly Bookings", bookings_path if session[:admin_user_id] %>
+    <div class="col-md-6">
+      <%= link_to "View All My Bookings", past_bookings_path %><br>
+      <%= link_to "View All Appifly Bookings", bookings_path if session[:admin_user_id] %>
+    </div>
   </div>
 <% else %>
   <div class="col-md-6">
