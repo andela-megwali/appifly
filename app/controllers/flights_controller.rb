@@ -48,14 +48,16 @@ class FlightsController < ApplicationController
   end
 
   def flight_params
-    params.require(:flight).permit(:origin,
-                                   :destination,
-                                   :seat,
-                                   :cost,
-                                   :arrival,
-                                   :airline,
-                                   :code,
-                                   :departure,
-                                   :status)
+    params.require(:flight).permit(
+      :origin,
+      :destination,
+      :seat,
+      :cost,
+      :arrival,
+      :airline,
+      :code,
+      :departure,
+      :status
+    )
   end
 end

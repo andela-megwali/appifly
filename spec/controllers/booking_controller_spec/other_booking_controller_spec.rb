@@ -18,45 +18,4 @@ RSpec.describe BookingsController, type: :controller do
     it { should route(:patch, "/bookings/1").to(action: :update, id: 1) }
     it { should route(:delete, "/bookings/1").to(action: :destroy, id: 1) }
   end
-
-  describe "Params Filter" do
-    params = {
-      booking: {
-        travel_class: "Economy",
-        passengers_attributes: [id: "",
-                                nationality: "Nigerian",
-                                firstname: "Mary",
-                                lastname: "Dan",
-                                email: "m@s.com",
-                                telephone: "1234567",
-                                title: "Mrs",
-                                luggage: "No",
-                                parents: "two",
-                                sql: "no"]
-      }
-    }
-    before do
-      create :flight
-      session[:enquiry] = { "flight_selected" => 1 }
-    end
-
-    it "Should not allow unpermitted params" do
-      should_not permit(:parents,
-                        :sql).for(:create, params: params).on(:booking)
-    end
-
-    it "Should allow the permitted params" do
-      should permit(:travel_class,
-                    passengers_attributes: [:id,
-                                            :nationality,
-                                            :firstname,
-                                            :email,
-                                            :title,
-                                            :telephone,
-                                            :lastname,
-                                            :luggage,
-                                            :_destroy]).
-        for(:create, params: params).on(:booking)
-    end
-  end
 end

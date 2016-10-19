@@ -41,22 +41,5 @@ RSpec.describe WelcomeController, type: :controller do
     it "assigns @passenger_enquiry" do
       expect(assigns(:passenger_enquiry)[:class_selected]).to eq "Business"
     end
-
-    context "params filter" do
-      it "Should allow the permitted params" do
-        should permit(:origin,
-                      :destination,
-                      :departure,
-                      :travel_class,
-                      :passenger,
-                      :view_format).
-          for(:index, verb: :get, params: params).on(:enquiry)
-      end
-
-      it "Should not allow unpermitted params" do
-        should_not permit(:admin, :sql, :subscription).
-          for(:index, verb: :get, params: params).on(:enquiry)
-      end
-    end
   end
 end
