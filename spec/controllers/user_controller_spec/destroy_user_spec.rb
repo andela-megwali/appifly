@@ -1,14 +1,11 @@
 require "rails_helper"
 
-RSpec.describe BookingsController, type: :controller do
-  describe "GET #index" do
-    before do
-      create :flight
-    end
+RSpec.describe UsersController, type: :controller do
+  describe "DELETE #destroy" do
+    before { create :user, firstname: Faker::Name.name }
 
     context "when user is anonymous" do
-      before { get :index }
-
+      before { delete :destroy, id: 1 }
       it { is_expected.to respond_with 302 }
       it { is_expected.to redirect_to(root_path) }
     end
@@ -16,7 +13,7 @@ RSpec.describe BookingsController, type: :controller do
     context "when logged in user is not admin" do
       before do
         session[:user_id] = 1
-        get :index
+        delete :destroy, id: 1
       end
 
       it { is_expected.to respond_with 302 }
@@ -26,11 +23,11 @@ RSpec.describe BookingsController, type: :controller do
     context "when logged in as admin" do
       before do
         session[:admin_user_id] = 1
-        get :index
+        delete :destroy, id: 1
       end
 
-      it { is_expected.to respond_with :success }
-      it { is_expected.to render_template("index") }
+      it { is_expected.to respond_with 302 }
+      it { should redirect_to(users_path) }
     end
   end
 end
