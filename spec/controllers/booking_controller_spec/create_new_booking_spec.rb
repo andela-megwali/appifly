@@ -39,6 +39,9 @@ RSpec.describe BookingsController, type: :controller do
 
         it { is_expected.to respond_with 302 }
         it { is_expected.to redirect_to(booking_path(1)) }
+        it "creates a new booking" do
+          expect(Booking.count).to eq 1
+        end
       end
 
       context "with an invalid detail in any field" do
@@ -51,6 +54,9 @@ RSpec.describe BookingsController, type: :controller do
 
         it { is_expected.to respond_with 200 }
         it { is_expected.to render_template("new") }
+        it "does not creates a new booking" do
+          expect(Booking.count).to eq 0
+        end
       end
     end
   end

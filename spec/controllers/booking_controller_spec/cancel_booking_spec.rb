@@ -23,6 +23,9 @@ RSpec.describe BookingsController, type: :controller do
       it { is_expected.to respond_with 302 }
       it { is_expected.to redirect_to(past_bookings_path) }
       it { is_expected.to set_flash[:notice] }
+      it "destroys the booking" do
+        expect(Booking.count).to eq 0
+      end
     end
   end
 end

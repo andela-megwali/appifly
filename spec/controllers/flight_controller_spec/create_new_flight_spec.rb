@@ -55,6 +55,9 @@ RSpec.describe FlightsController, type: :controller do
         before { post :create, flight: attributes_for(:flight) }
 
         it { is_expected.to respond_with 302 }
+        it "creates a new flight" do
+          expect(Flight.count).to eq 1
+        end
         it { is_expected.to redirect_to(flight_path(1)) }
       end
 
@@ -62,6 +65,9 @@ RSpec.describe FlightsController, type: :controller do
         before { post :create, flight: { name: nil } }
 
         it { is_expected.to respond_with 200 }
+        it "does not create a new flight" do
+          expect(Flight.count).to eq 0
+        end
         it { is_expected.to render_template("new") }
       end
     end

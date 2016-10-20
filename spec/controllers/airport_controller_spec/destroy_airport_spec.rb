@@ -28,6 +28,9 @@ RSpec.describe AirportsController, type: :controller do
 
       it { is_expected.to respond_with 302 }
       it { is_expected.to redirect_to(airports_path) }
+      it "destroys the airport" do
+        expect(Airport.count).to eq 0
+      end
     end
   end
 end

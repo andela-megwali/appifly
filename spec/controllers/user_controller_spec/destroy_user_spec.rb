@@ -28,6 +28,9 @@ RSpec.describe UsersController, type: :controller do
 
       it { is_expected.to respond_with 302 }
       it { should redirect_to(users_path) }
+      it "destroys the user" do
+        expect(User.count).to eq 0
+      end
     end
   end
 end

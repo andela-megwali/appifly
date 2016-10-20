@@ -29,6 +29,9 @@ RSpec.describe FlightsController, type: :controller do
 
       it { is_expected.to respond_with 302 }
       it { is_expected.to redirect_to(flights_path) }
+      it "destroys the flight" do
+        expect(Flight.count).to eq 0
+      end
     end
   end
 end

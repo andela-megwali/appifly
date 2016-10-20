@@ -65,12 +65,18 @@ RSpec.describe FlightsController, type: :controller do
 
         it { is_expected.to respond_with 302 }
         it { is_expected.to redirect_to(flight_path(1)) }
+        it "updates the flight attribute" do
+          expect(Flight.first.seat).to eq 150
+        end
       end
       describe "with an invalid flight attribute" do
         before { put :update, id: 1, flight: { seat: nil } }
 
         it { is_expected.to respond_with 200 }
         it { is_expected.to render_template("edit") }
+        it "does not update the flight attribute" do
+          expect(Flight.first.seat).to eq 200
+        end
       end
     end
   end

@@ -37,10 +37,13 @@ RSpec.describe BookingsController, type: :controller do
       before { session[:user_id] = 1 }
 
       describe "with valid details in every field" do
-        before { put :update, id: 1, booking: attributes_for(:booking) }
+        before { put :update, id: 1, booking: { travel_class: "First" } }
 
         it { is_expected.to respond_with 302 }
         it { is_expected.to redirect_to(booking_path(1)) }
+        it "updates the booking attribute" do
+          expect(Booking.first.travel_class).to eq "First"
+        end
       end
 
       describe "with an invalid detail in any field" do
@@ -48,6 +51,9 @@ RSpec.describe BookingsController, type: :controller do
 
         it { is_expected.to respond_with 200 }
         it { is_expected.to render_template("edit") }
+        it "does not update the booking attribute" do
+          expect(Booking.first.travel_class).to eq "Economy"
+        end
       end
     end
   end

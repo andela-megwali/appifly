@@ -62,6 +62,9 @@ RSpec.describe AirportsController, type: :controller do
 
         it { is_expected.to respond_with 302 }
         it { is_expected.to redirect_to(airport_path(1)) }
+        it "updates the airport attribute" do
+          expect(Airport.first.country).to eq "Niger"
+        end
       end
 
       describe "with an invalid attribute" do
@@ -69,6 +72,9 @@ RSpec.describe AirportsController, type: :controller do
 
         it { is_expected.to respond_with 200 }
         it { is_expected.to render_template("edit") }
+        it "does not update the airport attribute" do
+          expect(Airport.first.country).to eq "Nigeria"
+        end
       end
     end
   end

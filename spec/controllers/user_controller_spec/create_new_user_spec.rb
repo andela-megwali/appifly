@@ -15,6 +15,9 @@ RSpec.describe UsersController, type: :controller do
       it { is_expected.to respond_with 302 }
       it { is_expected.to render_template("notifications/welcome_email") }
       it { should redirect_to(login_path) }
+      it "creates a new user" do
+        expect(User.count).to eq 1
+      end
     end
 
     context "with an invalid user attribute" do
@@ -22,6 +25,9 @@ RSpec.describe UsersController, type: :controller do
 
       it { is_expected.to respond_with 200 }
       it { is_expected.to render_template("new") }
+      it "does not create a new user" do
+        expect(User.count).to eq 0
+      end
     end
   end
 end

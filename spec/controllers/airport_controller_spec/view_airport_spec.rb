@@ -28,6 +28,9 @@ RSpec.describe AirportsController, type: :controller do
       end
 
       it { is_expected.to respond_with 200 }
+      it "assigns the requested airport to @airport" do
+        expect(assigns(:airport).id).to eq 1
+      end
       it { is_expected.to render_template("show") }
     end
   end

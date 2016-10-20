@@ -42,6 +42,10 @@ RSpec.describe BookingsController, type: :controller do
 
       it { is_expected.to respond_with :success }
       it { is_expected.to render_template("index") }
+      it "assigns list of all bookings to @bookings" do
+        expect(response.body).to eq ""
+        expect(assigns(:bookings).count).to eq Booking.count
+      end
     end
   end
 
