@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  include Concerns::MessagesHelper
+
   def login
   end
 
@@ -11,7 +13,7 @@ class SessionsController < ApplicationController
     session[:admin_user_id] = nil
     session[:user_id] = nil
     session[:user_username] = nil
-    redirect_to login_path, notice: "User successfully signed out."
+    redirect_to login_path, notice: successful_sign_out_message
   end
 
   private
@@ -25,9 +27,9 @@ class SessionsController < ApplicationController
   def authorize_the_user
     if authorized_user
       set_session(authorized_user)
-      redirect_to past_bookings_path, notice: "User successfully signed in."
+      redirect_to past_bookings_path, notice: successful_sign_in_message
     else
-      redirect_to login_path, notice: "Invalid password or username"
+      redirect_to login_path, notice: invalid_login_message
     end
   end
 

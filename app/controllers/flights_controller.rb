@@ -1,4 +1,6 @@
 class FlightsController < ApplicationController
+  include Concerns::MessagesHelper
+
   before_action :verify_admin_login, except: [:index, :show]
   before_action :verify_user_login
   before_action :set_flight, only: [:show, :edit, :update, :destroy]
@@ -21,7 +23,7 @@ class FlightsController < ApplicationController
   def create
     @flight = Flight.new(flight_params)
     if @flight.save
-      redirect_to @flight, notice: "Flight was successfully created."
+      redirect_to @flight, notice: flight_created_message
     else
       render :new
     end
@@ -29,7 +31,7 @@ class FlightsController < ApplicationController
 
   def update
     if @flight.update(flight_params)
-      redirect_to @flight, notice: "Flight was successfully updated."
+      redirect_to @flight, notice: flight_updated_message
     else
       render :edit
     end
@@ -37,8 +39,7 @@ class FlightsController < ApplicationController
 
   def destroy
     @flight.destroy
-    redirect_to flights_url, notice: "Flight #{@flight.code} has been
-                                      removed."
+    redirect_to flights_url, notice: flight_removed_message
   end
 
   private

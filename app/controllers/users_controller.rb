@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  include Concerns::MessagesHelper
+
   before_action :verify_admin_login, only: [:index, :destroy]
   before_action :verify_user_login, except: [:new, :create]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
@@ -15,7 +17,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       send_welcome_email
-      redirect_to login_path, notice: "Account created. Sign in to continue."
+      redirect_to login_path, notice: account_created_message
     else
       render :new
     end
@@ -29,7 +31,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: "User was successfully updated."
+      redirect_to @user, notice: user_update_message
     else
       render :edit
     end
@@ -37,7 +39,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to users_url, notice: "User was successfully destroyed"
+    redirect_to users_url, notice: user_destroyed_message
   end
 
   private

@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  include Concerns::MessagesHelper
+
   protect_from_forgery with: :exception
 
   private
@@ -13,14 +15,13 @@ class ApplicationController < ActionController::Base
 
   def verify_user_login
     unless session[:user_id] || session[:admin_user_id]
-      redirect_to login_path, notice: "There's more but please sign in first :)"
+      redirect_to login_path, notice: please_sign_in_message
     end
   end
 
   def verify_admin_login
     unless session[:admin_user_id]
-      redirect_to root_path,
-                  notice: "You are not authorized to access the requested page"
+      redirect_to root_path, notice: not_authorized_message
     end
   end
 end

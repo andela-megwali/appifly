@@ -1,4 +1,6 @@
 class BookingsController < ApplicationController
+  include Concerns::MessagesHelper
+
   before_action :verify_user_login, except: [:new, :create, :show, :search]
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
   before_action :set_flight_select, only: [:new, :create, :show, :edit, :update]
@@ -16,10 +18,10 @@ class BookingsController < ApplicationController
 
   def create
     @booking = Booking.new(booking_params)
-    additional_booking_details
+    add_booking_details
     render(:new) && return unless @booking.save
     session[:enquiry] = nil
-    redirect_to @booking, notice: "Booking was successfully created."
+    redirect_to @booking, notice: booking_created_message
   end
 
   def show
@@ -30,12 +32,12 @@ class BookingsController < ApplicationController
 
   def update
     render(:edit) && return unless @booking.update(booking_params)
-    redirect_to @booking, notice: "Booking was successfully updated."
+    redirect_to @booking, notice: booking_updated_message
   end
 
   def destroy
     @booking.destroy
-    redirect_to past_bookings_path, notice: "Booking was successfully Cancelled"
+    redirect_to past_bookings_path, notice: booking_cancelled_message
   end
 
   def past
@@ -46,8 +48,8 @@ class BookingsController < ApplicationController
   def search
     return false if params[:reference_id].blank?
     @booking = Booking.find_by(reference_id: params[:reference_id])
-    (flash[:notice] = "Booking Not Found.") && return unless @booking
-    redirect_to(@booking, notice: "Booking Found.")
+    (flash[:notice] = booking_not_found_message) && return unless @booking
+    redirect_to(@booking, notice: booking_found_message)
   end
 
   private
@@ -79,7 +81,7 @@ class BookingsController < ApplicationController
     end
     @passenger_enquiry = session[:enquiry] if session[:enquiry]
     find_flight
-    redirect_to :back, notice: "Select a flight first!" unless @flight_selected
+    redirect_to :back, notice: select_a_flight_message unless @flight_selected
   end
 
   def find_flight
@@ -90,7 +92,7 @@ class BookingsController < ApplicationController
     end
   end
 
-  def additional_booking_details
+  def add_booking_details
     @booking.flight_id = @flight_selected.id
     @booking.user_id = session[:user_id] if session[:user_id]
   end

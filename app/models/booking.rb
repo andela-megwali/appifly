@@ -16,13 +16,13 @@ class Booking < ActiveRecord::Base
 
   private
 
-  def cost_calculator
+  def calculate_cost
     multiplier = { "Economy" => 1, "Business" => 1.5, "First" => 2 }
     travel_value = multiplier[travel_class] * passengers.size
     travel_value * flight.cost
   end
 
-  def booking_ref_generator
+  def generate_booking_ref
     [
       flight.code,
       rand(1000..9999).to_s,
@@ -40,15 +40,15 @@ class Booking < ActiveRecord::Base
 
   def set_booking_reference_and_cost
     update_attributes(
-      reference_id: booking_ref_generator,
-      total_cost: cost_calculator
+      reference_id: generate_booking_ref,
+      total_cost: calculate_cost
     )
     send_booking_notification
   end
 
   def set_total_cost
-    if total_cost != cost_calculator
-      update_attributes(total_cost: cost_calculator)
+    if total_cost != calculate_cost
+      update_attributes(total_cost: calculate_cost)
       send_booking_notification
     end
   end
