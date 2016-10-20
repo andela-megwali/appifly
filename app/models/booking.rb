@@ -3,7 +3,7 @@ class Booking < ActiveRecord::Base
   has_one :payment
   belongs_to :flight
   belongs_to :user
-  after_create :set_booking_reference
+  after_create :set_booking_reference_and_cost
   after_update :set_total_cost
 
   accepts_nested_attributes_for :passengers, allow_destroy: true
@@ -38,7 +38,7 @@ class Booking < ActiveRecord::Base
     end
   end
 
-  def set_booking_reference
+  def set_booking_reference_and_cost
     update_attributes(
       reference_id: booking_ref_generator,
       total_cost: cost_calculator
