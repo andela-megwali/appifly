@@ -4,11 +4,8 @@ class BookingsController < ApplicationController
   before_action :set_flight_select, only: [:new, :create, :show, :edit, :update]
 
   def index
-    if session[:admin_user_id]
-      @bookings = Booking.all
-    else
-      redirect_to past_bookings_path
-    end
+    redirect_to past_bookings_path and return unless session[:admin_user_id]
+    @bookings = Booking.all
   end
 
   def new
@@ -20,12 +17,9 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     additional_booking_details
-    if @booking.save
-      session[:enquiry] = nil
-      redirect_to @booking, notice: "Booking was successfully created."
-    else
-      render :new
-    end
+    render :new and return unless @booking.save
+    session[:enquiry] = nil
+    redirect_to @booking, notice: "Booking was successfully created."
   end
 
   def show
@@ -35,12 +29,9 @@ class BookingsController < ApplicationController
   end
 
   def update
-    if @booking.update(booking_params)
-      cost_calculator
-      redirect_to @booking, notice: "Booking was successfully updated."
-    else
-      render :edit
-    end
+    render :edit and return unless @booking.update(booking_params)
+    cost_calculator
+    redirect_to @booking, notice: "Booking was successfully updated."
   end
 
   def destroy
@@ -54,13 +45,12 @@ class BookingsController < ApplicationController
   end
 
   def search
-    unless params[:reference_id].blank?
-      @booking = Booking.find_by(reference_id: params[:reference_id])
-      if @booking
-        redirect_to(@booking, notice: "Booking Found.")
-      else
-        flash[:notice] = "Booking Not Found."
-      end
+    return false if params[:reference_id].blank?
+    @booking = Booking.find_by(reference_id: params[:reference_id])
+    if @booking
+      redirect_to(@booking, notice: "Booking Found.")
+    else
+      flash[:notice] = "Booking Not Found."
     end
   end
 
