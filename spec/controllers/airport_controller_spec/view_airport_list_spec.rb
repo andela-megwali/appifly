@@ -38,21 +38,16 @@ RSpec.describe AirportsController, type: :controller do
 
         context "when there are airports" do
           before do
-            60.times do
+            32.times do
               create :airport, name: Faker::Name.name
             end
-          end
-
-          it "returns array of airports" do
-            expect(assigns(:airports).empty?).to be_falsey
-            expect(assigns(:airports)[0]).to be_instance_of Airport
           end
 
           context "when page is 1" do
             it "returns airports starting from id 1" do
               airports = assigns(:airports)
-              expect(airports.size).to eq 30
               expect(airports[0].id).to eq 1
+              expect(airports.size).to eq 30
             end
           end
 
@@ -60,8 +55,8 @@ RSpec.describe AirportsController, type: :controller do
             it "returns airports starting from id 31 " do
               get :index, page: 2
               airports = assigns(:airports)
-              expect(airports.size).to eq 30
               expect(airports[0].id).to eq 31
+              expect(airports.size).to eq 2
             end
           end
         end

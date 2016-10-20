@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "AdminUserUsesApp", type: :feature do
+RSpec.feature "AdminUser", type: :feature do
   before { create :user, :admin }
 
   scenario "Admin signs in with invalid credentials" do

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "RegisteredUserUsesApp", type: :feature do
+RSpec.feature "RegisteredUser", type: :feature do
   before { sign_up }
   scenario "User signs up" do
     expect(page).to have_content("Account created. Sign in to continue")

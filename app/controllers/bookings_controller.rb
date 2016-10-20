@@ -1,10 +1,10 @@
 class BookingsController < ApplicationController
-  before_action :verify_admin_login, only: [:index]
-  before_action :verify_user_login, except: [:new, :create, :show]
+  before_action :verify_user_login, except: [:new, :create, :show, :search]
   before_action :set_booking, only: [:show, :edit, :update, :destroy]
   before_action :set_flight_select, only: [:new, :create, :show, :edit, :update]
 
   def index
+    redirect_to past_bookings_path and return unless session[:admin_user_id]
     @bookings = Booking.all
   end
 
@@ -17,12 +17,9 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     additional_booking_details
-    if @booking.save
-      session[:enquiry] = nil
-      redirect_to @booking, notice: "Booking was successfully created."
-    else
-      render :new
-    end
+    render :new and return unless @booking.save
+    session[:enquiry] = nil
+    redirect_to @booking, notice: "Booking was successfully created."
   end
 
   def show
@@ -32,17 +29,25 @@ class BookingsController < ApplicationController
   end
 
   def update
-    if @booking.update(booking_params)
-      cost_calculator
-      redirect_to @booking, notice: "Booking was successfully updated."
-    else
-      render :edit
-    end
+    render :edit and return unless @booking.update(booking_params)
+    redirect_to @booking, notice: "Booking was successfully updated."
   end
 
   def destroy
     @booking.destroy
     redirect_to past_bookings_path, notice: "Booking was successfully Cancelled"
+  end
+
+  def past
+    @bookings = Booking.past_bookings(session[:user_id])
+    render "bookings/index"
+  end
+
+  def search
+    return false if params[:reference_id].blank?
+    @booking = Booking.find_by(reference_id: params[:reference_id])
+    flash[:notice] = "Booking Not Found." and return unless @booking
+    redirect_to(@booking, notice: "Booking Found.")
   end
 
   private
@@ -88,13 +93,5 @@ class BookingsController < ApplicationController
   def additional_booking_details
     @booking.flight_id = @flight_selected.id
     @booking.user_id = session[:user_id] if session[:user_id]
-    cost_calculator
-  end
-
-  def cost_calculator
-    multiplier = { "Economy" => 1, "Business" => 1.5, "First" => 2 }
-    travel_value = multiplier[@booking.travel_class] * @booking.passengers.size
-    @booking.total_cost = travel_value * @booking.flight.cost
-    @booking.save
   end
 end

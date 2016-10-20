@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.feature "AnonymousUserUsesApp", type: :feature do
+RSpec.feature "AnonymousUser", type: :feature do
   scenario "User searches for flights" do
     search_for_flights
     expect(page).to have_content("Available Flights")
