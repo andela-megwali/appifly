@@ -1,14 +1,12 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-  before_action :verify_user_login, except: [:new,
-                                             :create,
-                                             :login,
-                                             :attempt_login,
-                                             :logout]
+  include Concerns::MessagesHelper
+
   before_action :verify_admin_login, only: [:index, :destroy]
+  before_action :verify_user_login, except: [:new, :create]
+  before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    @users = User.all
+    @users = User.all.paginate(page: params[:page], per_page: 30)
   end
 
   def new
@@ -18,8 +16,8 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      #send_welcome_email
-      redirect_to login_path, notice: "Account created. Sign in to continue."
+      send_welcome_email
+      redirect_to login_path, notice: account_created_message
     else
       render :new
     end
@@ -33,7 +31,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: "User was successfully updated."
+      redirect_to @user, notice: user_update_message
     else
       render :edit
     end
@@ -41,21 +39,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to user_url, notice: "User was successfully destroyed"
-  end
-
-  def login
-  end
-
-  def attempt_login
-    check_user
-    authorize_the_user
-  end
-
-  def logout
-    session[:user_id] = nil
-    session[:user_username] = nil
-    redirect_to login_path, notice: "User successfully signed out."
+    redirect_to users_url, notice: user_destroyed_message
   end
 
   private
@@ -65,26 +49,16 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit :title, :firstname, :lastname, :username,
-                                 :password, :email, :telephone,
-                                 :subscription
-  end
-
-  def check_user
-    if params[:sign_in][:username] && params[:sign_in][:password]
-      User.find_by(username: params[:sign_in][:username])
-    end
-  end
-
-  def authorize_the_user
-    if check_user
-      authorized_user = check_user.authenticate(params[:sign_in][:password])
-      session[:user_id] = authorized_user.id
-      session[:user_username] = authorized_user.username
-      redirect_to past_bookings_path, notice: "User successfully signed in."
-    else
-      redirect_to login_path, notice: "Invalid password or username"
-    end
+    params.require(:user).permit(
+      :title,
+      :firstname,
+      :lastname,
+      :username,
+      :password,
+      :email,
+      :telephone,
+      :subscription
+    )
   end
 
   def send_welcome_email

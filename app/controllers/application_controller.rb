@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
+  include Concerns::MessagesHelper
+
   protect_from_forgery with: :exception
 
   private
@@ -14,15 +14,14 @@ class ApplicationController < ActionController::Base
   end
 
   def verify_user_login
-    unless session[:user_id]
-      redirect_to login_path, notice: "There's more but please sign in first :)"
+    unless session[:user_id] || session[:admin_user_id]
+      redirect_to login_path, notice: please_sign_in_message
     end
   end
 
-  # def verify_admin_login
-  #   unless session[:user_id] && User.find_by(session[:user_id]).admin_user
-  #     redirect_to login_path,
-  #                 notice: "You are not authorized to access the requested page"
-  #   end
-  # end
+  def verify_admin_login
+    unless session[:admin_user_id]
+      redirect_to root_path, notice: not_authorized_message
+    end
+  end
 end

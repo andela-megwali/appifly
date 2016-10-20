@@ -1,10 +1,13 @@
 class FlightsController < ApplicationController
+  include Concerns::MessagesHelper
+
+  before_action :verify_admin_login, except: [:index, :show]
   before_action :verify_user_login
   before_action :set_flight, only: [:show, :edit, :update, :destroy]
   before_action :list_airport, only: [:new, :edit]
 
   def index
-    @flights = Flight.all.paginate(page: params[:page], per_page: 30)
+    @flights = Flight.reverse_sorted.paginate(page: params[:page], per_page: 30)
   end
 
   def show
@@ -20,7 +23,7 @@ class FlightsController < ApplicationController
   def create
     @flight = Flight.new(flight_params)
     if @flight.save
-      redirect_to @flight, notice: "Flight was successfully created."
+      redirect_to @flight, notice: flight_created_message
     else
       render :new
     end
@@ -28,7 +31,7 @@ class FlightsController < ApplicationController
 
   def update
     if @flight.update(flight_params)
-      redirect_to @flight, notice: "Flight was successfully updated."
+      redirect_to @flight, notice: flight_updated_message
     else
       render :edit
     end
@@ -36,8 +39,7 @@ class FlightsController < ApplicationController
 
   def destroy
     @flight.destroy
-    redirect_to flights_url, notice: "Flight #{@flight.flight_code} has been
-                                      removed."
+    redirect_to flights_url, notice: flight_removed_message
   end
 
   private
@@ -47,14 +49,16 @@ class FlightsController < ApplicationController
   end
 
   def flight_params
-    params.require(:flight).permit(:origin,
-                                   :destination,
-                                   :seat,
-                                   :flight_cost,
-                                   :arrival,
-                                   :airline,
-                                   :flight_code,
-                                   :departure,
-                                   :status)
+    params.require(:flight).permit(
+      :origin,
+      :destination,
+      :seat,
+      :cost,
+      :arrival,
+      :airline,
+      :code,
+      :departure,
+      :status
+    )
   end
 end

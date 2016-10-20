@@ -5,9 +5,9 @@ Rails.application.routes.draw do
   resources :airports
   resources :users
   get "about" => "welcome#about"
-  get "login" => "users#login"
-  post "attempt_login" => "users#attempt_login"
-  get "logout" => "users#logout"
+  get "login" => "sessions#login"
+  post "attempt_login" => "sessions#attempt_login"
+  get "logout" => "sessions#logout"
   get "past_bookings" => "bookings#past"
-  get "search_booking" => "bookings#search_booking"
+  get "search_booking" => "bookings#search"
 end

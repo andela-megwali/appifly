@@ -2,9 +2,13 @@ AllCops:
   Exclude:
     - "vendor/**/*"
     - "db/schema.rb"
+    - "db/seeds.rb"
     - "bin/*"
     - "config/environments/*"
+    - "config/initializers/*"
     - "app/assets/*"
+    - "spec/rails_helper.rb"
+    - "spec/spec_helper.rb"
   UseCache: false
   TargetRubyVersion: 2.2
 Style/CollectionMethods:
@@ -113,7 +117,7 @@ Style/StringLiterals:
 Style/StringLiteralsInInterpolation:
   Description: Checks if uses of quotes inside expressions in interpolated strings
     match the configured preference.
-  Enabled: true
+  Enabled: false
   EnforcedStyle: single_quotes
   SupportedStyles:
   - single_quotes

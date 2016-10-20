@@ -3,7 +3,7 @@ Booking Reference Number: <%=@passenger.booking.reference_id %>
 Travel Class Booked: <%= @passenger.booking.travel_class %> Class
 Travelling From: <%= @passenger.booking.flight.origin %>
 Departure Time: <%= @passenger.booking.flight.departure.strftime("%d/%m/%Y %H:%M") %>
-Flight Number: <%=@passenger.booking.flight.flight_code%>
+Flight Number: <%=@passenger.booking.flight.code%>
 If you need any help or ideas to make your trip memorable, please get in touch with us as soon as possible.
 Thanks for using our service and have a great day!
 Please book again at <%= link_to "Appifly", "http://appifly.herokuapp.com" %>

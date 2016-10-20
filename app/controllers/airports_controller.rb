@@ -1,4 +1,7 @@
 class AirportsController < ApplicationController
+  include Concerns::MessagesHelper
+
+  before_action :verify_admin_login
   before_action :set_airport, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -12,7 +15,7 @@ class AirportsController < ApplicationController
   def create
     @airport = Airport.new(airport_params)
     if @airport.save
-      redirect_to @airport, notice: "#{@airport.name} Airport has been created."
+      redirect_to @airport, notice: airport_created_message
     else
       render :new
     end
@@ -26,7 +29,7 @@ class AirportsController < ApplicationController
 
   def update
     if @airport.update(airport_params)
-      redirect_to @airport, notice: "#{@airport.name} Airport has been updated."
+      redirect_to @airport, notice: airport_updated_message
     else
       render :edit
     end
@@ -34,7 +37,7 @@ class AirportsController < ApplicationController
 
   def destroy
     @airport.destroy
-    redirect_to airports_url, notice: "#{@airport.name} has been removed"
+    redirect_to airports_url, notice: airport_removed_message
   end
 
   private
@@ -44,11 +47,13 @@ class AirportsController < ApplicationController
   end
 
   def airport_params
-    params.require(:airport).permit(:name,
-                                    :continent,
-                                    :country,
-                                    :jurisdiction,
-                                    :state_and_code,
-                                    :rating)
+    params.require(:airport).permit(
+      :name,
+      :continent,
+      :country,
+      :jurisdiction,
+      :state_and_code,
+      :rating
+    )
   end
 end

@@ -37,13 +37,7 @@
       </tr>
       <tr>
         <td>Flight Cost:</td>
-        <td>
-        <% if @booking.passengers.count > 0 %>
-          $ <%= @booking.total_cost / @booking.passengers.count %> per person
-        <% else %>
-          <em>Invalid Booking Pending Addition of Passenger Details</em>
-        <% end %>
-        </td>
+        <td><%= unit_flight_cost %></td>
       </tr>
       <tr>
         <td>Airline:</td>
@@ -109,6 +103,6 @@
   <% if session[:user_id] %> 
     <%= link_to "Edit This Booking", edit_booking_path(@booking) %> <br>
     <%= link_to "View All My Bookings", past_bookings_path %> <br>
-    <%= link_to "View All Appifly Bookings", bookings_path if User.find(session[:user_id]).admin_user %>
+    <%= link_to "View All Appifly Bookings", bookings_path if session[:admin_user_id] %>
   <% end %>
 </div>

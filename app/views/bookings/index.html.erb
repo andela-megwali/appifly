@@ -1,9 +1,9 @@
 <h1>Welcome <%= User.find(session[:user_id]).firstname %></h1>
 <h3>Manage Your Bookings Here</h3>
-
 <table class="table">
   <thead>
     <tr>
+      <th>Index</th>
       <th>Booking Reference</th>
       <th>Travel Class</th>
       <th>Passsengers Booked</th>
@@ -15,13 +15,14 @@
   </thead>
 
   <tbody>
-    <% @bookings.each do |booking| %>
+    <% @bookings.each_with_index do |booking, index| %>
       <tr>
+        <td><%= index_for_pagination(index) %></td>
         <td><%= booking.reference_id %></td>
         <td><%= booking.travel_class %></td>
         <td><%= booking.passengers.count %></td>
         <td>$ <%= booking.total_cost %></td>
-        <td><%= booking.flight.flight_code %></td>
+        <td><%= booking.flight.code %></td>
         <td><%= booking.paid %></td>
         <td><%= link_to "Show", booking %></td>
         <td><%= link_to "Edit", edit_booking_path(booking) %></td>
