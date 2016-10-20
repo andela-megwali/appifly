@@ -9,7 +9,7 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe "POST #create" do
-    context "create user success" do
+    context "with valid user attributes" do
       before { post :create, user: attributes_for(:user) }
 
       it { is_expected.to respond_with 302 }
@@ -17,7 +17,7 @@ RSpec.describe UsersController, type: :controller do
       it { should redirect_to(login_path) }
     end
 
-    context "create user fail" do
+    context "with an invalid user attribute" do
       before { post :create, user: { firstname: nil } }
 
       it { is_expected.to respond_with 200 }
