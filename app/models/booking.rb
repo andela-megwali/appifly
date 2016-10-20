@@ -3,7 +3,8 @@ class Booking < ActiveRecord::Base
   has_one :payment
   belongs_to :flight
   belongs_to :user
-  after_create :update_booking_details
+  after_create :set_booking_reference
+  after_update :set_total_cost
 
   accepts_nested_attributes_for :passengers, allow_destroy: true
   validates_presence_of :travel_class
@@ -14,6 +15,12 @@ class Booking < ActiveRecord::Base
   end
 
   private
+
+  def cost_calculator
+    multiplier = { "Economy" => 1, "Business" => 1.5, "First" => 2 }
+    travel_value = multiplier[travel_class] * passengers.size
+    travel_value * flight.cost
+  end
 
   def booking_ref_generator
     [
@@ -31,8 +38,18 @@ class Booking < ActiveRecord::Base
     end
   end
 
-  def update_booking_details
-    update_attributes(reference_id: booking_ref_generator)
+  def set_booking_reference
+    update_attributes(
+      reference_id: booking_ref_generator,
+      total_cost: cost_calculator
+    )
     send_booking_notification
+  end
+
+  def set_total_cost
+    if total_cost != cost_calculator
+      update_attributes(total_cost: cost_calculator)
+      send_booking_notification
+    end
   end
 end

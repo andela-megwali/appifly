@@ -30,7 +30,6 @@ class BookingsController < ApplicationController
 
   def update
     render :edit and return unless @booking.update(booking_params)
-    cost_calculator
     redirect_to @booking, notice: "Booking was successfully updated."
   end
 
@@ -47,11 +46,8 @@ class BookingsController < ApplicationController
   def search
     return false if params[:reference_id].blank?
     @booking = Booking.find_by(reference_id: params[:reference_id])
-    if @booking
-      redirect_to(@booking, notice: "Booking Found.")
-    else
-      flash[:notice] = "Booking Not Found."
-    end
+    flash[:notice] = "Booking Not Found." and return unless @booking
+    redirect_to(@booking, notice: "Booking Found.")
   end
 
   private
@@ -97,13 +93,5 @@ class BookingsController < ApplicationController
   def additional_booking_details
     @booking.flight_id = @flight_selected.id
     @booking.user_id = session[:user_id] if session[:user_id]
-    cost_calculator
-  end
-
-  def cost_calculator
-    multiplier = { "Economy" => 1, "Business" => 1.5, "First" => 2 }
-    travel_value = multiplier[@booking.travel_class] * @booking.passengers.size
-    @booking.total_cost = travel_value * @booking.flight.cost
-    @booking.save
   end
 end
