@@ -31,6 +31,7 @@ group :development, :test do
   gem "database_cleaner"
   gem "factory_girl_rails"
   gem "faker"
+  gem "codeclimate-test-reporter"
 end
 
 group :development do
